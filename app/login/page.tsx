@@ -35,7 +35,7 @@ export default function LoginPage() {
               <p className="mt-4 text-sm leading-6 text-white/65">Product research, listing operations, monitoring, orders and profit analytics in one consistent product experience.</p>
             </div>
 
-            <ReferenceVisual asset="sellerHero" title="Temporary staging reference" />
+            <ReferenceVisual asset="sellerHero" className="min-h-[300px]" imageClassName="min-h-[300px] object-cover object-center" />
 
             <div className="mt-5 grid grid-cols-3 gap-3">
               {[
