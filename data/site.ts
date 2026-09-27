@@ -1,4 +1,4 @@
-import { BarChart3, Boxes, ClipboardList, FileSpreadsheet, LineChart, PackageSearch, ReceiptText, RefreshCcw, Tags, type LucideIcon } from 'lucide-react';
+import { BarChart3, Boxes, ClipboardList, FileSpreadsheet, PackageSearch, ReceiptText, RefreshCcw, Tags, WandSparkles, type LucideIcon } from 'lucide-react';
 
 export type FeatureConfig = {
   slug: string;
@@ -48,10 +48,10 @@ export const featureConfigs: Record<string, FeatureConfig> = {
     metricLabel: 'Sheet sync status',
   },
   analytics: {
-    slug: 'analytics', title: 'Profit & Calculation Dashboards', eyebrow: 'Analytics', hero: 'See the numbers behind your store.',
-    description: 'Use calculation and profit views to understand revenue, costs, marketplace fees and net margin from one analytics area.',
+    slug: 'analytics', title: 'Profit Dashboard', eyebrow: 'Analytics', hero: 'See the numbers behind your store.',
+    description: 'Understand revenue, costs, marketplace fees, product performance and net margin from one analytics area.',
     icon: BarChart3,
-    bullets: ['Calculate estimated net profit', 'Compare revenue and cost trends', 'Review product-level profitability', 'Filter by useful reporting periods'],
+    bullets: ['Review revenue and cost trends', 'Track profit margin over time', 'Compare product-level profitability', 'Filter by useful reporting periods'],
     metricLabel: 'Net profit',
   },
   reports: {
@@ -69,7 +69,7 @@ export const allFeatures = [
   { title: 'Stock Monitoring', text: 'Keep stock states and supplier changes visible.', icon: RefreshCcw, href: '/features/stock-monitoring' },
   { title: 'Price Monitoring', text: 'Review supplier price changes and margin impact.', icon: Tags, href: '/features/price-monitoring' },
   { title: 'Google Sheets Automation', text: 'Keep orders, costs and profit data organized in a sheet-ready flow.', icon: FileSpreadsheet, href: '/features/google-sheets' },
-  { title: 'Calculation Dashboard', text: 'Estimate net profit, margin, ROI and break-even price.', icon: LineChart, href: '/features/analytics' },
+  { title: 'Product Image Studio', text: 'Prepare cleaner product images for listings and marketplace use.', icon: WandSparkles, href: '/features/auto-listing' },
   { title: 'Profit Dashboard', text: 'Understand revenue, costs, fees and profit over time.', icon: BarChart3, href: '/features/analytics' },
   { title: 'Orders', text: 'Review order values, costs, profit and status in one place.', icon: Boxes, href: '/features' },
   { title: 'Reports', text: 'Turn operating data into reusable reports and exports.', icon: ReceiptText, href: '/features/reports' },

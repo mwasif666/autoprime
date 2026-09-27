@@ -1,61 +1,57 @@
 'use client';
 
-import { ExternalLink, ImageIcon } from 'lucide-react';
+import { useState } from 'react';
 import { TEMP_REFERENCE_ASSETS, type TemporaryReferenceAssetKey } from '@/data/referenceAssets';
 
 export function ReferenceVisual({
   asset,
-  title,
-  caption,
   className = '',
+  imageClassName = '',
 }: {
   asset: TemporaryReferenceAssetKey;
-  title?: string;
-  caption?: string;
   className?: string;
+  imageClassName?: string;
 }) {
   const item = TEMP_REFERENCE_ASSETS[asset];
+  const [failed, setFailed] = useState(false);
 
   return (
-    <figure className={`reference-media group ${className}`}>
-      <div className="reference-media__bar">
-        <span className="reference-media__dot" />
-        <span className="reference-media__dot" />
-        <span className="reference-media__dot" />
-        <span className="ml-2 truncate text-[11px] font-bold tracking-[.02em] text-[#7a708c]">
-          {title ?? 'Product interface reference'}
-        </span>
-        <span className="ml-auto inline-flex items-center gap-1 rounded-full border border-[#e9e1f5] bg-white px-2.5 py-1 text-[9px] font-black uppercase tracking-[.11em] text-[#7957bc]">
-          <ImageIcon size={10} />
-          Temporary
-        </span>
-      </div>
-      <div className="reference-media__viewport">
-        <img src={item.src} alt={item.alt} loading="lazy" referrerPolicy="no-referrer" />
-        <div className="reference-media__fade" />
-        <div className="reference-media__source">
-          <span>Reference image: {item.source}</span>
-          <ExternalLink size={12} />
+    <figure className={`reference-media ${className}`}>
+      {!failed ? (
+        <img
+          src={item.src}
+          alt={item.alt}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          className={imageClassName}
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <div className="reference-fallback" aria-label={item.alt}>
+          <div className="reference-fallback__sidebar">
+            <span /><span /><span /><span /><span />
+          </div>
+          <div className="reference-fallback__main">
+            <div className="reference-fallback__toolbar" />
+            <div className="grid grid-cols-3 gap-3">
+              <div className="reference-fallback__metric" />
+              <div className="reference-fallback__metric" />
+              <div className="reference-fallback__metric" />
+            </div>
+            <div className="reference-fallback__chart" />
+          </div>
         </div>
-      </div>
-      {caption && <figcaption className="reference-media__caption">{caption}</figcaption>}
+      )}
     </figure>
   );
 }
 
 export function ReferenceGallery() {
   return (
-    <div className="grid gap-5 lg:grid-cols-12">
-      <ReferenceVisual
-        asset="productResearch"
-        title="Product research workflow"
-        caption="Temporary staging reference for the product-hunting visual direction."
-        className="lg:col-span-7"
-      />
-      <div className="grid gap-5 lg:col-span-5">
-        <ReferenceVisual asset="sellerListing" title="Listing workflow reference" />
-        <ReferenceVisual asset="monitoring" title="Monitoring workflow reference" />
-      </div>
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+      <ReferenceVisual asset="productResearch" className="md:col-span-2 lg:col-span-7 lg:row-span-2" imageClassName="h-full min-h-[360px] object-cover object-center" />
+      <ReferenceVisual asset="listing" className="lg:col-span-5" imageClassName="h-[220px] object-cover object-center" />
+      <ReferenceVisual asset="monitoring" className="lg:col-span-5" imageClassName="h-[220px] object-cover object-center" />
     </div>
   );
 }
