@@ -1,0 +1,1454 @@
+You are a senior SaaS product designer, UX engineer, conversion-focused landing-page designer, and expert Next.js frontend developer.
+
+Your task is to DESIGN AND BUILD a complete, production-quality SaaS website for:
+
+BRAND NAME:
+AutoDropshipPrime
+
+PRODUCT TYPE:
+All-in-one dropshipping automation platform for eBay/eCommerce sellers.
+
+IMPORTANT:
+I have provided:
+1. The official AutoDropshipPrime logo.
+2. A reference SaaS login/dashboard screenshot.
+3. AutoDS eBay reference:
+   https://www.autods.com/ebay/
+4. 3Dsellers reference:
+   https://www.3dsellers.com/
+
+Study these references for:
+- page hierarchy
+- SaaS storytelling
+- professional spacing
+- dashboard/product presentation
+- feature presentation
+- navigation depth
+- conversion flow
+- trust sections
+- pricing structure
+- product UI previews
+
+DO NOT copy either website pixel-for-pixel.
+DO NOT copy their copyrighted text, illustrations or branding.
+Create an original AutoDropshipPrime design inspired by the UX quality, information architecture and professionalism of these references.
+
+==================================================
+1. CORE PRODUCT FEATURES
+==================================================
+
+AutoDropshipPrime is an all-in-one automation system.
+
+These are CRITICAL product features and must be prominently presented throughout the site:
+
+1. Auto Product Hunting
+2. Auto Listing
+3. Stock Monitoring
+4. Price Monitoring
+5. Automatic Google Sheets Profit & Orders Updates
+6. Calculation Dashboard
+7. Profit Dashboard
+8. Reports
+9. Order Management
+10. Product Management
+11. eBay automation
+12. Supplier/product tracking
+13. Business analytics
+
+Main positioning:
+
+"Everything You Need to Automate Your Dropshipping Business."
+
+Alternative supporting message:
+
+"Find products. List faster. Monitor stock and prices. Track orders and profits. Run your dropshipping business from one powerful dashboard."
+
+Do NOT make the website sound like a collection of random tools.
+
+The whole product must feel like ONE connected ecosystem.
+
+==================================================
+2. VISUAL BRAND DIRECTION
+==================================================
+
+STRICTLY use the provided AutoDropshipPrime logo as the branding foundation.
+
+Extract the visual language from the logo.
+
+Primary color direction:
+- Deep indigo / midnight violet
+- Rich purple
+- Electric violet
+- Bright magenta/pink accent
+
+Approximate palette direction:
+
+--background: #FFFFFF
+--background-soft: #FAF9FF
+--surface: #FFFFFF
+--text-primary: #171230
+--text-secondary: #67627A
+--border: #EAE7F2
+
+--brand-dark: #211062
+--brand-indigo: #32158C
+--brand-purple: #6D28D9
+--brand-violet: #8B3DFF
+--brand-magenta: #F22EB7
+
+Use tasteful gradients derived from the logo:
+deep indigo → violet → magenta
+
+Do NOT turn every section into a gradient.
+Gradients are accents, not backgrounds everywhere.
+
+Main page background should be mostly clean white / very light lavender.
+
+Use dark purple sections selectively to create contrast.
+
+==================================================
+3. VERY IMPORTANT DESIGN RULE
+==================================================
+
+THE WEBSITE MUST NOT LOOK AI-GENERATED.
+
+Avoid stereotypical AI-generated SaaS design.
+
+DO NOT:
+- fill every section with giant rounded cards
+- use random floating blobs
+- use excessive glassmorphism
+- use neon cyberpunk effects
+- use meaningless gradient spheres
+- use huge empty spaces
+- use random stock illustrations
+- use generic AI people images
+- put gradients on every heading
+- create repetitive three-card layouts for every section
+- create excessive pill-shaped UI
+- overuse animations
+- use lorem ipsum
+- create unrealistic fake UI
+- copy standard v0/Lovable template structures
+
+Instead:
+
+Make it look like it was designed by a professional SaaS design team.
+
+Think:
+- Linear
+- Stripe
+- Webflow-quality SaaS
+- professional eCommerce software
+- AutoDS
+- 3Dsellers
+- polished B2B software
+
+The page should feel:
+credible,
+expensive,
+clean,
+conversion-focused,
+well engineered,
+realistic,
+and human-designed.
+
+==================================================
+4. TYPOGRAPHY
+==================================================
+
+Use a premium modern sans-serif font.
+
+Preferred:
+Inter
+or
+Geist
+
+Headings:
+- bold but not excessively heavy
+- tight tracking
+- strong visual hierarchy
+
+Body:
+- 16–18px
+- comfortable line-height
+- maximum readable widths
+
+Avoid giant 90px headings unless appropriate on very large screens.
+
+Hero title desktop approximately:
+56–68px
+
+Tablet:
+44–52px
+
+Mobile:
+38–44px
+
+==================================================
+5. TECH STACK — STRICT
+==================================================
+
+Build this website using:
+
+- Next.js latest stable version
+- App Router
+- TypeScript
+- React
+- Tailwind CSS
+- Ant Design
+- Material UI
+- Framer Motion
+- Lucide React icons
+- Recharts for analytics visualizations
+- 21st.dev components where appropriate
+
+If 21st.dev MCP/plugin/registry access is available:
+use high-quality components from 21st.dev for sections such as:
+- hero visual
+- feature bento
+- testimonials
+- animated tabs
+- comparison elements
+- CTA
+
+Do NOT blindly paste components.
+
+Restyle every third-party component to match AutoDropshipPrime.
+
+IMPORTANT FOR ANT DESIGN + MUI:
+
+Do NOT mix the two design systems randomly.
+
+Use:
+Ant Design primarily for:
+- tables
+- forms
+- dropdowns
+- switches
+- pagination
+- modals
+- dashboard-oriented controls
+
+Use Material UI selectively for:
+- tooltips
+- advanced interactive UI
+- dashboard widgets where useful
+
+Create one unified design-token system so everything looks like the same product.
+
+No visible default Ant Design blue.
+No visible default Material UI blue.
+
+Override themes globally using AutoDropshipPrime colors.
+
+==================================================
+6. SITE ARCHITECTURE
+==================================================
+
+Create a complete marketing website.
+
+Pages/routes:
+
+/
+Homepage
+
+/features
+Features overview
+
+/features/product-hunting
+Auto Product Hunting
+
+/features/auto-listing
+Auto Listing
+
+/features/stock-monitoring
+Stock Monitoring
+
+/features/price-monitoring
+Price Monitoring
+
+/features/google-sheets
+Google Sheets Automation
+
+/features/analytics
+Profit & Calculation Dashboards
+
+/features/reports
+Reports & Insights
+
+/pricing
+Pricing
+
+/about
+About
+
+/contact
+Contact / Sales
+
+/login
+Login
+
+/signup
+Account creation
+
+Optional:
+/blog
+/resources
+/faq
+
+All pages must share one consistent header and footer.
+
+==================================================
+7. NAVIGATION
+==================================================
+
+Desktop navigation:
+
+[AutoDropshipPrime Logo]
+
+Product ▼
+Solutions ▼
+Resources ▼
+Pricing
+
+right side:
+Login
+Get Started
+
+PRODUCT dropdown should feel like a real SaaS mega-menu.
+
+Suggested groups:
+
+AUTOMATION
+- Auto Product Hunting
+- Auto Listing
+- Price Monitoring
+- Stock Monitoring
+
+ANALYTICS
+- Profit Dashboard
+- Calculation Dashboard
+- Reports
+- Google Sheets Sync
+
+OPERATIONS
+- Products
+- Orders
+- Integrations
+
+Add small Lucide icons and concise descriptions.
+
+Do not overload the navigation.
+
+Header:
+- sticky
+- white/translucent only after scrolling if tasteful
+- subtle bottom border
+- approximately 72–76px high
+
+Mobile:
+clean slide-over menu.
+
+==================================================
+8. HOMEPAGE — SECTION STRUCTURE
+==================================================
+
+Build the homepage in this order.
+
+------------------------------
+SECTION 1 — NAVBAR
+------------------------------
+
+Clean professional SaaS navbar.
+
+Logo must remain clearly visible.
+
+Primary CTA:
+Start Free
+
+Secondary:
+Login
+
+------------------------------
+SECTION 2 — HERO
+------------------------------
+
+Create a premium two-column hero.
+
+LEFT:
+
+Small eyebrow:
+"THE ALL-IN-ONE DROPSHIPPING AUTOMATION PLATFORM"
+
+Main headline:
+
+"Automate Your Dropshipping Business From One Powerful Platform."
+
+Highlight only a small part of the headline using the logo gradient.
+
+Supporting copy:
+
+"Discover profitable products, publish listings, monitor stock and prices, track orders, calculate profits and keep your Google Sheets updated automatically."
+
+CTA buttons:
+
+[Start Free]
+[Watch Product Tour]
+
+Under CTA:
+
+✓ Fast setup
+✓ Built for scaling sellers
+✓ All tools in one dashboard
+
+Do not claim numbers, savings or outcomes that have not been provided.
+
+RIGHT SIDE:
+
+Do NOT use a stock person.
+
+Create a realistic product dashboard composition.
+
+It should look like a screenshot from a real SaaS application.
+
+Dashboard should contain:
+
+Header:
+Good morning, Alex
+
+Stat cards:
+Total Revenue
+Net Profit
+Orders
+Active Listings
+
+Main revenue chart
+
+Profit overview
+
+Recent orders table
+
+Stock warning
+
+Price changes
+
+Small product cards
+
+Use realistic placeholder data.
+
+The dashboard should be slightly angled or layered, but still legible.
+
+Use subtle shadow.
+
+No excessive floating decorations.
+
+Behind the product preview, use only a restrained violet/pink glow.
+
+------------------------------
+SECTION 3 — TRUST / INTEGRATION STRIP
+------------------------------
+
+Heading:
+
+"Everything connected. Everything automated."
+
+Show ecosystem badges such as:
+
+eBay
+Google Sheets
+
+And placeholders for future supported suppliers/integrations.
+
+Do not falsely claim integrations that are not confirmed.
+
+If integrations are not finalized, label:
+"Designed for your selling workflow"
+
+------------------------------
+SECTION 4 — PRODUCT VALUE
+------------------------------
+
+Large centered heading:
+
+"Stop Managing Your Store Across Ten Different Tools."
+
+Supporting copy:
+
+"AutoDropshipPrime brings product research, listing automation, monitoring, orders and profit analytics into one workflow."
+
+Below it create an interactive visual explaining:
+
+FIND
+→ LIST
+→ MONITOR
+→ SELL
+→ TRACK
+→ ANALYZE
+
+The workflow must feel connected.
+
+Use thin connecting paths and micro-animations.
+
+------------------------------
+SECTION 5 — AUTO PRODUCT HUNTING
+------------------------------
+
+Label:
+PRODUCT RESEARCH
+
+Heading:
+"Find Better Products Without Hours of Manual Research."
+
+Copy should explain product hunting in practical language.
+
+LEFT:
+Product discovery UI.
+
+Include:
+- search
+- supplier
+- source price
+- estimated selling price
+- potential margin
+- category
+- stock status
+- product thumbnail
+
+RIGHT:
+Text + bullet advantages.
+
+CTA:
+Explore Product Hunting
+
+Make product UI look real rather than decorative.
+
+------------------------------
+SECTION 6 — AUTO LISTING
+------------------------------
+
+Alternating layout.
+
+Heading:
+"Turn Winning Products Into Listings Faster."
+
+Show a realistic listing editor UI:
+
+Product image
+Title
+Description
+Cost
+Selling price
+Profit margin
+Quantity
+Publish button
+
+Use:
+"Create Listing"
+"Save Draft"
+
+Visual should resemble a functioning application.
+
+------------------------------
+SECTION 7 — STOCK + PRICE MONITORING
+------------------------------
+
+Use a slightly darker soft background for visual separation.
+
+Heading:
+
+"Prices Change. Stock Changes. Your System Keeps Watching."
+
+Create a split monitoring dashboard:
+
+PRODUCT
+Wireless Headphones
+
+SUPPLIER PRICE
+$18.40 → $20.10
+
+STORE PRICE
+$39.99 → $42.99
+
+STOCK
+In Stock
+
+STATUS
+Updated
+
+Another row:
+Low Stock
+
+Another:
+Supplier Out of Stock
+
+Show small status indicators.
+
+Copy:
+
+"Keep critical supplier changes visible from one monitoring center."
+
+Avoid claiming automatic behavior beyond the client's actual implementation.
+
+------------------------------
+SECTION 8 — GOOGLE SHEETS AUTOMATION
+------------------------------
+
+This feature is IMPORTANT.
+
+Heading:
+
+"Your Orders and Profit Sheet, Updated Automatically."
+
+Create a realistic Google-Sheets-inspired data preview without copying Google's interface pixel-for-pixel.
+
+Columns:
+
+Date
+Order ID
+Product
+Sale Price
+Supplier Cost
+Fees
+Profit
+Margin
+Status
+
+Example:
+
+Sep 18
+#ADP-1284
+Wireless Charger
+$39.99
+$18.40
+$5.20
+$16.39
+40.9%
+Completed
+
+Animation:
+A new order row subtly appears.
+
+Beside it display a small flow:
+
+New Order
+↓
+AutoDropshipPrime
+↓
+Calculate Cost + Profit
+↓
+Google Sheet Updated
+
+This should be one of the strongest website sections.
+
+------------------------------
+SECTION 9 — CALCULATION DASHBOARD
+------------------------------
+
+Heading:
+
+"Know Your Numbers Before You Scale."
+
+Create an interactive-looking profit calculator.
+
+Inputs:
+
+Selling Price
+Product Cost
+Marketplace Fees
+Shipping
+Taxes
+Other Costs
+
+Outputs:
+
+Net Profit
+Profit Margin
+ROI
+Break-Even Price
+
+Use realistic charts and data.
+
+------------------------------
+SECTION 10 — PROFIT DASHBOARD
+------------------------------
+
+Create a wide product screenshot.
+
+Headline:
+
+"Understand Where Your Profit Is Actually Coming From."
+
+Dashboard cards:
+
+Gross Sales
+Product Cost
+Marketplace Fees
+Net Profit
+Profit Margin
+
+Charts:
+
+Profit Over Time
+Sales vs Cost
+Profit by Product
+
+Filters:
+
+Today
+7 Days
+30 Days
+Custom
+
+Use Recharts.
+
+Charts should be visually restrained and professional.
+
+------------------------------
+SECTION 11 — REPORTS
+------------------------------
+
+Heading:
+
+"Turn Store Data Into Decisions."
+
+Show report UI including:
+
+Sales Report
+Profit Report
+Orders Report
+Product Performance
+Inventory Report
+Price Change Report
+
+Show:
+PDF
+CSV
+Spreadsheet export buttons
+
+Only show functionality supported/planned by the product.
+
+------------------------------
+SECTION 12 — ALL-IN-ONE FEATURE GRID
+------------------------------
+
+Heading:
+
+"Too Much to Manage? Put It All in One Place."
+
+Build a sophisticated feature grid.
+
+NOT nine identical cards.
+
+Use varied but balanced card dimensions.
+
+Feature items:
+
+Auto Product Hunting
+Auto Listing
+Stock Monitoring
+Price Monitoring
+Google Sheets Automation
+Calculation Dashboard
+Profit Dashboard
+Orders
+Reports
+
+Each card:
+icon
+title
+1–2 sentence description
+
+Some cards can contain mini UI previews.
+
+Do not use emoji.
+
+Use Lucide icons.
+
+------------------------------
+SECTION 13 — PRODUCT DASHBOARD SHOWCASE
+------------------------------
+
+A large full-width SaaS dashboard mockup.
+
+Tabs:
+
+Overview
+Products
+Listings
+Orders
+Monitoring
+Profit
+Reports
+
+The mock interface must include:
+
+sidebar
+top header
+search
+notifications
+user profile
+statistics
+charts
+tables
+filters
+
+It should feel like software someone could genuinely use.
+
+Use the shared login/dashboard screenshot as quality/information-density inspiration.
+
+Do not copy Kravio branding.
+
+Use AutoDropshipPrime branding.
+
+------------------------------
+SECTION 14 — HOW IT WORKS
+------------------------------
+
+Headline:
+
+"From Product Discovery to Profit Tracking."
+
+Four steps:
+
+01
+Connect Your Store
+
+02
+Find & List Products
+
+03
+Let Automation Monitor Operations
+
+04
+Track Orders and Profit
+
+Make this a connected horizontal timeline desktop,
+vertical timeline mobile.
+
+------------------------------
+SECTION 15 — BENEFITS
+------------------------------
+
+Use outcome categories rather than unsupported numeric claims.
+
+Examples:
+
+LESS MANUAL WORK
+Automate repetitive operational tasks.
+
+BETTER VISIBILITY
+See orders, pricing and profitability in one place.
+
+FASTER WORKFLOW
+Move from product discovery to listing faster.
+
+ONE PLATFORM
+Reduce tool-switching across daily operations.
+
+------------------------------
+SECTION 16 — TESTIMONIALS
+------------------------------
+
+IMPORTANT:
+Do not invent testimonials and present them as real customers.
+
+If client testimonials are unavailable:
+use clearly marked placeholder testimonials or hide this section until data is supplied.
+
+Structure:
+
+Customer name
+role/company
+quote
+verified/customer badge ONLY if actually verified.
+
+Do not fabricate Trustpilot/Capterra scores.
+
+------------------------------
+SECTION 17 — PRICING PREVIEW
+------------------------------
+
+Heading:
+"Simple Plans for Growing Sellers."
+
+Create 3 plans:
+
+Starter
+Growth
+Pro
+
+But mark prices as configurable placeholders if client hasn't supplied pricing.
+
+Example during development:
+
+$XX/mo
+$XX/mo
+Custom
+
+Feature comparison could include:
+
+Listings
+Product Hunting
+Stock Monitoring
+Price Monitoring
+Google Sheets Sync
+Profit Analytics
+Reports
+Support
+
+Monthly / Annual toggle.
+
+One plan may be visually emphasized.
+
+No fake discount unless supplied by client.
+
+------------------------------
+SECTION 18 — FAQ
+------------------------------
+
+Professional accordion.
+
+Questions:
+
+What is AutoDropshipPrime?
+How does Auto Product Hunting work?
+Can I automate product listings?
+How does stock monitoring work?
+How does price monitoring work?
+Can AutoDropshipPrime update my Google Sheets?
+How are profits calculated?
+Can I export reports?
+Which marketplaces are supported?
+Can I manage multiple stores?
+How do I get started?
+
+Use concise answers.
+
+Never invent integrations or technical capabilities.
+
+------------------------------
+SECTION 19 — FINAL CTA
+------------------------------
+
+Use a premium dark-indigo section.
+
+Subtle gradient based on logo.
+
+Heading:
+
+"Run Your Dropshipping Operation From One Place."
+
+Supporting copy:
+
+"Spend less time jumping between tools and more time growing your store."
+
+Buttons:
+
+[Start Free]
+[Book a Demo]
+
+Use subtle abstract product UI lines in background.
+
+No generic AI illustration.
+
+------------------------------
+SECTION 20 — FOOTER
+------------------------------
+
+Large structured SaaS footer.
+
+Column 1:
+Logo
+short description
+social links
+
+Product:
+Product Hunting
+Auto Listing
+Monitoring
+Google Sheets
+Analytics
+Reports
+
+Company:
+About
+Contact
+Pricing
+
+Resources:
+Help Center
+Documentation
+Blog
+FAQ
+
+Legal:
+Privacy
+Terms
+Cookies
+
+Bottom:
+© AutoDropshipPrime
+
+==================================================
+9. LOGIN PAGE
+==================================================
+
+Use the provided login screenshot as the structural inspiration.
+
+Desktop:
+50/50 split.
+
+LEFT:
+logo
+login form
+
+"Welcome Back"
+"Sign in to continue to AutoDropshipPrime."
+
+Email
+Password
+Remember me
+Forgot password
+Sign In
+
+Divider:
+or
+
+Continue with Google
+
+Don't have an account?
+Create Account
+
+RIGHT:
+realistic AutoDropshipPrime dashboard screenshot / UI composition.
+
+Under screenshot:
+
+"Everything your dropshipping business needs, finally in one place."
+
+Small customer proof can be added only when genuine content is provided.
+
+Do NOT copy the exact reference login UI.
+
+Create an original implementation.
+
+Use the AutoDropshipPrime purple/pink branding.
+
+Mobile:
+hide/reduce the promotional side and prioritize form.
+
+==================================================
+10. DASHBOARD PREVIEW DESIGN
+==================================================
+
+Create reusable mock dashboard components because these will appear throughout the marketing site.
+
+Dashboard navigation:
+
+Overview
+Product Hunter
+Products
+Listings
+Orders
+Monitoring
+Analytics
+  - Calculation
+  - Profit
+  - Reports
+Google Sheets
+Integrations
+Settings
+
+Dashboard overview cards:
+
+Total Sales
+Net Profit
+Orders
+Active Listings
+
+Secondary cards:
+
+Products Monitored
+Price Changes
+Low Stock
+Sheet Sync Status
+
+Charts:
+
+Revenue & Profit
+Orders Trend
+Profit by Product
+
+Recent Orders table:
+
+Order
+Product
+Channel
+Sale
+Cost
+Profit
+Status
+
+Use realistic eCommerce values.
+
+No nonsensical fake charts.
+
+==================================================
+11. MICRO-INTERACTIONS
+==================================================
+
+Use Framer Motion carefully.
+
+Allowed:
+
+- 150–350ms transitions
+- subtle fade/slide when sections enter viewport
+- chart animation
+- button hover
+- tab transitions
+- dashboard row state animations
+- small card elevation
+- menu animation
+
+Do NOT:
+- animate everything
+- use bouncing text
+- use continuously rotating elements
+- use scroll-jacking
+- use excessive parallax
+
+Website must still feel professional.
+
+==================================================
+12. COMPONENT ARCHITECTURE
+==================================================
+
+Organize code cleanly.
+
+Example:
+
+src/
+  app/
+    page.tsx
+    features/
+    pricing/
+    login/
+    signup/
+    contact/
+  components/
+    layout/
+    navbar/
+    footer/
+    hero/
+    sections/
+    dashboard/
+    ui/
+  lib/
+  hooks/
+  data/
+  types/
+  styles/
+
+Create reusable components.
+
+Examples:
+
+<Container />
+<SectionHeading />
+<PrimaryButton />
+<FeatureSection />
+<DashboardShell />
+<MetricCard />
+<AnalyticsChart />
+<ProductTable />
+<MonitoringTable />
+<PricingCard />
+<FAQAccordion />
+
+Do not put the whole website into page.tsx.
+
+==================================================
+13. RESPONSIVENESS
+==================================================
+
+Must be fully optimized for:
+
+375px
+430px
+768px
+1024px
+1280px
+1440px
+1920px
+
+No horizontal overflow.
+
+Mobile navigation must work.
+
+Tables should:
+- scroll gracefully
+or
+- transform to cards where suitable
+
+Product dashboard mockups must remain readable.
+
+Hero must stack naturally.
+
+Pricing cards must adapt properly.
+
+==================================================
+14. PERFORMANCE
+==================================================
+
+Target production-quality performance.
+
+Use:
+
+next/image
+next/font
+dynamic imports when worthwhile
+optimized SVGs
+lazy loading
+server components where appropriate
+
+Avoid unnecessary JS.
+
+Avoid excessive package usage.
+
+Avoid huge animation libraries beyond what is needed.
+
+Target Lighthouse:
+
+Performance 90+
+Accessibility 95+
+Best Practices 95+
+SEO 95+
+
+==================================================
+15. ACCESSIBILITY
+==================================================
+
+Follow WCAG AA.
+
+Use:
+semantic HTML
+proper labels
+visible keyboard focus
+accessible dialogs/dropdowns
+aria attributes when necessary
+sufficient color contrast
+
+Buttons must not rely solely on color.
+
+==================================================
+16. SEO
+==================================================
+
+Create proper Next.js metadata.
+
+Homepage title example:
+
+AutoDropshipPrime | All-in-One Dropshipping Automation Platform
+
+Meta description:
+
+Automate product hunting, listings, stock and price monitoring, order tracking, Google Sheets updates, profit calculations and reports from one platform.
+
+Add:
+OpenGraph metadata
+Twitter cards
+robots
+sitemap
+
+Use semantic H1/H2 structure.
+
+==================================================
+17. COPYWRITING RULES
+==================================================
+
+Copy must sound like a real SaaS company.
+
+Use plain, confident business language.
+
+Avoid AI clichés:
+
+"revolutionize"
+"unlock limitless possibilities"
+"supercharge like never before"
+"game-changing solution"
+"seamless synergy"
+"next-generation ecosystem"
+
+unless there is a legitimate reason.
+
+Prefer specific language.
+
+Bad:
+"Revolutionize your e-commerce journey."
+
+Better:
+"Monitor prices, stock, orders and profit without switching between tools."
+
+==================================================
+18. CONTENT / CLAIMS SAFETY
+==================================================
+
+Do NOT invent:
+
+customer count
+revenue numbers
+review scores
+integration partners
+years in business
+profit claims
+automation accuracy
+percentage improvements
+customer names
+certifications
+
+Use placeholders marked clearly when real data is missing.
+
+==================================================
+19. VISUAL ASSET RULE
+==================================================
+
+Use the actual supplied AutoDropshipPrime logo.
+
+Do not redesign the logo.
+
+For product imagery:
+prefer custom HTML/CSS/React dashboard mockups over AI-generated illustrations.
+
+Use dashboard interfaces as the primary visual language.
+
+That will make the website look much more authentic.
+
+Use images only where they provide genuine value.
+
+Do not fill the page with Unsplash-style stock people.
+
+==================================================
+20. QUALITY BAR
+==================================================
+
+Before considering the website complete, inspect every section and ask:
+
+"Would a serious SaaS company confidently launch this?"
+
+If it feels like:
+- a template
+- a student project
+- an AI-generated landing page
+- an unmodified component library demo
+
+redesign it.
+
+Pay extreme attention to:
+spacing,
+alignment,
+responsive behavior,
+text hierarchy,
+border consistency,
+radii,
+shadows,
+UI density,
+button hierarchy,
+and realistic data.
+
+Use a consistent radius system:
+
+small UI: 8px
+controls: 10px
+cards: 14–18px
+major product frames: 20–24px
+
+Avoid excessive 30–40px rounded rectangles.
+
+==================================================
+21. FINAL DELIVERABLE
+==================================================
+
+Build the COMPLETE website, not merely a hero section.
+
+Include:
+
+- working navigation
+- homepage
+- features pages
+- pricing
+- login
+- signup
+- contact
+- responsive layouts
+- animations
+- complete dashboard mockups
+- working tabs
+- working FAQ accordions
+- pricing toggle
+- mobile menu
+- realistic charts
+- realistic tables
+- hover/focus states
+- polished footer
+- proper SEO metadata
+
+Use mock/local data where backend APIs have not yet been supplied.
+
+Clearly separate:
+REAL integrations
+from
+UI DEMO DATA.
+
+Do not stop after scaffolding.
+
+Do not leave TODO sections.
+
+Do not use placeholder gray boxes.
+
+Every section should be visually complete.
+
+==================================================
+FINAL CREATIVE DIRECTION
+==================================================
+
+Imagine:
+
+AutoDS's clear dropshipping product storytelling
++
+3Dsellers' serious all-in-one seller positioning
++
+the clean professional login/dashboard structure from the supplied reference image
++
+AutoDropshipPrime's purple / violet / pink identity
++
+a premium modern B2B SaaS product designed in Figma by a real product team.
+
+The final result should be ORIGINAL.
+
+It should immediately communicate:
+
+PRODUCT HUNTING
+→ AUTO LISTING
+→ STOCK MONITORING
+→ PRICE MONITORING
+→ ORDERS
+→ GOOGLE SHEETS
+→ CALCULATIONS
+→ PROFITS
+→ REPORTS
+
+ALL IN ONE PLACE.
+
+Start by:
+1. defining design tokens,
+2. building the global layout,
+3. building reusable dashboard mockup components,
+4. implementing the homepage,
+5. implementing secondary pages,
+6. completing responsive states,
+7. polishing animation and accessibility,
+8. doing a final visual consistency pass.
+
+Do not ask for approval after every section.
+Build the complete first version.
