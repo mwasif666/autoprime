@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ChevronDown, Menu, X, PackageSearch, ClipboardList, RefreshCcw, Tags, BarChart3, ReceiptText, FileSpreadsheet, Boxes, Plug, WandSparkles } from 'lucide-react';
-import Tooltip from '@mui/material/Tooltip';
 
 const groups = [
   { title: 'Automation', items: [
@@ -35,6 +34,7 @@ export default function Header() {
       <Link href="/" className="flex shrink-0 items-center" aria-label="AutoDropshipPrime home">
         <Image src="/logo.png" alt="AutoDropshipPrime" width={210} height={110} className="h-[42px] w-auto object-contain" priority />
       </Link>
+
       <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
         <div className="relative" onMouseEnter={() => setMega(true)} onMouseLeave={() => setMega(false)}>
           <button className="flex items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-semibold hover:bg-[#faf8ff]" aria-expanded={mega}>Product <ChevronDown size={15}/></button>
@@ -50,17 +50,25 @@ export default function Header() {
             </div>
           </div>}
         </div>
+
         <Link href="/features" className="rounded-lg px-4 py-2.5 text-sm font-semibold hover:bg-[#faf8ff]">Solutions</Link>
-        <Tooltip title="Resources pages are prepared for future content"><span className="cursor-help rounded-lg px-4 py-2.5 text-sm font-semibold hover:bg-[#faf8ff]">Resources</span></Tooltip>
+        <Link href="/resources" className="rounded-lg px-4 py-2.5 text-sm font-semibold hover:bg-[#faf8ff]">Resources</Link>
         <Link href="/pricing" className="rounded-lg px-4 py-2.5 text-sm font-semibold hover:bg-[#faf8ff]">Pricing</Link>
       </nav>
+
       <div className="hidden items-center gap-3 lg:flex"><Link href="/login" className="px-3 py-2 text-sm font-bold">Login</Link><Link href="/signup" className="btn-primary text-sm">Get Started</Link></div>
       <button className="grid h-10 w-10 place-items-center rounded-xl border border-[#e9e4f2] lg:hidden" aria-label="Open menu" onClick={() => setMobile(!mobile)}>{mobile?<X/>:<Menu/>}</button>
     </div>
+
     {mobile&&<div className="border-t border-[#eeeaf4] bg-white lg:hidden"><div className="container-site py-5">
       <div className="mb-2 text-[10px] font-extrabold uppercase tracking-[.14em] text-[#80768f]">Product</div>
       <div className="grid gap-1 sm:grid-cols-2">{groups.flatMap(g=>g.items).slice(0,8).map(item=><Link key={item.label} onClick={()=>setMobile(false)} href={item.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 hover:bg-[#faf8ff]"><item.icon size={17} className="text-[#6d28d9]"/><span className="text-sm font-semibold">{item.label}</span></Link>)}</div>
-      <div className="mt-4 grid gap-2 border-t border-[#eeeaf4] pt-4"><Link href="/features" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Solutions</Link><Link href="/pricing" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Pricing</Link><div className="mt-2 grid grid-cols-2 gap-3"><Link href="/login" className="btn-secondary text-sm">Login</Link><Link href="/signup" className="btn-primary text-sm">Get Started</Link></div></div>
+      <div className="mt-4 grid gap-2 border-t border-[#eeeaf4] pt-4">
+        <Link href="/features" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Solutions</Link>
+        <Link href="/resources" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Resources</Link>
+        <Link href="/pricing" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Pricing</Link>
+        <div className="mt-2 grid grid-cols-2 gap-3"><Link href="/login" className="btn-secondary text-sm">Login</Link><Link href="/signup" className="btn-primary text-sm">Get Started</Link></div>
+      </div>
     </div></div>}
   </header>;
 }
