@@ -53,7 +53,7 @@ const ranges = {
     ],
     products: [{name:'Wireless Charger',profit:1324},{name:'Portable Blender',profit:1118},{name:'Mini Projector',profit:1036},{name:'Smart Lamp',profit:810}],
   },
-} as const;
+};
 
 type RangeKey = keyof typeof ranges;
 
