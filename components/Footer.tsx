@@ -8,7 +8,7 @@ const YouTubeIcon = () => <svg aria-hidden="true" viewBox="0 0 24 24" width="16"
 const cols = [
   { title:'Product', links:[['Product Hunting','/features/product-hunting'],['Auto Listing','/features/auto-listing'],['Monitoring','/features/stock-monitoring'],['Google Sheets','/features/google-sheets'],['Analytics','/features/analytics'],['Reports','/features/reports']] },
   { title:'Company', links:[['About','/about'],['Contact','/contact'],['Pricing','/pricing']] },
-  { title:'Resources', links:[['Help Center','#'],['Documentation','#'],['Blog','#'],['FAQ','/#faq']] },
+  { title:'Resources', links:[['Resource Library','/resources'],['Featured Guides','/resources#guides'],['Learning Paths','/resources#help'],['FAQ','/resources#faq']] },
   { title:'Legal', links:[['Privacy','#'],['Terms','#'],['Cookies','#']] },
 ];
 
