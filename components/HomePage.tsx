@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import {
   ArrowRight,
-  BadgeDollarSign,
   BarChart3,
-  Box,
   Check,
   ClipboardList,
   FileSpreadsheet,
@@ -12,7 +10,6 @@ import {
   SearchCheck,
   ShoppingBag,
   Sparkles,
-  Tags,
   WandSparkles,
 } from 'lucide-react';
 import Reveal from './Reveal';
@@ -105,11 +102,11 @@ function ConnectedWorkflow() {
   return (
     <section className="section bg-[#211062] text-white">
       <div className="container-site">
-        <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
+        <div className="grid gap-9 lg:grid-cols-[.66fr_1.34fr] lg:items-center">
           <div>
             <div className="text-[10px] font-black uppercase tracking-[.14em] text-[#cdbbfa]">Connected workflow</div>
             <h2 className="mt-3 text-[31px] leading-[1.08] font-[820] tracking-[-.035em] sm:text-[39px]">One flow from product discovery to profit.</h2>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-white/65">Each step feeds the next, so research, listings, monitoring, orders and reporting feel like one product.</p>
+            <p className="mt-4 max-w-xl text-[15px] leading-7 text-white/65">Research, listings, monitoring, orders, sheets and profit move through one connected sequence.</p>
           </div>
           <div className="rounded-[18px] border border-white/10 bg-white/[.04] p-4 text-[#171230] sm:p-5"><Workflow/></div>
         </div>
@@ -144,7 +141,7 @@ function StorySection({
           <h2 className="mt-3 text-[31px] leading-[1.09] font-[820] tracking-[-.035em] sm:text-[40px]">{title}</h2>
           <p className="muted mt-4 text-[15px] leading-7 sm:text-[16px]">{text}</p>
           <div className="mt-6 space-y-3">{bullets.map(item=><div key={item} className="flex items-start gap-3 text-sm font-semibold"><span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#ded3ed] text-[#6d28d9]"><Check size={12}/></span><span className="pt-0.5">{item}</span></div>)}</div>
-          <Link href={href} className="mt-7 inline-flex items-center gap-2 text-sm font-extrabold text-[#6d28d9]">Explore feature <ArrowRight size={15}/></Link>
+          <Link href={href} className="outline-action mt-7">Explore feature <ArrowRight size={15}/></Link>
         </Reveal>
       </div>
     </section>
@@ -153,26 +150,34 @@ function StorySection({
 
 function HowItWorks() {
   const steps = [
-    {title:'Discover',text:'Find products',icon:SearchCheck,color:'#f05b70',bg:'#ffe9ed'},
-    {title:'Review',text:'Check margin',icon:PackageSearch,color:'#44a9bb',bg:'#e3f7fa'},
-    {title:'List',text:'Prepare listing',icon:ClipboardList,color:'#6175d9',bg:'#e9edff'},
-    {title:'Monitor',text:'Watch changes',icon:RefreshCcw,color:'#dea332',bg:'#fff3d8'},
-    {title:'Track',text:'Manage orders',icon:ShoppingBag,color:'#7d53d6',bg:'#eee6ff'},
-    {title:'Analyze',text:'Profit & reports',icon:BarChart3,color:'#d552a5',bg:'#ffe5f5'},
+    {title:'Discover',text:'Find products',icon:SearchCheck,color:'#ef5a70',bg:'#ffe9ed'},
+    {title:'Review',text:'Check margin',icon:PackageSearch,color:'#3ea8ba',bg:'#e2f7fa'},
+    {title:'List',text:'Prepare listing',icon:ClipboardList,color:'#6075d8',bg:'#e8edff'},
+    {title:'Monitor',text:'Watch changes',icon:RefreshCcw,color:'#df9f26',bg:'#fff2d4'},
+    {title:'Track',text:'Manage orders',icon:ShoppingBag,color:'#7b50d6',bg:'#eee5ff'},
+    {title:'Analyze',text:'Profit & reports',icon:BarChart3,color:'#d451a5',bg:'#ffe5f5'},
   ];
+
   return (
     <section className="section bg-[#fbfaff]">
       <div className="container-site">
-        <SectionHeading center eyebrow="How it works" title="A clear process from product idea to business insight." text="A connected six-step workflow keeps every stage easy to understand."/>
-        <div className="relative mt-12 grid gap-8 md:grid-cols-3 lg:grid-cols-6">
-          <div className="process-line hidden lg:block" />
+        <SectionHeading center eyebrow="How it works" title="A clear process from product idea to business insight." text="Six connected stages keep the workflow easy to follow from research through reporting."/>
+
+        <div className="mt-12 flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-2">
           {steps.map((step,index)=>{
             const Icon=step.icon;
-            return <div key={step.title} className={'relative z-10 text-center ' + (index%2===1?'lg:pt-14':'')}>
-              <div className="mx-auto text-[11px] font-black" style={{color:step.color}}>0{index+1}</div>
-              <div className="mx-auto mt-2 grid h-[72px] w-[72px] place-items-center rounded-full border border-white" style={{background:step.bg,color:step.color}}><Icon size={25}/></div>
-              <div className="mt-4 text-[15px] font-extrabold">{step.title}</div>
-              <div className="mt-1 text-[11px] text-[#81798d]">{step.text}</div>
+            return <div key={step.title} className="contents">
+              <div className={'how-step flex-1 ' + (index%2===1?'lg:translate-y-7':'lg:-translate-y-2')}>
+                <div className="text-[10px] font-black" style={{color:step.color}}>0{index+1}</div>
+                <div className="mt-2 grid h-[64px] w-[64px] place-items-center rounded-full" style={{background:step.bg,color:step.color}}><Icon size={23}/></div>
+                <div className="mt-3 text-[15px] font-extrabold">{step.title}</div>
+                <div className="mt-1 text-[11px] text-[#81798d]">{step.text}</div>
+              </div>
+              {index<steps.length-1&&<div className={'how-connector ' + (index%2===0?'lg:translate-y-4':'lg:-translate-y-4')}>
+                <span className="hidden h-px flex-1 bg-[#c9badb] lg:block"/>
+                <ArrowRight size={19} strokeWidth={1.7}/>
+                <span className="hidden h-px flex-1 bg-[#c9badb] lg:block"/>
+              </div>}
             </div>
           })}
         </div>
@@ -189,8 +194,8 @@ function FinalCta() {
           <h2 className="text-[29px] font-[820] tracking-[-.03em] sm:text-[36px]">Run your dropshipping operation from one place.</h2>
           <p className="mx-auto mt-3 max-w-xl text-[14px] leading-6 text-white/65">Research, list, monitor and understand profit without switching between disconnected tools.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="/signup" className="rounded-[10px] bg-white px-5 py-3 text-sm font-extrabold text-[#32158c]">Start Free</Link>
-            <Link href="/contact" className="rounded-[10px] border border-white/25 px-5 py-3 text-sm font-extrabold text-white">Book Demo</Link>
+            <Link href="/signup" className="cta-primary">Start Free</Link>
+            <Link href="/contact" className="cta-secondary">Book Demo</Link>
           </div>
         </div>
       </div>
@@ -225,31 +230,31 @@ export default function HomePage() {
     />
 
     <section className="section bg-[#fbfaff]">
-      <div className="container-site grid items-center gap-10 lg:grid-cols-[.72fr_1.28fr]">
+      <div className="container-site grid items-center gap-10 lg:grid-cols-[.68fr_1.32fr]">
         <div>
           <div className="eyebrow">Stock + price monitoring</div>
           <h2 className="mt-3 text-[31px] leading-[1.09] font-[820] tracking-[-.035em] sm:text-[40px]">See supplier changes before they become store problems.</h2>
           <p className="muted mt-4 text-[15px] leading-7">Price movement, stock state and attention items stay visible from one monitoring view.</p>
-          <Link href="/features/stock-monitoring" className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-[#6d28d9]">Explore monitoring <ArrowRight size={15}/></Link>
+          <Link href="/features/stock-monitoring" className="outline-action mt-6">Explore monitoring <ArrowRight size={15}/></Link>
         </div>
         <MonitoringPreview/>
       </div>
     </section>
 
     <section className="section">
-      <div className="container-site grid items-center gap-10 lg:grid-cols-[.72fr_1.28fr]">
-        <div>
+      <div className="container-site">
+        <div className="max-w-2xl">
           <div className="eyebrow">Google Sheets automation</div>
           <h2 className="mt-3 text-[31px] leading-[1.09] font-[820] tracking-[-.035em] sm:text-[40px]">Keep orders and profit records updated automatically.</h2>
           <p className="muted mt-4 text-[15px] leading-7">Order value, product cost, fees, profit and status stay organized in a spreadsheet-ready flow.</p>
         </div>
-        <SheetPreview/>
+        <div className="mt-8"><SheetPreview/></div>
       </div>
     </section>
 
     <section className="section bg-[#fbfaff]">
       <div className="container-site">
-        <SectionHeading eyebrow="Profit dashboard" title="See what is selling, what it costs and what you actually keep." text="Track sales, product costs, marketplace fees, net profit, margin and product performance in one analytics view."/>
+        <SectionHeading eyebrow="Profit dashboard" title="See what is selling, what it costs and what you actually keep." text="Change the time range to update sales, profit, orders, fees and product performance."/>
         <div className="mt-8"><AnalyticsPanel/></div>
       </div>
     </section>
@@ -258,11 +263,12 @@ export default function HomePage() {
       <div className="container-site">
         <SectionHeading eyebrow="Reports" title="Turn store activity into useful reports." text="Review sales, orders, product performance, inventory and price changes with consistent reporting controls."/>
         <div className="mt-8"><ReportsPreview/></div>
-        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[.72fr_1.28fr]">
+
+        <div className="mt-14 grid items-center gap-10 lg:grid-cols-[.65fr_1.35fr]">
           <div>
             <div className="eyebrow"><WandSparkles size={13}/>Image tools</div>
-            <h3 className="mt-3 text-[28px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[34px]">Prepare cleaner product images without leaving the workflow.</h3>
-            <p className="muted mt-4 text-[15px] leading-7">A focused image workspace for background cleanup, marketplace sizing, product scenes and optimized exports.</p>
+            <h3 className="mt-3 text-[28px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[34px]">Preview product-image improvements before publishing.</h3>
+            <p className="muted mt-4 text-[15px] leading-7">Compare original and cleaned product imagery, then use focused tools for background cleanup, sizing and export.</p>
           </div>
           <ImageStudioPreview/>
         </div>
