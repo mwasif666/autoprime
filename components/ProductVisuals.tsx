@@ -23,17 +23,24 @@ export function ProductHunterPreview(){
     {product:'Smart Lamp',supplier:'Supplier C',source:'$14.20',sell:'$31.99',margin:'38.2%',stock:'In Stock'},
     {product:'Mini Projector',supplier:'Supplier D',source:'$46.80',sell:'$89.99',margin:'36.4%',stock:'In Stock'},
   ];
-  return <div className="product-frame p-4 sm:p-5">
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-      <div className="flex flex-1 items-center gap-2 rounded-lg border border-[#e7e2ee] bg-white px-3 py-2.5 text-xs text-[#8a8295]"><Search size={14}/>Search products</div>
-      <button className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-[#dcd2e9] bg-white px-3 text-xs font-bold text-[#625a70] transition hover:border-[#8b3dff] hover:bg-[#f6f0ff] hover:text-[#5f25c3]"><SlidersHorizontal size={14}/>Filters</button>
+
+  return <div className="product-frame overflow-hidden">
+    <div className="flex flex-col gap-2 border-b border-[#ebe6f2] bg-[#fbfaff] px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div>
+        <div className="text-[10px] font-black uppercase tracking-[.11em] text-[#81788d]">Product opportunities</div>
+        <div className="mt-1 text-sm font-extrabold">Research shortlist</div>
+      </div>
+      <div className="flex gap-5 text-[10px] font-bold text-[#81798e]">
+        <span><b className="text-[#171230]">4</b> products</span>
+        <span><b className="text-[#6d28d9]">37.6%</b> avg. margin</span>
+      </div>
     </div>
 
-    <div className="mt-4 hidden overflow-hidden rounded-xl border border-[#e7e2ee] md:block">
-      <div className="grid grid-cols-[1.55fr_1fr_.78fr_.78fr_.7fr_.78fr] bg-[#faf8fd] px-4 py-3 text-[9px] font-black uppercase tracking-[.08em] text-[#7f768f]">
+    <div className="hidden md:block">
+      <div className="grid grid-cols-[1.7fr_1fr_.8fr_.8fr_.72fr_.9fr] bg-[#faf8fd] px-6 py-3.5 text-[9px] font-black uppercase tracking-[.08em] text-[#7f768f]">
         <span>Product</span><span>Supplier</span><span>Source</span><span>Sell</span><span>Margin</span><span>Stock</span>
       </div>
-      {rows.map(row=><div key={row.product} className="grid grid-cols-[1.55fr_1fr_.78fr_.78fr_.7fr_.78fr] items-center border-t border-[#eeeaf4] px-4 py-4 text-[12px]">
+      {rows.map(row=><div key={row.product} className="grid min-h-[78px] grid-cols-[1.7fr_1fr_.8fr_.8fr_.72fr_.9fr] items-center border-t border-[#eeeaf4] px-6 py-4 text-[12px]">
         <span className="font-extrabold">{row.product}</span>
         <span>{row.supplier}</span>
         <span>{row.source}</span>
@@ -43,8 +50,8 @@ export function ProductHunterPreview(){
       </div>)}
     </div>
 
-    <div className="mt-4 grid gap-3 md:hidden">
-      {rows.map(row=><div key={row.product} className="rounded-xl border border-[#e7e2ee] p-4">
+    <div className="grid gap-3 p-4 md:hidden">
+      {rows.map(row=><div key={row.product} className="rounded-xl border border-[#e7e2ee] bg-white p-4">
         <div className="flex items-start justify-between gap-3"><div><div className="font-extrabold">{row.product}</div><div className="mt-1 text-[11px] text-[#80788d]">{row.supplier}</div></div><span className={row.stock==='Low Stock'?'status warn':'status good'}>{row.stock}</span></div>
         <div className="mt-4 grid grid-cols-3 gap-3 border-t border-[#eeeaf4] pt-3 text-[11px]"><div><span className="block text-[#8a8295]">Source</span><b className="mt-1 block">{row.source}</b></div><div><span className="block text-[#8a8295]">Sell</span><b className="mt-1 block">{row.sell}</b></div><div><span className="block text-[#8a8295]">Margin</span><b className="mt-1 block text-[#6d28d9]">{row.margin}</b></div></div>
       </div>)}
@@ -193,8 +200,7 @@ export function ReportsPreview(){
 }
 
 export function ImageStudioPreview(){
-  const before='https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=82';
-  const after='https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=82';
+  const productImage='https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1100&q=84';
 
   return <div className="product-frame overflow-hidden">
     <div className="border-b border-[#e9e4ef] bg-[#fbfaff] px-4 py-4">
@@ -203,11 +209,11 @@ export function ImageStudioPreview(){
     <div className="grid lg:grid-cols-[1.25fr_.75fr]">
       <div className="grid gap-3 border-b border-[#e9e4ef] p-4 sm:grid-cols-2 lg:border-b-0 lg:border-r sm:p-5">
         <figure className="overflow-hidden rounded-xl border border-[#e8e2ef] bg-white">
-          <img src={before} alt="Product photo before editing" className="h-[245px] w-full object-cover" loading="lazy"/>
+          <img src={productImage} alt="Product photo before editing" className="h-[245px] w-full object-cover" loading="lazy"/>
           <figcaption className="flex items-center justify-between px-3 py-2.5 text-[11px]"><b>Before</b><span className="text-[#8a8295]">Original product photo</span></figcaption>
         </figure>
         <figure className="overflow-hidden rounded-xl border border-[#d8caeb] bg-white">
-          <img src={after} alt="Clean product photo after editing" className="h-[245px] w-full object-cover" loading="lazy"/>
+          <div className="grid h-[245px] place-items-center bg-white p-5"><img src={productImage} alt="Same product prepared for marketplace use" className="h-full w-full rounded-lg object-contain" loading="lazy"/></div>
           <figcaption className="flex items-center justify-between px-3 py-2.5 text-[11px]"><b className="text-[#6d28d9]">After</b><span className="text-[#8a8295]">Marketplace-ready</span></figcaption>
         </figure>
       </div>

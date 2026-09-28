@@ -36,9 +36,12 @@ export default function Pricing({full=false}:{full?:boolean}) {
 
     {full&&<div className="mt-12">
       <div className="mb-5"><div className="eyebrow">Plan comparison</div><h2 className="mt-3 text-[25px] font-extrabold tracking-[-.025em]">Compare the core capabilities.</h2></div>
-      <div className="table-shell"><table><thead><tr><th>Capability</th><th>Starter</th><th>Growth</th><th>Pro</th></tr></thead><tbody>
+      <div className="hidden md:block"><div className="table-shell"><table><thead><tr><th>Capability</th><th>Starter</th><th>Growth</th><th>Pro</th></tr></thead><tbody>
         {['Stores','Active Listings','Product Hunting','Auto Listing','Stock Monitoring','Price Monitoring','Google Sheets Sync','Orders Dashboard','Profit Dashboard','Reports','Support'].map((row,i)=><tr key={row}><td className="font-bold">{row}</td><td>{i<5?'Included':'—'}</td><td>{i<10?'Included':'Configured'}</td><td>Configured</td></tr>)}
-      </tbody></table></div>
+      </tbody></table></div></div>
+      <div className="grid gap-3 md:hidden">
+        {['Stores','Active Listings','Product Hunting','Auto Listing','Stock Monitoring','Price Monitoring','Google Sheets Sync','Orders Dashboard','Profit Dashboard','Reports','Support'].map((row,i)=><div key={row} className="rounded-xl border border-[#e8e2ef] bg-white p-4"><div className="font-extrabold">{row}</div><div className="mt-3 grid grid-cols-3 gap-2 text-[10px]"><div><span className="block text-[#8a8295]">Starter</span><b className="mt-1 block">{i<5?'Included':'—'}</b></div><div><span className="block text-[#8a8295]">Growth</span><b className="mt-1 block">{i<10?'Included':'Configured'}</b></div><div><span className="block text-[#8a8295]">Pro</span><b className="mt-1 block">Configured</b></div></div></div>)}
+      </div>
     </div>}
   </div>
 }

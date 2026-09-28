@@ -134,7 +134,7 @@ function StorySection({
 }) {
   return (
     <section className="section">
-      <div className={'container-site grid items-center gap-11 lg:grid-cols-2 ' + (reverse?'lg:[&>*:first-child]:order-2':'')}>
+      <div className={'container-site grid items-center gap-11 ' + (reverse ? 'lg:grid-cols-[.88fr_1.12fr] lg:[&>*:first-child]:order-2' : 'lg:grid-cols-[1.12fr_.88fr]')}>
         <Reveal>{visual}</Reveal>
         <Reveal>
           <div className="eyebrow">{eyebrow}</div>

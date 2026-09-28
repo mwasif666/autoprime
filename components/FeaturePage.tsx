@@ -1,15 +1,16 @@
 import Link from 'next/link';
-import { ArrowRight, Check, CircleDot, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Sparkles } from 'lucide-react';
 import type { FeatureConfig } from '@/data/site';
 import AnalyticsPanel from './AnalyticsPanel';
+import MarketingCta from './MarketingCta';
 import {
   ListingPreview,
   MonitoringPreview,
   ProductHunterPreview,
   ReportsPreview,
   SheetPreview,
+  Workflow,
 } from './ProductVisuals';
-import SectionHeading from './SectionHeading';
 import { ReferenceVisual } from './ReferenceMedia';
 import type { TemporaryReferenceAssetKey } from '@/data/referenceAssets';
 
@@ -33,58 +34,68 @@ function FeatureImage({ slug }: { slug:string }) {
     'analytics': 'sellerHero',
     'reports': 'sellerManagement',
   };
-  return <ReferenceVisual asset={map[slug] || 'sellerHero'} className="min-h-[340px]" imageClassName="min-h-[340px] object-cover object-center"/>;
+  return <ReferenceVisual asset={map[slug] || 'sellerHero'} className="min-h-[300px]" imageClassName="min-h-[300px] object-cover object-center"/>;
 }
 
 export default function FeaturePage({ config }: { config:FeatureConfig }) {
   const Icon=config.icon;
+
   return <>
     <section className="hero-mesh relative overflow-hidden border-b border-[#eee9f4]">
-      <div className="container-site relative grid min-h-[560px] items-center gap-11 py-16 lg:grid-cols-[.82fr_1.18fr]">
-        <div>
+      <div className="container-site relative grid items-center gap-11 py-14 lg:grid-cols-[.76fr_1.24fr] lg:py-18">
+        <div className="min-w-0">
           <div className="eyebrow"><Icon size={13}/>{config.eyebrow}</div>
-          <h1 className="mt-4 max-w-[700px] text-[39px] leading-[1.04] font-[850] tracking-[-.045em] sm:text-[48px] lg:text-[52px]">{config.hero}</h1>
+          <h1 className="mt-4 max-w-[700px] text-[38px] leading-[1.04] font-[850] tracking-[-.045em] sm:text-[47px] lg:text-[52px]">{config.hero}</h1>
           <p className="muted mt-5 max-w-xl text-[16px] leading-7">{config.description}</p>
           <div className="mt-7 flex flex-wrap gap-3"><Link className="btn-primary" href="/signup">Start Free <ArrowRight size={16}/></Link><Link className="btn-secondary" href="/contact">Talk to Sales</Link></div>
-          <div className="mt-7 grid gap-3 sm:grid-cols-2">{config.bullets.slice(0,4).map(item=><div key={item} className="flex items-start gap-2 text-[13px] font-semibold"><Check size={14} className="mt-0.5 shrink-0 text-[#6d28d9]"/>{item}</div>)}</div>
+          <div className="mt-7 grid gap-2 sm:grid-cols-2">{config.bullets.slice(0,4).map(item=><div key={item} className="flex items-start gap-2 text-[13px] font-semibold"><Check size={14} className="mt-0.5 shrink-0 text-[#6d28d9]"/>{item}</div>)}</div>
         </div>
-        <FeatureImage slug={config.slug}/>
+        <div className="min-w-0"><ProductVisual slug={config.slug}/></div>
       </div>
     </section>
 
     <section className="section bg-[#fbfaff]">
-      <div className="container-site grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
-        <div className="lg:sticky lg:top-[100px]">
-          <div className="eyebrow">Workflow</div>
-          <h2 className="mt-3 text-[30px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[38px]">{config.title} in a clear operating flow.</h2>
-          <p className="muted mt-4 text-[15px] leading-7">Each action keeps context and next steps visible, so the feature feels connected to the rest of the platform.</p>
-        </div>
-        <div className="relative space-y-0 border-l border-[#ded3ec] pl-7 sm:pl-9">
-          {config.bullets.map((item,index)=><div key={item} className="relative pb-8 last:pb-0">
-            <span className="absolute -left-[38px] top-0 grid h-6 w-6 place-items-center rounded-full border border-[#d7c8e9] bg-white text-[#6d28d9] sm:-left-[46px]"><CircleDot size={12}/></span>
-            <div className="text-[11px] font-black uppercase tracking-[.1em] text-[#8b3dff]">Step {index+1}</div>
-            <div className="mt-1 text-[16px] font-extrabold">{item}</div>
-            <p className="muted mt-2 max-w-2xl text-[13px] leading-6">Keep the input, status and next action visible without adding another disconnected screen.</p>
-          </div>)}
+      <div className="container-site grid items-center gap-10 lg:grid-cols-[1.08fr_.92fr]">
+        <FeatureImage slug={config.slug}/>
+        <div>
+          <div className="eyebrow">Built for the workflow</div>
+          <h2 className="mt-3 text-[30px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[38px]">{config.title} without a disconnected toolchain.</h2>
+          <p className="muted mt-4 text-[15px] leading-7">The experience keeps the operational context close to the task so sellers can understand what changed and what needs attention.</p>
+          <div className="mt-6 space-y-3">
+            {config.bullets.map(item=><div key={item} className="flex items-start gap-3 rounded-xl border border-[#e7e0ef] bg-white px-4 py-3 text-[13px] font-semibold"><span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#f1eaff] text-[#6d28d9]"><Check size={11}/></span>{item}</div>)}
+          </div>
         </div>
       </div>
     </section>
 
     <section className="section">
       <div className="container-site">
-        <SectionHeading eyebrow="Product interface" title="A focused screen built around the task." text="Consistent tables, filters, status language and controls make the product feel like one operating system."/>
-        <div className="mt-8"><ProductVisual slug={config.slug}/></div>
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="eyebrow">Workflow</div>
+          <h2 className="mt-3 text-[30px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[38px]">A clear operating sequence, from input to action.</h2>
+          <p className="muted mt-4 text-[15px] leading-7">Each step stays understandable on desktop, tablet and mobile without long vertical timelines or oversized numbered cards.</p>
+        </div>
+        <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {config.bullets.slice(0,4).map((item,index)=><div key={item} className="rounded-[15px] border border-[#e7e0ef] bg-white p-5">
+            <div className="flex items-center justify-between"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#f1eaff] text-[11px] font-black text-[#6d28d9]">0{index+1}</span>{index<3&&<ArrowRight size={15} className="hidden text-[#a18ebc] lg:block"/>}</div>
+            <div className="mt-5 text-[15px] font-extrabold">{item}</div>
+            <p className="muted mt-2 text-[12px] leading-5">Keep the information, status and next action visible at this stage.</p>
+          </div>)}
+        </div>
       </div>
     </section>
 
     <section className="section bg-[#211062] text-white">
-      <div className="container-site grid items-center gap-7 md:grid-cols-[1fr_auto]">
+      <div className="container-site grid gap-8 lg:grid-cols-[.62fr_1.38fr] lg:items-center">
         <div>
           <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[.13em] text-[#cdbbfa]"><Sparkles size={13}/>One connected platform</div>
-          <h2 className="mt-3 max-w-3xl text-[29px] leading-[1.08] font-[820] tracking-[-.03em] sm:text-[36px]">Connect {config.title.toLowerCase()} with research, listings, monitoring, orders and profit.</h2>
+          <h2 className="mt-3 text-[29px] leading-[1.08] font-[820] tracking-[-.03em] sm:text-[36px]">Connect {config.title.toLowerCase()} with the rest of the seller workflow.</h2>
+          <p className="mt-4 text-[14px] leading-7 text-white/65">Research, listing, monitoring, orders, sheets and profit use the same operating language across the platform.</p>
         </div>
-        <Link href="/features" className="rounded-[10px] bg-white px-5 py-3 text-sm font-extrabold text-[#32158c]">Explore all features</Link>
+        <div className="rounded-[18px] border border-white/10 bg-white/[.04] p-4 text-[#171230]"><Workflow/></div>
       </div>
     </section>
+
+    <MarketingCta title={'Bring '+config.title.toLowerCase()+' into one connected workspace.'}/>
   </>;
 }
