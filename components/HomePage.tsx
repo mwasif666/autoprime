@@ -10,175 +10,175 @@ import {
   SearchCheck,
   ShoppingBag,
   Sparkles,
-  WandSparkles,
+  Tags,
 } from 'lucide-react';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
 import Pricing from './Pricing';
 import Faq from './Faq';
 import AnalyticsPanel from './AnalyticsPanel';
-import BentoFeatures from './BentoFeatures';
-import { ReferenceGallery, ReferenceVisual } from './ReferenceMedia';
 import {
-  ImageStudioPreview,
   ListingPreview,
   MonitoringPreview,
   ProductDashboardPreview,
   ProductHunterPreview,
-  ReportsPreview,
   SheetPreview,
   Workflow,
 } from './ProductVisuals';
 
+const featureCards = [
+  {
+    number: '01',
+    title: 'Product Hunting',
+    text: 'Research products with supplier cost, selling price, margin and stock context in one place.',
+    icon: PackageSearch,
+    accent: '#6d28d9',
+    soft: '#f3edff',
+  },
+  {
+    number: '02',
+    title: 'Auto Listing',
+    text: 'Move shortlisted products into a structured listing workflow without repeating the same setup work.',
+    icon: ClipboardList,
+    accent: '#8b3dff',
+    soft: '#f5efff',
+  },
+  {
+    number: '03',
+    title: 'Stock Monitoring',
+    text: 'Keep supplier stock changes visible so products needing attention are easier to spot.',
+    icon: RefreshCcw,
+    accent: '#ee4e9b',
+    soft: '#fff0f7',
+  },
+  {
+    number: '04',
+    title: 'Price Monitoring',
+    text: 'Review supplier price movement alongside your current store pricing and margin context.',
+    icon: Tags,
+    accent: '#7c3aed',
+    soft: '#f4efff',
+  },
+  {
+    number: '05',
+    title: 'Google Sheets',
+    text: 'Keep order values, product cost, fees and profit records organized in a spreadsheet-ready workflow.',
+    icon: FileSpreadsheet,
+    accent: '#1d9b63',
+    soft: '#eefaf4',
+  },
+  {
+    number: '06',
+    title: 'Profit Analytics',
+    text: 'See sales, costs, fees, orders and profit trends from a single calculation and reporting view.',
+    icon: BarChart3,
+    accent: '#5b4bd8',
+    soft: '#f0efff',
+  },
+];
+
 function Hero() {
   return (
-    <section className="hero-mesh relative overflow-hidden border-b border-[#efeaf5]">
-      <div className="hero-glow" />
-      <div className="container-site relative grid min-h-[650px] items-center gap-12 py-16 lg:grid-cols-[.88fr_1.12fr]">
+    <section className="relative overflow-hidden border-b border-[#ece6f5] bg-[linear-gradient(180deg,#ffffff_0%,#fbf8ff_100%)]">
+      <div className="container-site grid min-h-[690px] items-center gap-12 py-16 lg:grid-cols-[.83fr_1.17fr] lg:py-20">
         <Reveal>
-          <div className="eyebrow mb-4"><Sparkles size={13}/>All-in-one dropshipping automation</div>
-          <h1 className="max-w-[620px] text-[40px] leading-[1.04] font-[850] tracking-[-.045em] sm:text-[48px] lg:text-[54px]">
-            Automate Your <span className="gradient-text">Dropshipping Business.</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#ddd0f4] bg-[#f7f1ff] px-3 py-2 text-[10px] font-black uppercase tracking-[.13em] text-[#6d28d9]">
+            <Sparkles size={13} /> All-in-one eBay automation platform
+          </div>
+
+          <h1 className="mt-6 max-w-[600px] text-[43px] font-[850] leading-[.98] tracking-[-.055em] sm:text-[53px] lg:text-[62px]">
+            Automate Your <span className="gradient-text">eBay Business.</span>
           </h1>
-          <p className="muted mt-5 max-w-[610px] text-[16px] leading-7 sm:text-[17px]">
-            Product hunting, auto listing, stock and price monitoring, profit tracking, reports and Google Sheets updates — all in one place.
+
+          <p className="muted mt-6 max-w-[590px] text-[16px] leading-7 sm:text-[17px]">
+            Find products, prepare listings, monitor stock and prices, track orders and understand profit from one connected dropshipping workflow.
           </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link className="btn-primary" href="/signup">Start Free <ArrowRight size={16}/></Link>
-            <a className="btn-secondary" href="#product-dashboard">View Product</a>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/signup" className="btn-primary min-h-[48px] px-6 text-sm">Start Free <ArrowRight size={16} /></Link>
+            <a href="#how-it-works" className="btn-secondary min-h-[48px] px-6 text-sm">See How It Works</a>
           </div>
-          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[12px] font-semibold text-[#6f667c]">
-            {['Product research','Monitoring','Profit analytics'].map(item=><span key={item} className="flex items-center gap-2"><Check size={13} className="text-[#6d28d9]"/>{item}</span>)}
+
+          <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-[12px] font-bold text-[#665e73]">
+            {['Product research', 'Listing workflow', 'Profit visibility'].map((item) => (
+              <span key={item} className="flex items-center gap-2">
+                <span className="grid h-5 w-5 place-items-center rounded-full bg-[#f0e8ff] text-[#6d28d9]"><Check size={11} /></span>
+                {item}
+              </span>
+            ))}
           </div>
         </Reveal>
-        <Reveal delay={.06}>
-          <ReferenceVisual asset="sellerHero" className="min-h-[360px]" imageClassName="min-h-[360px] object-cover object-center" />
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
-function VisualDirection() {
-  return (
-    <section className="section bg-[#fbfaff]">
-      <div className="container-site">
-        <div className="max-w-2xl">
-          <div className="eyebrow">Product experience</div>
-          <h2 className="mt-3 text-[30px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[38px]">Built around real seller workflows.</h2>
-          <p className="muted mt-4 text-[15px] leading-7">The interface keeps product research, listing and monitoring visuals close to the operational experience sellers already understand.</p>
-        </div>
-        <div className="mt-8"><ReferenceGallery/></div>
-      </div>
-    </section>
-  );
-}
-
-function Integrations() {
-  return (
-    <section className="section-tight">
-      <div className="container-site">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="eyebrow">Integrations</div>
-          <h2 className="mt-3 text-[28px] font-[820] tracking-[-.025em] sm:text-[34px]">Simple connections to the tools that matter.</h2>
-        </div>
-        <div className="mx-auto mt-8 flex max-w-xl flex-col items-center justify-center gap-7 sm:flex-row sm:gap-14">
-          <div className="flex items-center gap-3">
-            <div className="text-[26px] font-black tracking-[-.07em]"><span className="text-[#e53238]">e</span><span className="text-[#0064d2]">b</span><span className="text-[#f5af02]">a</span><span className="text-[#86b817]">y</span></div>
-            <div><div className="text-sm font-extrabold">eBay</div><div className="text-[11px] text-[#82798e]">Marketplace workflow</div></div>
-          </div>
-          <div className="hidden h-10 border-l border-[#e8e2ef] sm:block" />
-          <div className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[#eaf7ee] text-[#218a49]"><FileSpreadsheet size={22}/></span>
-            <div><div className="text-sm font-extrabold">Google Sheets</div><div className="text-[11px] text-[#82798e]">Orders & profit sync</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ConnectedWorkflow() {
-  return (
-    <section className="section bg-[#211062] text-white">
-      <div className="container-site">
-        <div className="grid gap-9 lg:grid-cols-[.66fr_1.34fr] lg:items-center">
-          <div>
-            <div className="text-[10px] font-black uppercase tracking-[.14em] text-[#cdbbfa]">Connected workflow</div>
-            <h2 className="mt-3 text-[31px] leading-[1.08] font-[820] tracking-[-.035em] sm:text-[39px]">One flow from product discovery to profit.</h2>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-white/65">Research, listings, monitoring, orders, sheets and profit move through one connected sequence.</p>
-          </div>
-          <div className="rounded-[18px] border border-white/10 bg-white/[.04] p-4 text-[#171230] sm:p-5"><Workflow/></div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StorySection({
-  eyebrow,
-  title,
-  text,
-  visual,
-  reverse = false,
-  href,
-  bullets,
-}: {
-  eyebrow:string;
-  title:string;
-  text:string;
-  visual:React.ReactNode;
-  reverse?:boolean;
-  href:string;
-  bullets:string[];
-}) {
-  return (
-    <section className="section">
-      <div className={'container-site grid items-center gap-11 ' + (reverse ? 'lg:grid-cols-[.88fr_1.12fr] lg:[&>*:first-child]:order-2' : 'lg:grid-cols-[1.12fr_.88fr]')}>
-        <Reveal>{visual}</Reveal>
-        <Reveal>
-          <div className="eyebrow">{eyebrow}</div>
-          <h2 className="mt-3 text-[31px] leading-[1.09] font-[820] tracking-[-.035em] sm:text-[40px]">{title}</h2>
-          <p className="muted mt-4 text-[15px] leading-7 sm:text-[16px]">{text}</p>
-          <div className="mt-6 space-y-3">{bullets.map(item=><div key={item} className="flex items-start gap-3 text-sm font-semibold"><span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#ded3ed] text-[#6d28d9]"><Check size={12}/></span><span className="pt-0.5">{item}</span></div>)}</div>
-          <Link href={href} className="outline-action mt-7">Explore feature <ArrowRight size={15}/></Link>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function HowItWorks() {
-  const steps = [
-    {title:'Discover',text:'Find products',icon:SearchCheck,color:'#ef5a70',bg:'#ffe9ed'},
-    {title:'Review',text:'Check margin',icon:PackageSearch,color:'#3ea8ba',bg:'#e2f7fa'},
-    {title:'List',text:'Prepare listing',icon:ClipboardList,color:'#6075d8',bg:'#e8edff'},
-    {title:'Monitor',text:'Watch changes',icon:RefreshCcw,color:'#df9f26',bg:'#fff2d4'},
-    {title:'Track',text:'Manage orders',icon:ShoppingBag,color:'#7b50d6',bg:'#eee5ff'},
-    {title:'Analyze',text:'Profit & reports',icon:BarChart3,color:'#d451a5',bg:'#ffe5f5'},
-  ];
-
-  return (
-    <section className="section bg-[#fbfaff]">
-      <div className="container-site">
-        <SectionHeading center eyebrow="How it works" title="A clear process from product idea to business insight." text="Six connected stages keep the workflow easy to follow from research through reporting."/>
-
-        <div className="mt-12 flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-2">
-          {steps.map((step,index)=>{
-            const Icon=step.icon;
-            return <div key={step.title} className="contents">
-              <div className={'how-step flex-1 ' + (index%2===1?'lg:translate-y-7':'lg:-translate-y-2')}>
-                <div className="text-[10px] font-black" style={{color:step.color}}>0{index+1}</div>
-                <div className="mt-2 grid h-[64px] w-[64px] place-items-center rounded-full" style={{background:step.bg,color:step.color}}><Icon size={23}/></div>
-                <div className="mt-3 text-[15px] font-extrabold">{step.title}</div>
-                <div className="mt-1 text-[11px] text-[#81798d]">{step.text}</div>
-              </div>
-              {index<steps.length-1&&<div className={'how-connector ' + (index%2===0?'lg:translate-y-4':'lg:-translate-y-4')}>
-                <span className="hidden h-px flex-1 bg-[#c9badb] lg:block"/>
-                <ArrowRight size={19} strokeWidth={1.7}/>
-                <span className="hidden h-px flex-1 bg-[#c9badb] lg:block"/>
-              </div>}
+        <Reveal delay={0.06}>
+          <div className="relative">
+            <div className="mb-3 flex items-center justify-between px-1 text-[10px] font-black uppercase tracking-[.1em] text-[#81758e]">
+              <span>Seller dashboard</span>
+              <span className="text-[#6d28d9]">Live workflow preview</span>
             </div>
+            <div className="overflow-hidden rounded-[18px] border border-[#ded4ee] bg-white">
+              <ProductDashboardPreview />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="border-t border-[#ece6f5] bg-white">
+        <div className="container-site flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="text-sm font-extrabold">Designed for a connected selling workflow</div>
+            <div className="mt-1 text-[11px] text-[#7a7186]">Confirmed focus: eBay + Google Sheets</div>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex min-h-[42px] items-center gap-3 rounded-xl border border-[#e4deeb] bg-[#fcfbff] px-4">
+              <div className="text-[22px] font-black tracking-[-.07em]"><span className="text-[#e53238]">e</span><span className="text-[#0064d2]">b</span><span className="text-[#f5af02]">a</span><span className="text-[#86b817]">y</span></div>
+              <span className="text-xs font-extrabold">Marketplace workflow</span>
+            </div>
+            <div className="flex min-h-[42px] items-center gap-3 rounded-xl border border-[#dce9e1] bg-[#f7fcf9] px-4">
+              <FileSpreadsheet size={19} className="text-[#218a49]" />
+              <span className="text-xs font-extrabold">Google Sheets sync</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeatureOverview() {
+  return (
+    <section className="section bg-[#fdfcff]">
+      <div className="container-site">
+        <div className="mx-auto max-w-[820px] text-center">
+          <div className="eyebrow">Everything in one workflow</div>
+          <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">
+            Everything You Need to <span className="gradient-text">Automate Your eBay Business</span>
+          </h2>
+          <p className="muted mx-auto mt-4 max-w-[700px] text-[15px] leading-7">
+            The homepage keeps the product story simple: research, listing, monitoring, sheets and analytics all feel like parts of the same system.
+          </p>
+        </div>
+
+        <div className="mt-11 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {featureCards.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <Reveal key={feature.title}>
+                <div className="h-full rounded-[16px] border border-[#e7e0ef] bg-white p-5 sm:p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="grid h-10 w-10 place-items-center rounded-[10px] text-[11px] font-black text-white" style={{ background: feature.accent }}>{feature.number}</span>
+                    <span className="grid h-10 w-10 place-items-center rounded-[10px]" style={{ color: feature.accent, background: feature.soft }}><Icon size={19} /></span>
+                  </div>
+                  <h3 className="mt-6 text-[18px] font-extrabold tracking-[-.02em]">{feature.title}</h3>
+                  <p className="muted mt-2 text-[13px] leading-6">{feature.text}</p>
+                  <div className="mt-6 border-t border-[#eee9f3] pt-4">
+                    <div className="flex items-center gap-2 text-[11px] font-extrabold" style={{ color: feature.accent }}>
+                      <span className="h-1.5 w-1.5 rounded-full" style={{ background: feature.accent }} />
+                      Connected product module
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            );
           })}
         </div>
       </div>
@@ -186,15 +186,178 @@ function HowItWorks() {
   );
 }
 
-function FinalCta() {
+function ListingWorkflow() {
+  const steps = [
+    ['01', 'Choose a product', 'Move a researched product into listing preparation.'],
+    ['02', 'Review content', 'Check title, description and product details before publishing.'],
+    ['03', 'Set pricing', 'Keep source cost, selling price and margin visible together.'],
+    ['04', 'Save or create', 'Finish with a clean draft or listing action.'],
+  ];
+
+  return (
+    <section className="section border-y border-[#eee8f4] bg-[#faf7ff]">
+      <div className="container-site grid items-center gap-10 lg:grid-cols-[.72fr_1.28fr]">
+        <Reveal>
+          <div className="eyebrow">Listing workflow</div>
+          <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Move From Product Research to a Ready Listing.</h2>
+          <p className="muted mt-4 max-w-xl text-[15px] leading-7">Inspired by the client reference&apos;s numbered process layout, but kept focused on the actual AutoDropshipPrime product flow.</p>
+
+          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            {steps.map(([number, title, text]) => (
+              <div key={number} className="flex gap-4 rounded-[14px] border border-[#e4daef] bg-white p-4">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[9px] bg-[#6d28d9] text-[10px] font-black text-white">{number}</span>
+                <div><div className="text-sm font-extrabold">{title}</div><div className="mt-1 text-[11px] leading-5 text-[#756d80]">{text}</div></div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal delay={0.04}><ListingPreview /></Reveal>
+      </div>
+    </section>
+  );
+}
+
+function ResearchSection() {
   return (
     <section className="section">
       <div className="container-site">
-        <div className="rounded-[18px] border border-[#d9ccef] bg-[#261064] px-6 py-11 text-center text-white sm:px-10">
-          <h2 className="text-[29px] font-[820] tracking-[-.03em] sm:text-[36px]">Run your dropshipping operation from one place.</h2>
-          <p className="mx-auto mt-3 max-w-xl text-[14px] leading-6 text-white/65">Research, list, monitor and understand profit without switching between disconnected tools.</p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="/signup" className="cta-primary">Start Free</Link>
+        <div className="grid items-end gap-7 lg:grid-cols-[1.05fr_.95fr]">
+          <div>
+            <div className="eyebrow">Product research</div>
+            <h2 className="mt-4 max-w-[660px] text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Discover Products With the Selling Context You Actually Need.</h2>
+          </div>
+          <p className="muted max-w-[560px] text-[15px] leading-7 lg:justify-self-end">Review supplier, source price, estimated selling price, stock and potential margin before a product enters the listing workflow.</p>
+        </div>
+
+        <div className="mt-9 grid gap-5 lg:grid-cols-[1.35fr_.65fr]">
+          <Reveal><ProductHunterPreview /></Reveal>
+          <Reveal delay={0.04}>
+            <div className="grid h-full gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              {[
+                [SearchCheck, 'Compare quickly', 'Keep source cost and selling context side by side.'],
+                [PackageSearch, 'Build a shortlist', 'Move useful opportunities into one research view.'],
+                [ArrowRight, 'Continue the workflow', 'Take a selected product directly toward listing preparation.'],
+              ].map(([Icon, title, text]: any) => (
+                <div key={title} className="rounded-[14px] border border-[#e6dfed] bg-[#fdfcff] p-5">
+                  <span className="grid h-10 w-10 place-items-center rounded-[10px] bg-[#f1e9ff] text-[#6d28d9]"><Icon size={18} /></span>
+                  <div className="mt-4 text-sm font-extrabold">{title}</div>
+                  <p className="mt-2 text-[12px] leading-5 text-[#746c80]">{text}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MonitoringSection() {
+  return (
+    <section className="section border-y border-[#eee8f4] bg-[#faf8ff]">
+      <div className="container-site">
+        <div className="grid gap-8 lg:grid-cols-[.58fr_1.42fr] lg:items-center">
+          <Reveal>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#ead8f3] bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[.12em] text-[#6d28d9]"><RefreshCcw size={12} /> Price & stock intelligence</div>
+            <h2 className="mt-5 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Supplier Changes Stay Visible in One Monitoring Center.</h2>
+            <p className="muted mt-4 text-[15px] leading-7">Use one view for stock state, supplier price changes, store-price context and items that need attention.</p>
+            <div className="mt-6 space-y-3">
+              {['Stock status at a glance', 'Supplier price-change context', 'Clear attention states'].map((item) => (
+                <div key={item} className="flex items-center gap-3 text-sm font-bold"><span className="grid h-6 w-6 place-items-center rounded-full bg-[#efe7ff] text-[#6d28d9]"><Check size={12} /></span>{item}</div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={0.04}><MonitoringPreview /></Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SheetsSection() {
+  return (
+    <section className="section">
+      <div className="container-site">
+        <div className="mx-auto max-w-[820px] text-center">
+          <div className="eyebrow">Google Sheets automation</div>
+          <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Keep Orders and Profit Records Organized Automatically.</h2>
+          <p className="muted mx-auto mt-4 max-w-[680px] text-[15px] leading-7">A spreadsheet-style view keeps order value, product cost, fees, profit and status easy to review without making the section feel like a generic illustration.</p>
+        </div>
+        <Reveal><div className="mt-9"><SheetPreview /></div></Reveal>
+      </div>
+    </section>
+  );
+}
+
+function ConnectedFlow() {
+  return (
+    <section id="how-it-works" className="section border-y border-[#382279] bg-[#211062] text-white">
+      <div className="container-site grid gap-8 lg:grid-cols-[.62fr_1.38fr] lg:items-center">
+        <div>
+          <div className="text-[10px] font-black uppercase tracking-[.14em] text-[#d5c5ff]">How it works</div>
+          <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">One Connected Flow From Product Discovery to Profit.</h2>
+          <p className="mt-4 max-w-xl text-[14px] leading-7 text-white/65">The homepage keeps the story visual and easy to scan instead of explaining every feature in isolation.</p>
+        </div>
+        <div className="rounded-[16px] border border-white/15 bg-white/[.04] p-4 text-[#171230] sm:p-5"><Workflow /></div>
+      </div>
+    </section>
+  );
+}
+
+function AnalyticsSection() {
+  return (
+    <section className="section bg-[#fcfbff]">
+      <div className="container-site">
+        <SectionHeading
+          center
+          eyebrow="Profit dashboard"
+          title="Understand What Is Selling, What It Costs and What You Keep."
+          text="A practical analytics view brings sales, costs, fees, orders and profit trends together without adding unsupported performance claims."
+        />
+        <Reveal><div className="mt-9"><AnalyticsPanel /></div></Reveal>
+      </div>
+    </section>
+  );
+}
+
+function ConversionSection() {
+  return (
+    <>
+      <section className="section border-t border-[#eee8f4] bg-white">
+        <div className="container-site">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="eyebrow">Plans</div>
+            <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Simple Plans for Growing Sellers.</h2>
+            <p className="muted mt-4 text-[14px] leading-6">Pricing values remain configurable placeholders until final commercial details are supplied.</p>
+          </div>
+          <div className="mt-9"><Pricing /></div>
+        </div>
+      </section>
+
+      <section className="section border-t border-[#eee8f4] bg-[#faf8ff]">
+        <div className="container-site max-w-[960px]">
+          <div className="mb-8 text-center">
+            <div className="eyebrow">FAQ</div>
+            <h2 className="mt-4 text-[30px] font-[850] tracking-[-.035em] sm:text-[38px]">Questions Before You Get Started?</h2>
+          </div>
+          <Faq />
+        </div>
+      </section>
+    </>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section className="section bg-white">
+      <div className="container-site">
+        <div className="overflow-hidden rounded-[18px] border border-[#40228a] bg-[linear-gradient(105deg,#211062_0%,#5d24c9_58%,#8b3dff_100%)] px-6 py-10 text-white sm:px-10 lg:flex lg:items-center lg:justify-between lg:gap-10 lg:py-9">
+          <div>
+            <div className="text-[10px] font-black uppercase tracking-[.14em] text-[#ddd0ff]">Ready to simplify your workflow?</div>
+            <h2 className="mt-3 text-[28px] font-[850] tracking-[-.035em] sm:text-[34px]">Run Your Dropshipping Operation From One Place.</h2>
+          </div>
+          <div className="mt-6 flex shrink-0 flex-wrap gap-3 lg:mt-0">
+            <Link href="/signup" className="cta-primary">Start Free <ArrowRight size={15} /></Link>
             <Link href="/contact" className="cta-secondary">Book Demo</Link>
           </div>
         </div>
@@ -204,107 +367,18 @@ function FinalCta() {
 }
 
 export default function HomePage() {
-  return <>
-    <Hero/>
-    <VisualDirection/>
-    <Integrations/>
-    <ConnectedWorkflow/>
-
-    <StorySection
-      eyebrow="Product research"
-      title="Find products with useful selling context."
-      text="Review supplier, source price, estimated selling price, stock and margin before a product moves into your listing workflow."
-      visual={<ProductHunterPreview/>}
-      href="/features/product-hunting"
-      bullets={['Search and filter opportunities','Compare source cost and selling price','Move selected products into listing preparation']}
-    />
-
-    <StorySection
-      reverse
-      eyebrow="Auto listing"
-      title="Move from product research to a ready listing."
-      text="Prepare titles, descriptions, pricing and product details in a structured workflow instead of repeating the same work across tools."
-      visual={<ListingPreview/>}
-      href="/features/auto-listing"
-      bullets={['Import product context','Review content and pricing','Save drafts or create listings']}
-    />
-
-    <section className="section bg-[#fbfaff]">
-      <div className="container-site grid items-center gap-10 lg:grid-cols-[.68fr_1.32fr]">
-        <div>
-          <div className="eyebrow">Stock + price monitoring</div>
-          <h2 className="mt-3 text-[31px] leading-[1.09] font-[820] tracking-[-.035em] sm:text-[40px]">See supplier changes before they become store problems.</h2>
-          <p className="muted mt-4 text-[15px] leading-7">Price movement, stock state and attention items stay visible from one monitoring view.</p>
-          <Link href="/features/stock-monitoring" className="outline-action mt-6">Explore monitoring <ArrowRight size={15}/></Link>
-        </div>
-        <MonitoringPreview/>
-      </div>
-    </section>
-
-    <section className="section">
-      <div className="container-site">
-        <div className="max-w-2xl">
-          <div className="eyebrow">Google Sheets automation</div>
-          <h2 className="mt-3 text-[31px] leading-[1.09] font-[820] tracking-[-.035em] sm:text-[40px]">Keep orders and profit records updated automatically.</h2>
-          <p className="muted mt-4 text-[15px] leading-7">Order value, product cost, fees, profit and status stay organized in a spreadsheet-ready flow.</p>
-        </div>
-        <div className="mt-8"><SheetPreview/></div>
-      </div>
-    </section>
-
-    <section className="section bg-[#fbfaff]">
-      <div className="container-site">
-        <SectionHeading eyebrow="Profit dashboard" title="See what is selling, what it costs and what you actually keep." text="Change the time range to update sales, profit, orders, fees and product performance."/>
-        <div className="mt-8"><AnalyticsPanel/></div>
-      </div>
-    </section>
-
-    <section className="section">
-      <div className="container-site">
-        <SectionHeading eyebrow="Reports" title="Turn store activity into useful reports." text="Review sales, orders, product performance, inventory and price changes with consistent reporting controls."/>
-        <div className="mt-8"><ReportsPreview/></div>
-
-        <div className="mt-14 grid items-center gap-10 lg:grid-cols-[.65fr_1.35fr]">
-          <div>
-            <div className="eyebrow"><WandSparkles size={13}/>Image tools</div>
-            <h3 className="mt-3 text-[28px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[34px]">Preview product-image improvements before publishing.</h3>
-            <p className="muted mt-4 text-[15px] leading-7">Compare original and cleaned product imagery, then use focused tools for background cleanup, sizing and export.</p>
-          </div>
-          <ImageStudioPreview/>
-        </div>
-      </div>
-    </section>
-
-    <section className="section bg-[#fbfaff]">
-      <div className="container-site">
-        <SectionHeading eyebrow="All-in-one" title="Everything you need, arranged around the work you actually do." text="A responsive bento layout keeps the platform compact while making each capability easy to scan."/>
-        <div className="mt-8"><BentoFeatures/></div>
-      </div>
-    </section>
-
-    <section id="product-dashboard" className="section">
-      <div className="container-site">
-        <SectionHeading center eyebrow="Product dashboard" title="Manage products from one focused operating screen." text="A product-first view for listings, cost, selling price, stock and margin."/>
-        <div className="mt-8"><ProductDashboardPreview/></div>
-      </div>
-    </section>
-
-    <HowItWorks/>
-
-    <section className="section">
-      <div className="container-site">
-        <SectionHeading center eyebrow="Pricing" title="Simple plans for growing sellers." text="Commercial pricing remains configurable until final plan details are approved."/>
-        <div className="mt-8"><Pricing/></div>
-      </div>
-    </section>
-
-    <section id="faq" className="section bg-[#fbfaff]">
-      <div className="container-site grid gap-9 lg:grid-cols-[.72fr_1.28fr]">
-        <SectionHeading eyebrow="FAQ" title="Clear answers about the workflow." text="Capabilities and integrations stay aligned with approved product requirements."/>
-        <Faq/>
-      </div>
-    </section>
-
-    <FinalCta/>
-  </>;
+  return (
+    <>
+      <Hero />
+      <FeatureOverview />
+      <ListingWorkflow />
+      <ResearchSection />
+      <MonitoringSection />
+      <SheetsSection />
+      <ConnectedFlow />
+      <AnalyticsSection />
+      <ConversionSection />
+      <FinalCta />
+    </>
+  );
 }
