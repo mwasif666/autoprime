@@ -8,7 +8,6 @@ import {
   PackageSearch,
   RefreshCcw,
   SearchCheck,
-  ShoppingBag,
   Sparkles,
   Tags,
 } from 'lucide-react';
@@ -113,7 +112,7 @@ function Hero() {
           <div className="relative">
             <div className="mb-3 flex items-center justify-between px-1 text-[10px] font-black uppercase tracking-[.1em] text-[#81758e]">
               <span>Seller dashboard</span>
-              <span className="text-[#6d28d9]">Live workflow preview</span>
+              <span className="text-[#6d28d9]">Product preview</span>
             </div>
             <div className="overflow-hidden rounded-[18px] border border-[#ded4ee] bg-white">
               <ProductDashboardPreview />
@@ -125,8 +124,8 @@ function Hero() {
       <div className="border-t border-[#ece6f5] bg-white">
         <div className="container-site flex flex-col gap-5 py-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="text-sm font-extrabold">Designed for a connected selling workflow</div>
-            <div className="mt-1 text-[11px] text-[#7a7186]">Confirmed focus: eBay + Google Sheets</div>
+            <div className="text-sm font-extrabold">Everything connected around your selling workflow</div>
+            <div className="mt-1 text-[11px] text-[#7a7186]">Built around eBay operations and Google Sheets records</div>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex min-h-[42px] items-center gap-3 rounded-xl border border-[#e4deeb] bg-[#fcfbff] px-4">
@@ -154,7 +153,7 @@ function FeatureOverview() {
             Everything You Need to <span className="gradient-text">Automate Your eBay Business</span>
           </h2>
           <p className="muted mx-auto mt-4 max-w-[700px] text-[15px] leading-7">
-            The homepage keeps the product story simple: research, listing, monitoring, sheets and analytics all feel like parts of the same system.
+            Bring product research, listing preparation, supplier monitoring, spreadsheet records and profit analytics into one connected platform.
           </p>
         </div>
 
@@ -200,7 +199,7 @@ function ListingWorkflow() {
         <Reveal>
           <div className="eyebrow">Listing workflow</div>
           <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Move From Product Research to a Ready Listing.</h2>
-          <p className="muted mt-4 max-w-xl text-[15px] leading-7">Inspired by the client reference&apos;s numbered process layout, but kept focused on the actual AutoDropshipPrime product flow.</p>
+          <p className="muted mt-4 max-w-xl text-[15px] leading-7">Keep product details, content, pricing and margin context together in a clear step-by-step listing workflow.</p>
 
           <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
             {steps.map(([number, title, text]) => (
@@ -281,7 +280,7 @@ function SheetsSection() {
         <div className="mx-auto max-w-[820px] text-center">
           <div className="eyebrow">Google Sheets automation</div>
           <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Keep Orders and Profit Records Organized Automatically.</h2>
-          <p className="muted mx-auto mt-4 max-w-[680px] text-[15px] leading-7">A spreadsheet-style view keeps order value, product cost, fees, profit and status easy to review without making the section feel like a generic illustration.</p>
+          <p className="muted mx-auto mt-4 max-w-[680px] text-[15px] leading-7">Keep order value, product cost, fees, profit and status structured in a spreadsheet-ready flow that is easy to review.</p>
         </div>
         <Reveal><div className="mt-9"><SheetPreview /></div></Reveal>
       </div>
@@ -296,7 +295,7 @@ function ConnectedFlow() {
         <div>
           <div className="text-[10px] font-black uppercase tracking-[.14em] text-[#d5c5ff]">How it works</div>
           <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">One Connected Flow From Product Discovery to Profit.</h2>
-          <p className="mt-4 max-w-xl text-[14px] leading-7 text-white/65">The homepage keeps the story visual and easy to scan instead of explaining every feature in isolation.</p>
+          <p className="mt-4 max-w-xl text-[14px] leading-7 text-white/65">Research products, prepare listings, monitor changes, organize order records and review profit without switching between disconnected tools.</p>
         </div>
         <div className="rounded-[16px] border border-white/15 bg-white/[.04] p-4 text-[#171230] sm:p-5"><Workflow /></div>
       </div>
@@ -328,7 +327,7 @@ function ConversionSection() {
           <div className="mx-auto max-w-2xl text-center">
             <div className="eyebrow">Plans</div>
             <h2 className="mt-4 text-[32px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[42px]">Simple Plans for Growing Sellers.</h2>
-            <p className="muted mt-4 text-[14px] leading-6">Pricing values remain configurable placeholders until final commercial details are supplied.</p>
+            <p className="muted mt-4 text-[14px] leading-6">Choose the plan structure that fits your current selling workflow and room to grow.</p>
           </div>
           <div className="mt-9"><Pricing /></div>
         </div>
