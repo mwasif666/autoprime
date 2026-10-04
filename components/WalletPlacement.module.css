@@ -1,0 +1,11 @@
+.walletPlacement > section:nth-of-type(3) {
+  display: none !important;
+}
+
+.walletPlacement > :global(#wallet-payments-showcase) {
+  order: 3 !important;
+}
+
+.walletPlacement > :global(#product-research-showcase) {
+  order: 4 !important;
+}
