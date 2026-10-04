@@ -1,0 +1,7 @@
+.pricingScope > section:nth-of-type(9) > :global(.container-site) > div:first-child {
+  display: none !important;
+}
+
+.pricingScope > section:nth-of-type(9) > :global(.container-site) > div:nth-child(2) {
+  margin-top: 0 !important;
+}
