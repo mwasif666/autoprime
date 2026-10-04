@@ -30,9 +30,183 @@
   object-fit: contain;
 }
 
+/* Connected flow — centered copy above, visual process row below */
+.homepageScope :global(#how-it-works) {
+  background: #fbf9ff !important;
+  border-color: #ece6f5 !important;
+  color: #171230 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 0 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:first-child {
+  width: min(100%, 820px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:first-child > div:first-child {
+  color: #6d28d9 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:first-child h2 {
+  max-width: 760px;
+  margin-inline: auto;
+  color: #171230 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:first-child p {
+  max-width: 680px !important;
+  margin-inline: auto;
+  color: #6f687b !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) {
+  width: 100%;
+  margin-top: 46px;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div {
+  display: flex !important;
+  width: 100%;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child {
+  position: relative;
+  min-height: 178px !important;
+  min-width: 0;
+  flex: 1 1 0%;
+  justify-content: flex-start !important;
+  border: 1px solid #e7e0ef !important;
+  border-radius: 18px !important;
+  background: #ffffff !important;
+  padding: 48px 16px 20px !important;
+  color: #171230 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child::before {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6d28d9, #8b3dff);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(1) > div:first-child::before { content: '1'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(2) > div:first-child::before { content: '2'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(3) > div:first-child::before { content: '3'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(4) > div:first-child::before { content: '4'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(5) > div:first-child::before { content: '5'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(6) > div:first-child::before { content: '6'; }
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child > span:first-child {
+  width: 58px !important;
+  height: 58px !important;
+  margin-top: 4px;
+  border-radius: 16px !important;
+  background: #f1eaff !important;
+  color: #6d28d9 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child > span:first-child svg {
+  width: 23px;
+  height: 23px;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child > span:nth-child(2) {
+  margin-top: 13px !important;
+  color: #171230 !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child::after {
+  display: block;
+  max-width: 145px;
+  margin-top: 7px;
+  color: #746c80;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(1) > div:first-child::after { content: 'Find useful product opportunities'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(2) > div:first-child::after { content: 'Prepare product listings'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(3) > div:first-child::after { content: 'Watch stock and price changes'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(4) > div:first-child::after { content: 'Keep order records organized'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(5) > div:first-child::after { content: 'Keep Sheets records updated'; }
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(6) > div:first-child::after { content: 'Review costs and profit'; }
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:nth-child(2) {
+  width: 44px !important;
+  min-width: 44px;
+  height: auto !important;
+  color: #7c3aed !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:nth-child(2) > span {
+  background: #b69be1 !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:nth-child(2) svg {
+  width: 21px;
+  height: 21px;
+  stroke-width: 2;
+}
+
 @media (max-width: 1023px) {
   .homepageScope > section:first-child :global(.product-frame) {
     max-width: 760px;
     margin-inline: auto;
+  }
+
+  .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px !important;
+  }
+
+  .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) {
+    display: contents !important;
+  }
+
+  .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:nth-child(2) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) {
+    margin-top: 34px;
+  }
+
+  .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child {
+    min-height: 150px !important;
   }
 }
