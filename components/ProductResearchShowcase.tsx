@@ -59,6 +59,13 @@ function ResearchCard() {
     ['Sneakers', '$32.00', productImages.sneakers],
   ];
 
+  const marketplaces = [
+    ['AliExpress', 'aliexpress', 'h-8 w-8'],
+    ['Amazon', 'amazon', 'h-9 w-9'],
+    ['Etsy', 'etsy', 'h-8 w-8'],
+    ['eBay', 'ebay', 'h-9 w-9'],
+  ];
+
   return (
     <BentoCard accent="#7c3aed">
       <CardHeader number="01" title="Product Finder & Research" text="Find products, compare marketplaces and shortlist useful opportunities from one visual workspace." icon="search--v1" />
@@ -69,14 +76,11 @@ function ResearchCard() {
           <span className="ml-auto rounded-lg bg-[#6d28d9] px-3 py-1.5 font-extrabold text-white">Search</span>
         </div>
 
-        <div className="mt-3 grid grid-cols-4 gap-2 text-center text-[9px] font-extrabold">
-          {[
-            ['AliExpress', '#ff5a22'],
-            ['Amazon', '#111827'],
-            ['Etsy', '#f1641e'],
-            ['eBay', '#2563eb'],
-          ].map(([label, color]) => (
-            <div key={label} className="rounded-[9px] border border-[#ebe4f2] bg-white px-1 py-2.5" style={{ color }}>{label}</div>
+        <div className="mt-3 grid grid-cols-4 gap-2">
+          {marketplaces.map(([label, icon, size]) => (
+            <div key={label} className="grid min-h-[58px] place-items-center rounded-[10px] border border-[#ebe4f2] bg-white" title={label}>
+              <img src={icon8(icon)} alt={label} className={`${size} object-contain`} loading="lazy" />
+            </div>
           ))}
         </div>
 
@@ -128,29 +132,38 @@ function ListingCard() {
 
 function OrdersCard() {
   const stages = [
-    ['1', 'Order received', '#16a34a'],
-    ['2', 'Review details', '#f97316'],
-    ['3', 'Track fulfilment', '#2563eb'],
-    ['4', 'Status updated', '#7c3aed'],
+    ['1', 'Order received', 'Order added to your workspace', '#16a34a'],
+    ['2', 'Review details', 'Customer and product details checked', '#f97316'],
+    ['3', 'Track fulfilment', 'Supplier progress stays visible', '#2563eb'],
+    ['4', 'Status updated', 'Tracking and order status stay current', '#7c3aed'],
   ];
 
   return (
     <BentoCard accent="#6d28d9">
       <CardHeader number="03" title="Order Workflow" text="Keep every order organized from receipt through fulfilment and status updates." icon="shopping-cart--v1" />
-      <div className="relative z-10 mt-5 flex flex-1 flex-col rounded-[18px] border border-[#e8e0f2] bg-[#faf8ff] p-3.5">
-        <div className="space-y-3">
-          {stages.map(([n, title, color], index) => (
-            <div key={title} className="relative flex items-center gap-3">
-              {index < stages.length - 1 && <span className="absolute left-[17px] top-8 h-6 w-px bg-[#d8cbed]" />}
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[11px] font-black text-white" style={{ background: color }}>{n}</span>
-              <div className="min-w-0">
+      <div className="relative z-10 mt-5 flex flex-1 flex-col rounded-[18px] border border-[#e8e0f2] bg-[#faf8ff] p-4">
+        <div className="flex-1">
+          {stages.map(([n, title, text, color], index) => (
+            <div key={title} className={`grid grid-cols-[46px_1fr] gap-x-3 ${index < stages.length - 1 ? 'pb-5' : ''}`}>
+              <div className="relative flex justify-center">
+                <span className="relative z-10 grid h-10 w-10 place-items-center rounded-full text-[12px] font-black text-white" style={{ background: color }}>{n}</span>
+                {index < stages.length - 1 && (
+                  <span className="absolute left-1/2 top-10 flex h-[34px] -translate-x-1/2 flex-col items-center" aria-hidden="true">
+                    <span className="h-[22px] w-px bg-[#cbb8eb]" />
+                    <svg viewBox="0 0 12 8" className="mt-[-1px] h-2.5 w-3 text-[#8b3dff]" fill="none">
+                      <path d="M1 1.25 6 6.25 11 1.25" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                )}
+              </div>
+              <div className="pt-1.5">
                 <div className="text-[10px] font-extrabold text-[#171230]">{title}</div>
-                <div className="mt-0.5 text-[8px] text-[#736b82]">Connected seller status</div>
+                <div className="mt-1 text-[8.5px] leading-4 text-[#736b82]">{text}</div>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-auto rounded-[10px] bg-[linear-gradient(90deg,#6d28d9,#9a2cff)] px-3 py-2.5 text-center text-[9px] font-extrabold text-white">Connected order processing</div>
+        <div className="mt-4 rounded-[10px] bg-[linear-gradient(90deg,#6d28d9,#9a2cff)] px-3 py-2.5 text-center text-[9px] font-extrabold text-white">Connected order processing</div>
       </div>
     </BentoCard>
   );
