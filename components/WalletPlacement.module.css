@@ -9,3 +9,8 @@
 .walletPlacement > :global(#product-research-showcase) {
   order: 4 !important;
 }
+
+/* Keep the homepage FAQ aligned to the same 1210px site container as pricing/add-ons. */
+.walletPlacement > section:nth-of-type(10) > :global(.container-site) {
+  max-width: none !important;
+}
