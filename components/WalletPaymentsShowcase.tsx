@@ -35,28 +35,15 @@ export default function WalletPaymentsShowcase() {
   return (
     <section id="wallet-payments-showcase" className="section overflow-hidden border-y border-[#eee8f4] bg-[linear-gradient(180deg,#fbf9ff_0%,#ffffff_52%,#faf8ff_100%)]">
       <div className="container-site">
-        <div className="grid items-center gap-8 lg:grid-cols-[.72fr_1.65fr_.83fr]">
-          <div className="relative mx-auto w-full max-w-[280px] overflow-hidden rounded-[28px] border border-[#e6dcf4] bg-[linear-gradient(145deg,#f2eaff,#ffffff)] p-6 text-center lg:mx-0">
-            <span className="absolute -left-10 -top-10 h-28 w-28 rounded-full border border-[#dfd0f5]" />
-            <span className="absolute -bottom-12 -right-8 h-32 w-32 rounded-full border border-[#eadff6]" />
-            <div className="relative mx-auto grid h-36 w-36 place-items-center rounded-[30px] border border-[#dfd1f3] bg-white">
-              <img src={icon8('wallet--v1', 240)} alt="Wallet" className="h-28 w-28 object-contain" />
-            </div>
-            <div className="relative mt-4 flex justify-center gap-2">
-              <span className="grid h-9 w-9 place-items-center rounded-full border border-[#d9f1df] bg-[#effcf3]"><img src={icon8('us-dollar-circled')} alt="" className="h-6 w-6" /></span>
-              <span className="grid h-9 w-9 place-items-center rounded-full border border-[#eee0ff] bg-[#f7f0ff]"><img src={icon8('bank-cards')} alt="" className="h-6 w-6" /></span>
-              <span className="grid h-9 w-9 place-items-center rounded-full border border-[#dceaff] bg-[#eff7ff]"><img src={icon8('security-checked')} alt="" className="h-6 w-6" /></span>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#e5d7fb] bg-[#f5efff] px-4 py-2 text-[10px] font-black uppercase tracking-[.12em] text-[#6d28d9]">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.45fr_.75fr] lg:gap-12">
+          <div className="text-left">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#e5d7fb] bg-[#f5efff] px-4 py-2 text-[10px] font-black uppercase tracking-[.12em] text-[#6d28d9]">
               <img src={icon8('wallet--v1')} alt="" className="h-4 w-4" /> Wallet management
             </div>
-            <h2 className="mt-5 text-[36px] font-[850] leading-[1.02] tracking-[-.05em] sm:text-[46px]">
+            <h2 className="mt-5 max-w-[760px] text-[36px] font-[850] leading-[1.02] tracking-[-.05em] sm:text-[46px] lg:text-[52px]">
               Wallet & <span className="gradient-text">Payments</span>
             </h2>
-            <p className="muted mx-auto mt-4 max-w-[720px] text-[14px] leading-7 sm:text-[15px]">
+            <p className="muted mt-4 max-w-[760px] text-[14px] leading-7 sm:text-[15px]">
               Add funds, review your available balance, keep order deductions visible and track wallet activity from one clear payment workspace.
             </p>
           </div>
@@ -70,19 +57,25 @@ export default function WalletPaymentsShowcase() {
             ].map(([icon, title, text, tone]) => (
               <div key={title} className="flex items-center gap-3 rounded-[14px] border border-[#e8e0f1] bg-white px-3 py-2.5">
                 <IconBubble name={icon} tone={tone as any} size={26} />
-                <div><div className="text-[10px] font-extrabold text-[#171230]">{title}</div><div className="mt-0.5 text-[8px] leading-4 text-[#726a80]">{text}</div></div>
+                <div className="text-left"><div className="text-[10px] font-extrabold text-[#171230]">{title}</div><div className="mt-0.5 text-[8px] leading-4 text-[#726a80]">{text}</div></div>
               </div>
             ))}
           </div>
         </div>
 
         <div className="mt-8 rounded-[22px] border border-[#e7def2] bg-white p-3 sm:p-4">
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_38px_minmax(0,1fr)_38px_minmax(0,1fr)_38px_minmax(0,1fr)] xl:gap-0">
             {flow.map((item, index) => (
-              <div key={item.title} className="relative flex min-h-[112px] items-center gap-3 rounded-[16px] border border-[#eee7f4] bg-[#fdfcff] px-4 py-4">
-                <IconBubble name={item.icon} tone={item.tone} />
-                <div className="min-w-0"><div className="text-[12px] font-extrabold text-[#171230]">{item.title}</div><p className="mt-1 text-[9px] leading-4 text-[#6f687b]">{item.text}</p></div>
-                {index < flow.length - 1 && <span className="absolute -right-[13px] top-1/2 z-10 hidden h-7 w-7 -translate-y-1/2 place-items-center rounded-full border border-[#d9c9ee] bg-white text-lg font-bold text-[#7c3aed] xl:grid">→</span>}
+              <div key={item.title} className="contents">
+                <div className="flex min-h-[112px] items-center gap-3 rounded-[16px] border border-[#eee7f4] bg-[#fdfcff] px-4 py-4">
+                  <IconBubble name={item.icon} tone={item.tone} />
+                  <div className="min-w-0 text-left"><div className="text-[12px] font-extrabold text-[#171230]">{item.title}</div><p className="mt-1 text-[9px] leading-4 text-[#6f687b]">{item.text}</p></div>
+                </div>
+                {index < flow.length - 1 && (
+                  <div className="hidden items-center justify-center xl:flex" aria-hidden="true">
+                    <span className="grid h-8 w-8 place-items-center rounded-full border border-[#d9c9ee] bg-white text-[19px] font-bold leading-none text-[#7c3aed]">→</span>
+                  </div>
+                )}
               </div>
             ))}
           </div>
