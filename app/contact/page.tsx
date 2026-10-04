@@ -1,44 +1,53 @@
 import type { Metadata } from 'next';
-import { Check, MessageSquareText, ShieldCheck } from 'lucide-react';
-import { ContactForm } from '@/components/Forms';
+import { MessageSquareText } from 'lucide-react';
+import PageHero from '@/components/PageHero';
+import ConnectedWorkflowShowcase from '@/components/ConnectedWorkflowShowcase';
 import MarketingCta from '@/components/MarketingCta';
-import { ProductDashboardPreview } from '@/components/ProductVisuals';
+import { ContactForm } from '@/components/Forms';
 
 export const metadata: Metadata = { title:'Contact', description:'Contact AutoDropshipPrime about your seller workflow.' };
 
+const icon8 = (name:string) => `https://img.icons8.com/color/96/${name}.png`;
+
+const topics = [
+  ['Product research','Map sourcing, supplier, price and margin context.','search--v1'],
+  ['Listings & orders','Connect listing preparation with order visibility.','checklist'],
+  ['Monitoring','Review stock and supplier price changes.','combo-chart--v1'],
+  ['Sheets & profit','Keep financial records, wallet activity and reporting connected.','google-sheets'],
+];
+
 export default function ContactPage(){return <>
-  <section className="hero-mesh border-b border-[#eee9f4]">
-    <div className="container-site grid items-start gap-10 py-14 lg:grid-cols-[.76fr_1.24fr] lg:py-18">
-      <div className="lg:sticky lg:top-[104px]">
-        <div className="eyebrow"><MessageSquareText size={13}/>Contact</div>
-        <h1 className="mt-4 text-[38px] leading-[1.05] font-[850] tracking-[-.04em] sm:text-[48px]">Talk to AutoDropshipPrime.</h1>
-        <p className="muted mt-5 max-w-xl text-[16px] leading-7">Tell us how your store works today and where you want more automation, visibility or reporting.</p>
-        <div className="mt-7 space-y-3">{['Product hunting and listing workflows','Stock, price and order monitoring','Google Sheets, profit analytics and reporting'].map(x=><div key={x} className="flex items-center gap-2 text-sm font-semibold"><Check size={15} className="text-[#6d28d9]"/>{x}</div>)}</div>
+  <PageHero
+    eyebrow={<><MessageSquareText size={13}/>Contact AutoDropshipPrime</>}
+    title={<>Tell us where your workflow needs <span className="gradient-text">more automation.</span></>}
+    description="Share how your store works today and which parts of product research, listings, monitoring, orders, wallet activity or reporting you want to simplify."
+    bullets={['Product hunting and listing workflows','Stock, price and order monitoring','Google Sheets and profit visibility','Custom plan and integration requirements']}
+    visual={<div className="p-2 sm:p-4"><div className="mb-5"><div className="text-[20px] font-extrabold tracking-[-.02em] text-[#171230]">Tell us about your store</div><p className="muted mt-1 text-[12px] leading-5">Share the workflow you want to improve.</p></div><ContactForm/></div>}
+  />
 
-        <div className="mt-8 rounded-[16px] border border-[#e7e0ef] bg-white p-5">
-          <div className="flex items-center gap-2 text-sm font-extrabold"><ShieldCheck size={17} className="text-[#6d28d9]"/>Focused product conversation</div>
-          <p className="muted mt-2 text-[12px] leading-5">Use the form to share your current workflow and the areas you want to automate or measure more clearly.</p>
-        </div>
-      </div>
-
-      <div className="product-frame p-5 sm:p-7 lg:p-8">
-        <h2 className="text-[20px] font-extrabold">Tell us about your store</h2>
-        <p className="muted mt-2 text-[13px]">Share the workflow you want to improve.</p>
-        <div className="mt-6"><ContactForm/></div>
-      </div>
-    </div>
-  </section>
-
-  <section className="section">
-    <div className="container-site grid items-center gap-10 lg:grid-cols-[.68fr_1.32fr]">
-      <div>
+  <section className="section bg-white">
+    <div className="container-site">
+      <div className="mx-auto max-w-[820px] text-center">
         <div className="eyebrow">What we can discuss</div>
-        <h2 className="mt-3 text-[30px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[38px]">Bring the current workflow. We can map the product around it.</h2>
-        <p className="muted mt-4 text-[15px] leading-7">Use the product view as a reference for the areas that can be connected: products, supplier cost, selling price, stock, margin and reporting.</p>
+        <h2 className="mt-4 text-[31px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[40px]">Bring the current workflow. We can map the product around it.</h2>
+        <p className="muted mx-auto mt-4 max-w-[700px] text-[14px] leading-7">Use the same product modules shown across the homepage as reference points for the conversation.</p>
       </div>
-      <ProductDashboardPreview/>
+      <div className="mt-9 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {topics.map(([title,text,icon],index)=><article key={title} className="relative rounded-[22px] border border-[#e7e0ef] bg-[#fdfcff] p-5">
+          <span className="absolute right-4 top-4 grid h-8 min-w-8 place-items-center rounded-[9px] bg-[linear-gradient(135deg,#6d28d9,#9a2cff)] px-2 text-[10px] font-black text-white">0{index+1}</span>
+          <span className="grid h-16 w-16 place-items-center rounded-[18px] border border-[#eee6f7] bg-[#faf7ff]"><img src={icon8(icon)} alt="" className="h-12 w-12 object-contain"/></span>
+          <h3 className="mt-5 text-[16px] font-extrabold text-[#171230]">{title}</h3>
+          <p className="muted mt-2 text-[12px] leading-6">{text}</p>
+        </article>)}
+      </div>
     </div>
   </section>
 
-  <MarketingCta title="Ready to see the workflow in one place?" text="Start with a focused product setup or talk through the operating model with the team."/>
+  <ConnectedWorkflowShowcase
+    eyebrow="Conversation map"
+    title="Talk through the workflow in the same order your team operates it."
+    text="Start with product discovery, then map listing, monitoring, orders, Sheets and profitability so the discussion stays practical and connected."
+  />
+
+  <MarketingCta title="Ready to map your seller workflow?" text="Use the contact form above or create an account when you are ready to start configuring the platform."/>
 </>}
