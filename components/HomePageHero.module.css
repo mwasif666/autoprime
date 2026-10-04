@@ -154,7 +154,7 @@
 }
 
 .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(6) > div:first-child > span:first-child {
-  background-image: url('https://img.icons8.com/color/96/financial-growth.png') !important;
+  background-image: url('https://img.icons8.com/color/96/money-bag.png') !important;
 }
 
 .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child > span:first-child svg {
