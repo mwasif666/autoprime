@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import ProductResearchShowcase from '@/components/ProductResearchShowcase';
+import WalletPaymentsShowcase from '@/components/WalletPaymentsShowcase';
 import ConnectedWorkflowShowcase from '@/components/ConnectedWorkflowShowcase';
 import BentoFeatures from '@/components/BentoFeatures';
 import SectionHeading from '@/components/SectionHeading';
@@ -33,6 +34,8 @@ export default function FeaturesPage(){
       title="A single sequence instead of separate tools."
       text="The same visual language follows the seller from research through listings, monitoring, orders, Google Sheets and profit review."
     />
+
+    <WalletPaymentsShowcase />
 
     <section className="section bg-white">
       <div className="container-site">
