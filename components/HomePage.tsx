@@ -7,6 +7,7 @@ export default function HomePage() {
   return (
     <div className={styles.homepageScope}>
       <OriginalHomePage />
+      {/* Product research bento showcase */}
       <ProductResearchShowcase />
       <HeroBannerMount />
     </div>
