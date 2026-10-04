@@ -3,13 +3,14 @@ import { ArrowRight, Check, Sparkles } from 'lucide-react';
 import type { FeatureConfig } from '@/data/site';
 import AnalyticsPanel from './AnalyticsPanel';
 import MarketingCta from './MarketingCta';
+import PageHero from './PageHero';
+import ConnectedWorkflowShowcase from './ConnectedWorkflowShowcase';
 import {
   ListingPreview,
   MonitoringPreview,
   ProductHunterPreview,
   ReportsPreview,
   SheetPreview,
-  Workflow,
 } from './ProductVisuals';
 import { ReferenceVisual } from './ReferenceMedia';
 import type { TemporaryReferenceAssetKey } from '@/data/referenceAssets';
@@ -39,60 +40,61 @@ function FeatureImage({ slug }: { slug:string }) {
 
 export default function FeaturePage({ config }: { config:FeatureConfig }) {
   const Icon=config.icon;
+  const icon8 = (name:string) => `https://img.icons8.com/color/96/${name}.png`;
+  const stepIcons = ['search--v1','checklist','combo-chart--v1','shopping-cart--v1'];
 
   return <>
-    <section className="hero-mesh relative overflow-hidden border-b border-[#eee9f4]">
-      <div className="container-site relative grid items-center gap-11 py-14 lg:grid-cols-[.76fr_1.24fr] lg:py-18">
-        <div className="min-w-0">
-          <div className="eyebrow"><Icon size={13}/>{config.eyebrow}</div>
-          <h1 className="mt-4 max-w-[700px] text-[38px] leading-[1.04] font-[850] tracking-[-.045em] sm:text-[47px] lg:text-[52px]">{config.hero}</h1>
-          <p className="muted mt-5 max-w-xl text-[16px] leading-7">{config.description}</p>
-          <div className="mt-7 flex flex-wrap gap-3"><Link className="btn-primary" href="/signup">Start Free <ArrowRight size={16}/></Link><Link className="btn-secondary" href="/contact">Talk to Sales</Link></div>
-          <div className="mt-7 grid gap-2 sm:grid-cols-2">{config.bullets.slice(0,4).map(item=><div key={item} className="flex items-start gap-2 text-[13px] font-semibold"><Check size={14} className="mt-0.5 shrink-0 text-[#6d28d9]"/>{item}</div>)}</div>
-        </div>
-        <div className="min-w-0"><ProductVisual slug={config.slug}/></div>
-      </div>
-    </section>
+    <PageHero
+      eyebrow={<><Icon size={13}/>{config.eyebrow}</>}
+      title={<>{config.hero}</>}
+      description={config.description}
+      bullets={config.bullets.slice(0,4)}
+      primary={{label:'Start Free',href:'/signup'}}
+      secondary={{label:'Talk to Sales',href:'/contact'}}
+      visual={<ProductVisual slug={config.slug}/>}
+    />
 
-    <section className="section bg-[#fbfaff]">
+    <section className="section bg-white">
       <div className="container-site grid items-center gap-10 lg:grid-cols-[1.08fr_.92fr]">
-        <FeatureImage slug={config.slug}/>
+        <div className="rounded-[24px] border border-[#e2d8ef] bg-[#fdfcff] p-3 sm:p-4"><FeatureImage slug={config.slug}/></div>
         <div>
           <div className="eyebrow">Built for the workflow</div>
-          <h2 className="mt-3 text-[30px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[38px]">{config.title} without a disconnected toolchain.</h2>
-          <p className="muted mt-4 text-[15px] leading-7">The experience keeps the operational context close to the task so sellers can understand what changed and what needs attention.</p>
-          <div className="mt-6 space-y-3">
-            {config.bullets.map(item=><div key={item} className="flex items-start gap-3 rounded-xl border border-[#e7e0ef] bg-white px-4 py-3 text-[13px] font-semibold"><span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#f1eaff] text-[#6d28d9]"><Check size={11}/></span>{item}</div>)}
+          <h2 className="mt-4 text-[31px] font-[850] leading-[1.08] tracking-[-.04em] sm:text-[40px]">{config.title} without a disconnected toolchain.</h2>
+          <p className="muted mt-4 text-[15px] leading-7">Keep operational context close to the task so sellers can understand what changed, what matters and what should happen next.</p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            {config.bullets.map((item,index)=><div key={item} className="flex items-start gap-3 rounded-[15px] border border-[#e7e0ef] bg-[#fdfcff] px-4 py-3">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] border border-[#eee6f7] bg-[#faf7ff]"><img src={icon8(stepIcons[index%stepIcons.length])} alt="" className="h-7 w-7 object-contain"/></span>
+              <div><div className="text-[12px] font-extrabold text-[#171230]">{item}</div><div className="mt-1 text-[9px] leading-4 text-[#736b80]">Keep status and next action visible at this stage.</div></div>
+            </div>)}
           </div>
         </div>
       </div>
     </section>
 
-    <section className="section">
+    <section className="section border-y border-[#eee8f4] bg-[#faf8ff]">
       <div className="container-site">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="eyebrow">Workflow</div>
-          <h2 className="mt-3 text-[30px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[38px]">A clear operating sequence, from input to action.</h2>
-          <p className="muted mt-4 text-[15px] leading-7">Each step stays understandable on desktop, tablet and mobile without long vertical timelines or oversized numbered cards.</p>
-        </div>
-        <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {config.bullets.slice(0,4).map((item,index)=><div key={item} className="rounded-[15px] border border-[#e7e0ef] bg-white p-5">
-            <div className="flex items-center justify-between"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#f1eaff] text-[11px] font-black text-[#6d28d9]">0{index+1}</span>{index<3&&<ArrowRight size={15} className="hidden text-[#a18ebc] lg:block"/>}</div>
-            <div className="mt-5 text-[15px] font-extrabold">{item}</div>
-            <p className="muted mt-2 text-[12px] leading-5">Keep the information, status and next action visible at this stage.</p>
-          </div>)}
+        <div className="mx-auto max-w-[820px] text-center"><div className="eyebrow">Feature workflow</div><h2 className="mt-4 text-[31px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[40px]">A clear operating sequence, from input to action.</h2><p className="muted mx-auto mt-4 max-w-[700px] text-[14px] leading-7">The page uses the same numbered, visual card language as the homepage so every feature feels part of one product system.</p></div>
+        <div className="mt-9 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {config.bullets.slice(0,4).map((item,index)=><article key={item} className="relative min-h-[210px] rounded-[22px] border border-[#e7e0ef] bg-white p-5">
+            <span className="absolute right-4 top-4 grid h-8 min-w-8 place-items-center rounded-[9px] bg-[linear-gradient(135deg,#6d28d9,#9a2cff)] px-2 text-[10px] font-black text-white">0{index+1}</span>
+            <span className="grid h-16 w-16 place-items-center rounded-[18px] border border-[#eee6f7] bg-[#faf7ff]"><img src={icon8(stepIcons[index])} alt="" className="h-12 w-12 object-contain"/></span>
+            <h3 className="mt-5 text-[15px] font-extrabold text-[#171230]">{item}</h3>
+            <p className="muted mt-2 text-[11px] leading-5">Keep the information, status and next action visible at this stage.</p>
+          </article>)}
         </div>
       </div>
     </section>
 
-    <section className="section bg-[#211062] text-white">
-      <div className="container-site grid gap-8 lg:grid-cols-[.62fr_1.38fr] lg:items-center">
-        <div>
-          <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[.13em] text-[#cdbbfa]"><Sparkles size={13}/>One connected platform</div>
-          <h2 className="mt-3 text-[29px] leading-[1.08] font-[820] tracking-[-.03em] sm:text-[36px]">Connect {config.title.toLowerCase()} with the rest of the seller workflow.</h2>
-          <p className="mt-4 text-[14px] leading-7 text-white/65">Research, listing, monitoring, orders, sheets and profit use the same operating language across the platform.</p>
-        </div>
-        <div className="rounded-[18px] border border-white/10 bg-white/[.04] p-4 text-[#171230]"><Workflow/></div>
+    <ConnectedWorkflowShowcase
+      eyebrow="One connected platform"
+      title={`Connect ${config.title.toLowerCase()} with the rest of the seller workflow.`}
+      text="Research, listing, monitoring, orders, Sheets and profit use the same visual language and operating context across the platform."
+    />
+
+    <section className="section bg-white">
+      <div className="container-site flex flex-col items-center justify-between gap-5 rounded-[24px] border border-[#e4daef] bg-[#fdfaff] p-6 text-center sm:p-8 lg:flex-row lg:text-left">
+        <div><div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[.12em] text-[#6d28d9]"><Sparkles size={13}/>Next step</div><h2 className="mt-2 text-[24px] font-[850] tracking-[-.03em] text-[#171230]">Explore how {config.title.toLowerCase()} fits your store.</h2></div>
+        <Link href="/pricing" className="btn-primary shrink-0">See Plans <ArrowRight size={15}/></Link>
       </div>
     </section>
 
