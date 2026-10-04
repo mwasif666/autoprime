@@ -120,17 +120,45 @@
 .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(6) > div:first-child::before { content: '6'; }
 
 .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child > span:first-child {
-  width: 58px !important;
-  height: 58px !important;
-  margin-top: 4px;
-  border-radius: 16px !important;
-  background: #f1eaff !important;
-  color: #6d28d9 !important;
+  width: 68px !important;
+  height: 68px !important;
+  margin-top: 2px;
+  border: 1px solid #eee7f8;
+  border-radius: 18px !important;
+  background-color: #fbf8ff !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 52px 52px !important;
+  color: transparent !important;
+}
+
+/* Colorful Icons8 artwork for each flow step */
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(1) > div:first-child > span:first-child {
+  background-image: url('https://img.icons8.com/color/search/96') !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(2) > div:first-child > span:first-child {
+  background-image: url('https://img.icons8.com/color/checklist/96') !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(3) > div:first-child > span:first-child {
+  background-image: url('https://img.icons8.com/color/combo-chart/96') !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(4) > div:first-child > span:first-child {
+  background-image: url('https://img.icons8.com/color/shopping-cart/96') !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(5) > div:first-child > span:first-child {
+  background-image: url('https://img.icons8.com/color/google-sheets/96') !important;
+}
+
+.homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents):nth-child(6) > div:first-child > span:first-child {
+  background-image: url('https://img.icons8.com/color/profit-analysis/96') !important;
 }
 
 .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child > span:first-child svg {
-  width: 23px;
-  height: 23px;
+  display: none !important;
 }
 
 .homepageScope :global(#how-it-works) > :global(.container-site) > div:nth-child(2) > div > :global(.contents) > div:first-child > span:nth-child(2) {
