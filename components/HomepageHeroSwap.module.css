@@ -1,3 +1,24 @@
+.rest {
+  display: flex;
+  flex-direction: column;
+}
+
+.rest > * {
+  order: 2;
+}
+
 .rest > section:first-child {
   display: none !important;
+}
+
+.rest > :global(#everything) {
+  order: 0;
+}
+
+.rest > section:nth-child(3) {
+  display: none !important;
+}
+
+.rest > :global(#bulk-import-improved) {
+  order: 1;
 }
