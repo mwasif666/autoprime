@@ -22,3 +22,19 @@
 .rest > :global(#bulk-import-improved) {
   order: 1;
 }
+
+/* Hide the original large support composition. */
+.rest > section:nth-child(9) {
+  display: none !important;
+}
+
+/* Insert the compact support section before pricing / FAQ / final CTA. */
+.rest > :global(#simple-support) {
+  order: 3;
+}
+
+.rest > section:nth-child(10),
+.rest > section:nth-child(11),
+.rest > section:nth-child(12) {
+  order: 4;
+}
