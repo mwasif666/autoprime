@@ -1,0 +1,3 @@
+.rest > section:first-child {
+  display: none !important;
+}
