@@ -1,0 +1,5 @@
+/* Homepage wallet showcase: keep the intro, flow and benefit strip,
+   but remove the dense Add Funds / Wallet Balance / Transaction History panel. */
+#wallet-payments-showcase > .container-site > div:nth-child(3) {
+  display: none !important;
+}
