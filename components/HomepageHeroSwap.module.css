@@ -30,8 +30,12 @@
   order: 2;
 }
 
-/* Product discovery section. */
+/* Replace the original product discovery composition. */
 .rest > section:nth-child(5) {
+  display: none !important;
+}
+
+.rest > :global(#product-discovery-bento) {
   order: 3;
 }
 
