@@ -4,9 +4,10 @@
 }
 
 .rest > * {
-  order: 2;
+  order: 20;
 }
 
+/* Original PDF hero is replaced by HomepageHeroCompact. */
 .rest > section:first-child {
   display: none !important;
 }
@@ -15,6 +16,7 @@
   order: 0;
 }
 
+/* Hide the original bulk-import section. */
 .rest > section:nth-child(3) {
   display: none !important;
 }
@@ -23,18 +25,53 @@
   order: 1;
 }
 
+/* Orders / Sheets / Returns section. */
+.rest > section:nth-child(4) {
+  order: 2;
+}
+
+/* Product discovery section. */
+.rest > section:nth-child(5) {
+  order: 3;
+}
+
+/* Hide the original large sourcing composition. */
+.rest > section:nth-child(6) {
+  display: none !important;
+}
+
+.rest > :global(#simple-sourcing) {
+  order: 4;
+}
+
+/* Price & stock intelligence. */
+.rest > section:nth-child(7) {
+  order: 5;
+}
+
+/* Wallet & payments. */
+.rest > section:nth-child(8) {
+  order: 6;
+}
+
 /* Hide the original large support composition. */
 .rest > section:nth-child(9) {
   display: none !important;
 }
 
-/* Insert the compact support section before pricing / FAQ / final CTA. */
 .rest > :global(#simple-support) {
-  order: 3;
+  order: 7;
 }
 
-.rest > section:nth-child(10),
-.rest > section:nth-child(11),
+/* Pricing, FAQ and final CTA. */
+.rest > section:nth-child(10) {
+  order: 8;
+}
+
+.rest > section:nth-child(11) {
+  order: 9;
+}
+
 .rest > section:nth-child(12) {
-  order: 4;
+  order: 10;
 }
