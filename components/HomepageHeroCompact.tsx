@@ -40,8 +40,12 @@ export default function HomepageHeroCompact() {
 
         <div className="relative min-w-0 lg:pl-2">
           <img
-            src="/hero-banner-right.webp"
+            src="/hero-banner.png"
             alt="AutoDropshipPrime automation dashboard"
+            width="1448"
+            height="1086"
+            loading="eager"
+            fetchPriority="high"
             className="mx-auto block h-auto w-full max-w-[760px] object-contain lg:max-h-[560px] xl:max-w-[820px]"
           />
         </div>
