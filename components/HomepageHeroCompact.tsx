@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ArrowRight, Check, Zap } from 'lucide-react';
 
+const HERO_BANNER_IMAGE = 'https://res.cloudinary.com/agymx2xx/image/upload/v1791401859/5801ad84-057b-449f-bb22-c24a354e3963.png';
+
 export default function HomepageHeroCompact() {
   return (
     <section className="relative overflow-hidden border-b border-[#ece6f5] bg-[radial-gradient(circle_at_82%_10%,#efe5ff_0,transparent_32%),linear-gradient(180deg,#ffffff_0%,#faf7ff_100%)]">
@@ -40,10 +42,11 @@ export default function HomepageHeroCompact() {
 
         <div className="relative min-w-0 lg:pl-2">
           <img
-            src="/homepage-banner.png"
-            alt="AutoDropshipPrime admin dashboard on laptop"
+            src={HERO_BANNER_IMAGE}
+            alt="AutoDropshipPrime dashboard showcase"
             loading="eager"
             fetchPriority="high"
+            decoding="async"
             className="mx-auto block h-auto w-full max-w-[760px] object-contain lg:max-h-[560px] xl:max-w-[860px]"
           />
         </div>
