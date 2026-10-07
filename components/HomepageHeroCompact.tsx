@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, Check, Zap } from 'lucide-react';
 
-const HERO_BANNER_IMAGE = 'https://res.cloudinary.com/agymx2xx/image/upload/v1791401859/5801ad84-057b-449f-bb22-c24a354e3963.png';
+const HERO_BANNER_IMAGE = 'https://res.cloudinary.com/agymx2xx/image/upload/v1791403375/1d7f308c-2870-4a54-a666-74a053dd75c1.png';
 
 export default function HomepageHeroCompact() {
   return (
