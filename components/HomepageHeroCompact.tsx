@@ -16,10 +16,6 @@ const marketplaces = [
   ['AliExpress', 'aliexpress', '→ eBay', false],
   ['Etsy', 'etsy', '→ eBay', false],
   ['Amazon', 'amazon', '→ eBay', false],
-  ['Etsy', 'etsy', 'Listings', true],
-  ['Amazon', 'amazon', 'Listings', true],
-  ['Shopify', 'shopify', 'Listings', true],
-  ['Wix', 'wix', 'Listings', true],
 ] as const;
 
 function BrandMark({ brand, muted = false }: { brand: string; muted?: boolean }) {
@@ -48,27 +44,10 @@ function BrandMark({ brand, muted = false }: { brand: string; muted?: boolean })
     return <div className={`text-[34px] font-serif font-black leading-none text-[#f1641e] ${opacity}`} aria-label="Etsy">E</div>;
   }
 
-  if (brand === 'amazon') {
-    return (
-      <div className={`relative pb-1 text-[32px] font-black leading-none text-[#232f3e] ${opacity}`} aria-label="Amazon">
-        a
-        <span className="absolute -bottom-0.5 left-0 h-[3px] w-8 rotate-[-5deg] rounded-full bg-[#ff9900]" />
-      </div>
-    );
-  }
-
-  if (brand === 'shopify') {
-    return (
-      <div className={`relative grid h-10 w-10 place-items-center rounded-[8px] bg-[#95bf47] text-[20px] font-black text-white ${opacity}`} aria-label="Shopify">
-        S
-        <span className="absolute -top-1 h-3 w-5 rounded-t-full border-2 border-[#5e8e3e] border-b-0" />
-      </div>
-    );
-  }
-
   return (
-    <div className={`text-[24px] font-black leading-none tracking-[-.08em] text-[#111111] ${opacity}`} aria-label="Wix">
-      WiX
+    <div className={`relative pb-1 text-[32px] font-black leading-none text-[#232f3e] ${opacity}`} aria-label="Amazon">
+      a
+      <span className="absolute -bottom-0.5 left-0 h-[3px] w-8 rotate-[-5deg] rounded-full bg-[#ff9900]" />
     </div>
   );
 }
