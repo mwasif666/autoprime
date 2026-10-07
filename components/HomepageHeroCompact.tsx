@@ -11,8 +11,6 @@ import {
 const HERO_BANNER_IMAGE =
   'https://res.cloudinary.com/agymx2xx/image/upload/v1791403375/1d7f308c-2870-4a54-a666-74a053dd75c1.png';
 
-const brandLogo = (name: string) => `https://img.icons8.com/color/96/${name}.png`;
-
 const marketplaces = [
   ['eBay', 'ebay', '→ eBay', false],
   ['AliExpress', 'aliexpress', '→ eBay', false],
@@ -24,34 +22,76 @@ const marketplaces = [
   ['Wix', 'wix', 'Listings', true],
 ] as const;
 
+function BrandMark({ brand, muted = false }: { brand: string; muted?: boolean }) {
+  const opacity = muted ? 'opacity-65' : '';
+
+  if (brand === 'ebay') {
+    return (
+      <div className={`flex items-end text-[24px] font-black leading-none tracking-[-.12em] ${opacity}`} aria-label="eBay">
+        <span className="text-[#e53238]">e</span>
+        <span className="text-[#0064d2]">b</span>
+        <span className="text-[#f5af02]">a</span>
+        <span className="text-[#86b817]">y</span>
+      </div>
+    );
+  }
+
+  if (brand === 'aliexpress') {
+    return (
+      <div className={`grid h-9 w-9 place-items-center rounded-[9px] bg-[#ff4747] text-[12px] font-black text-white ${opacity}`} aria-label="AliExpress">
+        Ali
+      </div>
+    );
+  }
+
+  if (brand === 'etsy') {
+    return <div className={`text-[34px] font-serif font-black leading-none text-[#f1641e] ${opacity}`} aria-label="Etsy">E</div>;
+  }
+
+  if (brand === 'amazon') {
+    return (
+      <div className={`relative pb-1 text-[32px] font-black leading-none text-[#232f3e] ${opacity}`} aria-label="Amazon">
+        a
+        <span className="absolute -bottom-0.5 left-0 h-[3px] w-8 rotate-[-5deg] rounded-full bg-[#ff9900]" />
+      </div>
+    );
+  }
+
+  if (brand === 'shopify') {
+    return (
+      <div className={`relative grid h-10 w-10 place-items-center rounded-[8px] bg-[#95bf47] text-[20px] font-black text-white ${opacity}`} aria-label="Shopify">
+        S
+        <span className="absolute -top-1 h-3 w-5 rounded-t-full border-2 border-[#5e8e3e] border-b-0" />
+      </div>
+    );
+  }
+
+  return (
+    <div className={`text-[24px] font-black leading-none tracking-[-.08em] text-[#111111] ${opacity}`} aria-label="Wix">
+      WiX
+    </div>
+  );
+}
+
 function MarketplaceLoop() {
   return (
-    <div className="flex shrink-0 items-stretch gap-3 pr-3">
-      {marketplaces.map(([name, icon, note, soon], index) => (
+    <div className="flex shrink-0 items-center gap-7 pr-7 sm:gap-9 sm:pr-9">
+      {marketplaces.map(([name, brand, note, soon], index) => (
         <div
           key={`${name}-${note}-${index}`}
-          className={`relative flex min-h-[72px] w-[132px] shrink-0 items-center gap-2 rounded-[16px] border px-3 py-3 ${
-            soon
-              ? 'border-[#eee8f5] bg-[#fbf9fe] opacity-80'
-              : 'border-[#e9e1f1] bg-white'
-          }`}
+          className={`relative flex min-h-[72px] w-[118px] shrink-0 items-center gap-2 px-1 py-2 ${soon ? 'opacity-85' : ''}`}
         >
           {soon && index === 4 && (
-            <span className="absolute -top-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#efe7ff] px-2 py-0.5 text-[6.5px] font-black uppercase tracking-[.05em] text-[#7c3aed]">
+            <span className="absolute -top-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#efe7ff] px-2 py-0.5 text-[6.5px] font-black uppercase tracking-[.05em] text-[#7c3aed]">
               Coming Soon
             </span>
           )}
-          <img
-            src={brandLogo(icon)}
-            alt={`${name} logo`}
-            className={`h-8 w-8 shrink-0 object-contain ${soon ? 'grayscale-[.12]' : ''}`}
-            loading="lazy"
-          />
+          <BrandMark brand={brand} muted={soon} />
           <div className="min-w-0">
-            <div className={`truncate text-[9px] font-black ${soon ? 'text-[#6f687a]' : 'text-[#2b2340]'}`}>
+            <div className={`truncate text-[9px] font-black ${soon ? 'text-[#746d7e]' : 'text-[#2b2340]'}`}>
               {name}
             </div>
-            <div className={`text-[7px] font-semibold ${soon ? 'text-[#9a92a3]' : 'text-[#81788d]'}`}>
+            <div className={`text-[7px] font-semibold ${soon ? 'text-[#a19aa9]' : 'text-[#81788d]'}`}>
               {note}
             </div>
           </div>
@@ -179,9 +219,9 @@ export default function HomepageHeroCompact() {
             </div>
           </div>
 
-          <div className="relative min-w-0 flex-1 overflow-hidden border-y border-[#ece5f4] bg-white/72 py-0 backdrop-blur-sm">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-12" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-12" />
+          <div className="relative min-w-0 flex-1 overflow-hidden bg-transparent py-0">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-[#faf7ff] to-transparent sm:w-12" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-[#faf7ff] to-transparent sm:w-12" />
             <div className="hero-marketplace-track flex">
               <MarketplaceLoop />
               <MarketplaceLoop />
