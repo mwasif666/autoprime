@@ -81,11 +81,6 @@ function MarketplaceLoop() {
           key={`${name}-${note}-${index}`}
           className={`relative flex min-h-[72px] w-[118px] shrink-0 items-center gap-2 px-1 py-2 ${soon ? 'opacity-85' : ''}`}
         >
-          {soon && index === 4 && (
-            <span className="absolute -top-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#efe7ff] px-2 py-0.5 text-[6.5px] font-black uppercase tracking-[.05em] text-[#7c3aed]">
-              Coming Soon
-            </span>
-          )}
           <BrandMark brand={brand} muted={soon} />
           <div className="min-w-0">
             <div className={`truncate text-[9px] font-black ${soon ? 'text-[#746d7e]' : 'text-[#2b2340]'}`}>
