@@ -27,20 +27,10 @@ const marketplaces = [
 function MarketplaceLoop() {
   return (
     <div className="flex shrink-0 items-stretch gap-3 pr-3">
-      <div className="flex min-h-[78px] w-[170px] shrink-0 items-center gap-3 rounded-[17px] bg-[linear-gradient(135deg,#5b20d6,#9633ff)] px-4 py-3 text-white">
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/15">
-          <ShoppingBag size={20} />
-        </span>
-        <div>
-          <div className="text-[10px] font-black leading-4 text-white">List Products</div>
-          <div className="text-[8px] font-semibold text-white/85">to eBay from</div>
-        </div>
-      </div>
-
       {marketplaces.map(([name, icon, note, soon], index) => (
         <div
           key={`${name}-${note}-${index}`}
-          className={`relative flex min-h-[78px] w-[138px] shrink-0 items-center gap-2 rounded-[17px] border px-3 py-3 ${
+          className={`relative flex min-h-[72px] w-[132px] shrink-0 items-center gap-2 rounded-[16px] border px-3 py-3 ${
             soon
               ? 'border-[#eee8f5] bg-[#fbf9fe] opacity-80'
               : 'border-[#e9e1f1] bg-white'
@@ -147,42 +137,54 @@ export default function HomepageHeroCompact() {
           </div>
         </div>
 
-        <div className="relative z-10 mt-3 overflow-hidden border-y border-[#ece5f4] bg-white/72 py-3 backdrop-blur-sm sm:mt-4">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white to-transparent sm:w-20" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white to-transparent sm:w-20" />
-          <div className="hero-marketplace-track flex">
-            <MarketplaceLoop />
-            <MarketplaceLoop />
-          </div>
-        </div>
+        <div className="mt-4 flex flex-col gap-3 pb-5 lg:flex-row lg:items-stretch">
+          <div className="grid shrink-0 gap-3 sm:grid-cols-3 lg:grid-cols-[190px_190px_170px]">
+            <div className="flex min-h-[72px] items-center gap-3 rounded-[16px] border border-[#e9e1f1] bg-white px-4 py-2.5">
+              <div className="flex -space-x-2">
+                {['A', 'M', 'S', 'R'].map((letter, index) => (
+                  <span
+                    key={`${letter}-${index}`}
+                    className="grid h-8 w-8 place-items-center rounded-full border-2 border-white bg-[linear-gradient(135deg,#d8b4fe,#7c3aed)] text-[10px] font-black text-white"
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </div>
+              <div>
+                <div className="text-[15px] font-black text-[#171230]">10,000+</div>
+                <div className="text-[9px] text-[#80778a]">eBay sellers trust us</div>
+              </div>
+            </div>
 
-        <div className="flex flex-wrap items-center gap-3 py-5 sm:gap-4 sm:py-6">
-          <div className="flex min-h-[66px] items-center gap-3 rounded-[15px] border border-[#e9e1f1] bg-white px-4 py-2.5">
-            <div className="flex -space-x-2">
-              {['A', 'M', 'S', 'R'].map((letter, index) => (
-                <span
-                  key={`${letter}-${index}`}
-                  className="grid h-8 w-8 place-items-center rounded-full border-2 border-white bg-[linear-gradient(135deg,#d8b4fe,#7c3aed)] text-[10px] font-black text-white"
-                >
-                  {letter}
-                </span>
-              ))}
+            <div className="flex min-h-[72px] items-center gap-3 rounded-[16px] border border-[#e9e1f1] bg-white px-4 py-2.5">
+              <div className="flex gap-0.5 text-[#f59e0b]">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star key={index} size={13} fill="currentColor" />
+                ))}
+              </div>
+              <div>
+                <div className="text-[15px] font-black text-[#171230]">4.9/5</div>
+                <div className="text-[9px] text-[#80778a]">Based on 1,200+ reviews</div>
+              </div>
             </div>
-            <div>
-              <div className="text-[15px] font-black text-[#171230]">10,000+</div>
-              <div className="text-[9px] text-[#80778a]">eBay sellers trust us</div>
+
+            <div className="flex min-h-[72px] items-center gap-3 rounded-[16px] bg-[linear-gradient(135deg,#5b20d6,#9633ff)] px-4 py-3 text-white lg:sticky lg:left-0 lg:z-20">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/15">
+                <ShoppingBag size={20} />
+              </span>
+              <div>
+                <div className="text-[10px] font-black leading-4 text-white">List Products</div>
+                <div className="text-[8px] font-semibold text-white/85">to eBay from</div>
+              </div>
             </div>
           </div>
 
-          <div className="flex min-h-[66px] items-center gap-3 rounded-[15px] border border-[#e9e1f1] bg-white px-4 py-2.5">
-            <div className="flex gap-0.5 text-[#f59e0b]">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <Star key={index} size={13} fill="currentColor" />
-              ))}
-            </div>
-            <div>
-              <div className="text-[15px] font-black text-[#171230]">4.9/5</div>
-              <div className="text-[9px] text-[#80778a]">Based on 1,200+ reviews</div>
+          <div className="relative min-w-0 flex-1 overflow-hidden border-y border-[#ece5f4] bg-white/72 py-0 backdrop-blur-sm">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-12" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-12" />
+            <div className="hero-marketplace-track flex">
+              <MarketplaceLoop />
+              <MarketplaceLoop />
             </div>
           </div>
         </div>
