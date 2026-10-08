@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { BarChart3, ListChecks, ShoppingCart, Sparkles, Workflow } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import MarketingCta from '@/components/MarketingCta';
-import { ProductDashboardPreview } from '@/components/ProductVisuals';
 import {
   DashboardStorySection,
+  HeroDashboardImage,
   OutcomeEditorialSection,
   SourceMarketplaceStrip,
   WorkflowRail,
@@ -21,7 +21,7 @@ export default function AboutPage(){return <>
     bullets={['Product-first workflows','Clear status and next actions','Consistent analytics language','Reusable operating patterns']}
     primary={{label:'Explore Features',href:'/features'}}
     secondary={{label:'Talk to Us',href:'/contact'}}
-    visual={<ProductDashboardPreview/>}
+    visual={<HeroDashboardImage src={dashboardAssets.orders} alt="AutoDropshipPrime orders dashboard"/>}
   />
 
   <SourceMarketplaceStrip
