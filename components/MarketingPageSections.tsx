@@ -21,6 +21,26 @@ export const dashboardAssets = {
   aiImageGenerator: 'https://res.cloudinary.com/agymx2xx/image/upload/v1791403172/AI_Image_Generator_Dashboard.png',
 } as const;
 
+export function HeroDashboardImage({
+  src,
+  alt,
+  position = 'top',
+}: {
+  src: string;
+  alt: string;
+  position?: 'top' | 'center';
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="eager"
+      decoding="async"
+      className={`block h-auto max-h-[470px] w-full object-contain ${position === 'top' ? 'object-top' : 'object-center'}`}
+    />
+  );
+}
+
 const sourceMarkets = [
   ['eBay', 'ebay', 'Import products'],
   ['AliExpress', 'aliexpress', 'Source products'],
