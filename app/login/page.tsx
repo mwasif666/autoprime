@@ -36,10 +36,7 @@ export default function LoginPage() {
               <p className="muted mt-3 max-w-[570px] text-[13px] leading-6">Orders, monitoring and financial visibility stay part of the same seller workflow after you sign in.</p>
             </div>
 
-            <div className="overflow-hidden rounded-[22px] border border-[#e2d8ef] bg-white p-2.5">
-              <div className="mb-2 flex items-center gap-1.5 px-1.5 py-1"><span className="h-2 w-2 rounded-full bg-[#f2a7c8]"/><span className="h-2 w-2 rounded-full bg-[#f3c978]"/><span className="h-2 w-2 rounded-full bg-[#8adbb8]"/><span className="ml-2 text-[8px] font-bold uppercase tracking-[.08em] text-[#8b8296]">Orders workspace</span></div>
-              <img src={dashboardAssets.orders} alt="AutoDropshipPrime orders dashboard" loading="eager" decoding="async" className="block h-auto w-full rounded-[14px] object-contain"/>
-            </div>
+            <img src={dashboardAssets.orders} alt="AutoDropshipPrime orders dashboard" loading="eager" decoding="async" className="block h-auto w-full object-contain"/>
 
             <div className="mt-5 border-t border-[#e7deef]">
               {proof.map(item=><div key={item} className="flex items-center gap-3 border-b border-[#e7deef] py-3 text-[11px] font-bold text-[#554d62]"><span className="grid h-6 w-6 place-items-center rounded-full bg-[#efe8ff] text-[#6d28d9]"><Check size={12}/></span>{item}</div>)}
