@@ -1,10 +1,15 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, BookOpen, FileSpreadsheet, PackageSearch, RefreshCcw, Sparkles, BarChart3 } from 'lucide-react';
+import { ArrowRight, BarChart3, BookOpen, FileSpreadsheet, PackageSearch, RefreshCcw, Sparkles } from 'lucide-react';
 import PageHero from '@/components/PageHero';
-import ConnectedWorkflowShowcase from '@/components/ConnectedWorkflowShowcase';
 import Faq from '@/components/Faq';
 import MarketingCta from '@/components/MarketingCta';
+import {
+  DashboardStorySection,
+  SourceMarketplaceStrip,
+  WorkflowRail,
+  dashboardAssets,
+} from '@/components/MarketingPageSections';
 
 export const metadata: Metadata = {
   title: 'Resources',
@@ -20,11 +25,11 @@ const guides = [
   ['Read your profit dashboard','Use revenue, costs, fees and margin to understand store health.','/features/analytics',BarChart3,'Analytics'],
 ] as const;
 
-function ResourcePreview(){return <div className="grid gap-3 sm:grid-cols-2">
-  {guides.slice(0,4).map(([title,,href,Icon,label])=><Link key={title} href={href} className="group rounded-[16px] border border-[#e8e2ef] bg-[#fbfaff] p-4">
-    <div className="flex items-start justify-between gap-3"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#efe8ff] text-[#6d28d9]"><Icon size={18}/></span><ArrowRight size={14} className="text-[#9e8caf]"/></div>
-    <div className="mt-4 text-[9px] font-black uppercase tracking-[.1em] text-[#8b3dff]">{label}</div>
-    <div className="mt-1 text-[13px] font-extrabold leading-5 text-[#171230]">{title}</div>
+function ResourcePreview(){return <div className="divide-y divide-[#e8e1ef]">
+  {guides.slice(0,4).map(([title,,href,Icon,label])=><Link key={title} href={href} className="group flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-[#efe8ff] text-[#6d28d9]"><Icon size={17}/></span>
+    <div className="min-w-0 flex-1"><div className="text-[8px] font-black uppercase tracking-[.1em] text-[#8b3dff]">{label}</div><div className="mt-0.5 truncate text-[11px] font-extrabold text-[#171230]">{title}</div></div>
+    <ArrowRight size={13} className="text-[#a99db9] transition group-hover:translate-x-0.5 group-hover:text-[#6d28d9]"/>
   </Link>)}
 </div>}
 
@@ -39,27 +44,46 @@ export default function ResourcesPage(){return <>
     visual={<ResourcePreview/>}
   />
 
-  <ConnectedWorkflowShowcase
-    eyebrow="Learn by workflow"
-    title="Follow the product in the same order you operate it."
-    text="The resource path mirrors the connected seller workflow, so each guide stays close to the feature and operating context it explains."
+  <SourceMarketplaceStrip
+    eyebrow="Start with product context"
+    title="The resource path begins with the same source marketplaces used in the product workflow."
   />
 
   <section id="guides" className="section bg-white">
-    <div className="container-site">
-      <div className="mx-auto max-w-[820px] text-center"><div className="eyebrow">Featured guides</div><h2 className="mt-4 text-[31px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[40px]">Practical resources for each stage of the seller workflow.</h2><p className="muted mx-auto mt-4 max-w-[700px] text-[14px] leading-7">Each resource links directly to the product area it explains.</p></div>
-      <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {guides.map(([title,text,href,Icon,label],index)=><Link key={title} href={href} className="relative flex min-h-[245px] flex-col rounded-[22px] border border-[#e7e0ef] bg-[#fdfcff] p-5 sm:p-6">
-          <span className="absolute right-4 top-4 grid h-8 min-w-8 place-items-center rounded-[9px] bg-[linear-gradient(135deg,#6d28d9,#9a2cff)] px-2 text-[10px] font-black text-white">0{index+1}</span>
-          <span className="grid h-14 w-14 place-items-center rounded-[16px] border border-[#eee6f7] bg-[#faf7ff] text-[#6d28d9]"><Icon size={24}/></span>
-          <div className="mt-5 text-[9px] font-black uppercase tracking-[.1em] text-[#8b3dff]">{label}</div>
-          <h3 className="mt-2 text-[17px] font-extrabold leading-6 text-[#171230]">{title}</h3>
-          <p className="muted mt-2 text-[12px] leading-6">{text}</p>
-          <span className="mt-auto pt-5 inline-flex items-center gap-2 text-[10px] font-extrabold text-[#6d28d9]">Open guide <ArrowRight size={12}/></span>
+    <div className="container-site grid gap-10 lg:grid-cols-[.82fr_1.18fr]">
+      <div className="lg:sticky lg:top-28 lg:self-start">
+        <div className="eyebrow">Featured guide</div>
+        <h2 className="mt-4 max-w-[520px] text-[31px] font-[860] leading-[1.06] tracking-[-.045em] text-[#171230] sm:text-[39px]">Learn the product in the same order the work actually happens.</h2>
+        <p className="muted mt-4 max-w-[520px] text-[14px] leading-7">Start with the connected workflow, then move into the specific feature that matches the task you are trying to understand.</p>
+        <Link href="/features" className="btn-primary mt-6 !text-white">Open getting-started guide <ArrowRight size={15}/></Link>
+      </div>
+
+      <div className="border-t border-[#e7dfef]">
+        {guides.slice(1).map(([title,text,href,Icon,label],index)=><Link key={title} href={href} className="group grid gap-4 border-b border-[#e7dfef] py-5 sm:grid-cols-[52px_1fr_auto] sm:items-center">
+          <span className="grid h-12 w-12 place-items-center rounded-[14px] bg-[#faf7ff] text-[#6d28d9]"><Icon size={21}/></span>
+          <div><div className="text-[8px] font-black uppercase tracking-[.1em] text-[#8b3dff]">{label}</div><h3 className="mt-1 text-[15px] font-extrabold text-[#171230]">{title}</h3><p className="muted mt-1 text-[10px] leading-5">{text}</p></div>
+          <div className="flex items-center gap-2 text-[9px] font-black text-[#a79caf] transition group-hover:text-[#6d28d9]"><span>0{index+2}</span><ArrowRight size={13}/></div>
         </Link>)}
       </div>
     </div>
   </section>
+
+  <DashboardStorySection
+    eyebrow="Learn from the real product"
+    title="Use actual dashboard context instead of abstract feature descriptions."
+    text="The resources connect back to the screens sellers work in, so the guidance stays close to real product states, order rows and finance context."
+    src={dashboardAssets.calculations}
+    alt="AutoDropshipPrime calculations dashboard"
+    points={['Read calculations in the context of orders','Understand which workflow owns each status','Move from guidance directly into the related feature']}
+    reverse
+    cta={{label:'Explore Analytics',href:'/features/analytics'}}
+  />
+
+  <WorkflowRail
+    eyebrow="Learn by workflow"
+    title="Follow the product in the same order you operate it."
+    text="The resource path mirrors the connected seller workflow, so each guide stays close to the feature and operating context it explains."
+  />
 
   <section className="section border-y border-[#eee8f4] bg-[#faf8ff]">
     <div className="container-site">
