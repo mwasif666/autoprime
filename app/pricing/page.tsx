@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { BarChart3, Crown, FileSpreadsheet, RefreshCcw, ShoppingCart, Sparkles } from 'lucide-react';
+import { BarChart3, Crown, FileSpreadsheet, RefreshCcw, ShoppingCart } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import Pricing from '@/components/Pricing';
 import Faq from '@/components/Faq';
@@ -13,30 +13,52 @@ import {
 
 export const metadata: Metadata = { title:'Pricing', description:'AutoDropshipPrime plans for product hunting, monitoring, analytics and reporting.' };
 
-const planPreview = [
-  ['Trial','$1','3 days','#10b981','#effcf7'],
-  ['Starter','$19','/month','#1689f5','#eef7ff'],
-  ['Professional','$49','/month','#7c22f4','#f5efff'],
-  ['Enterprise','$99','/month','#ff6b14','#fff5e8'],
-] as const;
+function PricingHeroVisual(){
+  return (
+    <div className="relative overflow-hidden rounded-[18px] bg-[#f8f5ff]">
+      <div className="flex items-center justify-between border-b border-[#e8e0f1] bg-white px-4 py-3 sm:px-5">
+        <div>
+          <div className="text-[9px] font-black uppercase tracking-[.12em] text-[#7c3aed]">AutoDropshipPrime workspace</div>
+          <div className="mt-1 text-[12px] font-extrabold text-[#171230] sm:text-[13px]">See the product your plan unlocks</div>
+        </div>
+        <span className="rounded-full bg-[#efe8ff] px-3 py-1.5 text-[9px] font-black text-[#6d28d9]">Live product view</span>
+      </div>
 
-function PricingPreview(){return <div className="grid gap-3 sm:grid-cols-2">
-  {planPreview.map(([name,price,suffix,accent,soft],index)=><div key={name} className="relative rounded-[18px] border border-[#e8e0f1] p-4" style={{background:soft}}>
-    {index===2&&<span className="absolute right-3 top-3 rounded-full bg-[#f7d7ff] px-2 py-1 text-[7px] font-black uppercase tracking-[.05em] text-[#7c22f4]">Most Popular</span>}
-    <div className="flex items-center gap-2"><span className="grid h-9 w-9 place-items-center rounded-[10px] bg-white" style={{color:accent}}>{index===2?<Crown size={18}/>:<Sparkles size={17}/>}</span><span className="text-[12px] font-extrabold text-[#171230]">{name}</span></div>
-    <div className="mt-4 flex items-end gap-1"><span className="text-[30px] font-black leading-none tracking-[-.04em] text-[#171230]">{price}</span><span className="mb-1 text-[9px] font-bold text-[#6d6578]">{suffix}</span></div>
-  </div>)}
-</div>}
+      <div className="relative bg-[linear-gradient(180deg,#fbf9ff_0%,#ffffff_100%)] p-2.5 sm:p-3.5">
+        <img
+          src={dashboardAssets.calculations}
+          alt="AutoDropshipPrime calculations dashboard"
+          className="block aspect-[16/9] w-full rounded-[14px] border border-[#e8e0f1] bg-white object-cover object-top"
+          loading="eager"
+          decoding="async"
+        />
+        <div className="pointer-events-none absolute inset-x-8 bottom-5 h-16 rounded-full bg-[#7c3aed]/10 blur-2xl" />
+      </div>
+
+      <div className="grid border-t border-[#e8e0f1] bg-white sm:grid-cols-3">
+        {[
+          ['Research','Find products'],
+          ['Automate','Run daily workflows'],
+          ['Review','Track profit'],
+        ].map(([label,text])=><div key={label} className="border-b border-[#eee8f4] px-4 py-3 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
+          <div className="text-[8px] font-black uppercase tracking-[.1em] text-[#8b3dff]">{label}</div>
+          <div className="mt-1 text-[10px] font-bold text-[#4f465d]">{text}</div>
+        </div>)}
+      </div>
+    </div>
+  );
+}
 
 export default function PricingPage(){return <>
   <PageHero
     eyebrow={<><Crown size={13}/>Flexible plans for every seller</>}
-    title={<>Choose Your Plan & <span className="gradient-text">Start Automating Today.</span></>}
+    title={<>Choose a plan that <span className="gradient-text">fits your workflow.</span></>}
     description="Start with the $1 trial, then choose the listing limits, store capacity, support level and automation features that fit your operation."
     bullets={['$1 / 3-day trial','Starter from $19/month','Professional from $49/month','Custom limits available']}
     primary={{label:'Start 3-Day Trial',href:'/signup'}}
     secondary={{label:'Contact Sales',href:'/contact'}}
-    visual={<PricingPreview/>}
+    visual={<PricingHeroVisual/>}
+    titleSize="compact"
   />
 
   <section className="section bg-white">
