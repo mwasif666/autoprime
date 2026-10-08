@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
-import { Crown, Sparkles } from 'lucide-react';
+import { BarChart3, Crown, FileSpreadsheet, RefreshCcw, ShoppingCart, Sparkles } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import Pricing from '@/components/Pricing';
 import Faq from '@/components/Faq';
 import MarketingCta from '@/components/MarketingCta';
+import {
+  DashboardStorySection,
+  OutcomeEditorialSection,
+  WorkflowRail,
+  dashboardAssets,
+} from '@/components/MarketingPageSections';
 
 export const metadata: Metadata = { title:'Pricing', description:'AutoDropshipPrime plans for product hunting, monitoring, analytics and reporting.' };
 
@@ -36,6 +42,34 @@ export default function PricingPage(){return <>
   <section className="section bg-white">
     <div className="container-site"><Pricing full/></div>
   </section>
+
+  <OutcomeEditorialSection
+    eyebrow="Choose by workflow, not just limits"
+    title="The plan should match how much of the operating system your store needs today."
+    text="Use the pricing table for exact limits, then think about which connected workflows matter most to your current stage."
+    items={[
+      {title:'Start with core operations',text:'Use product research, listing and day-to-day order workflows as the foundation.',Icon:ShoppingCart,tone:'#6d28d9',soft:'#f3edff'},
+      {title:'Add monitoring as volume grows',text:'Keep stock and supplier-price changes visible when more listings need attention.',Icon:RefreshCcw,tone:'#1689f5',soft:'#eef7ff'},
+      {title:'Keep finance records structured',text:'Use Sheets and calculation workflows when cost, fee and profit visibility becomes more important.',Icon:FileSpreadsheet,tone:'#16a36a',soft:'#ecfbf3'},
+      {title:'Use analytics for review',text:'Move into deeper profit and reporting views when you need clearer operating visibility across the store.',Icon:BarChart3,tone:'#f22eb7',soft:'#fff0f7'},
+    ]}
+    soft
+  />
+
+  <DashboardStorySection
+    eyebrow="What the plans power"
+    title="Pricing sits behind a real operating workspace, not a list of disconnected feature names."
+    text="The same plan supports the workflows shown across the site: order processing, calculations, monitoring, Sheets and reporting inside one consistent product experience."
+    src={dashboardAssets.orderProcessing}
+    alt="AutoDropshipPrime order processing dashboard"
+    points={['Keep processing status visible','Use consistent product and order context','Move from operations into finance and reporting']}
+  />
+
+  <WorkflowRail
+    eyebrow="One product system"
+    title="Whichever plan you choose, the workflow stays connected."
+    text="Research, listings, monitoring, orders, Sheets and profitability keep the same product language as you move through the platform."
+  />
 
   <section className="section border-y border-[#eee8f4] bg-[#faf8ff]">
     <div className="container-site">
