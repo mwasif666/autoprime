@@ -1,34 +1,17 @@
 import Link from 'next/link';
-import { ArrowRight, BarChart3, CheckCircle2, Eye, ListChecks, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Eye, ListChecks, Sparkles } from 'lucide-react';
 import type { FeatureConfig } from '@/data/site';
-import AnalyticsPanel from './AnalyticsPanel';
 import MarketingCta from './MarketingCta';
 import PageHero from './PageHero';
 import {
   DashboardStorySection,
+  HeroDashboardImage,
   OutcomeEditorialSection,
   SourceMarketplaceStrip,
   WorkflowRail,
   dashboardAssets,
   type OutcomeItem,
 } from './MarketingPageSections';
-import {
-  ListingPreview,
-  MonitoringPreview,
-  ProductHunterPreview,
-  ReportsPreview,
-  SheetPreview,
-} from './ProductVisuals';
-
-function ProductVisual({ slug }: { slug: string }) {
-  if (slug === 'product-hunting') return <ProductHunterPreview />;
-  if (slug === 'auto-listing') return <ListingPreview />;
-  if (slug === 'stock-monitoring' || slug === 'price-monitoring') return <MonitoringPreview />;
-  if (slug === 'google-sheets') return <SheetPreview />;
-  if (slug === 'analytics') return <AnalyticsPanel />;
-  if (slug === 'reports') return <ReportsPreview />;
-  return <ProductHunterPreview />;
-}
 
 const dashboardBySlug: Record<string, { src: string; eyebrow: string; title: string; text: string }> = {
   'product-hunting': {
@@ -94,7 +77,7 @@ export default function FeaturePage({ config }: { config: FeatureConfig }) {
         bullets={config.bullets.slice(0, 4)}
         primary={{ label: 'Start Free', href: '/signup' }}
         secondary={{ label: 'Talk to Sales', href: '/contact' }}
-        visual={<ProductVisual slug={config.slug} />}
+        visual={<HeroDashboardImage src={dashboard.src} alt={`${config.title} dashboard`} />}
       />
 
       {(config.slug === 'product-hunting' || config.slug === 'auto-listing') && (
