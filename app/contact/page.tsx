@@ -1,20 +1,16 @@
 import type { Metadata } from 'next';
-import { MessageSquareText } from 'lucide-react';
+import { BarChart3, FileSpreadsheet, MessageSquareText, PackageSearch, RefreshCcw } from 'lucide-react';
 import PageHero from '@/components/PageHero';
-import ConnectedWorkflowShowcase from '@/components/ConnectedWorkflowShowcase';
 import MarketingCta from '@/components/MarketingCta';
 import { ContactForm } from '@/components/Forms';
+import {
+  DashboardStorySection,
+  OutcomeEditorialSection,
+  WorkflowRail,
+  dashboardAssets,
+} from '@/components/MarketingPageSections';
 
 export const metadata: Metadata = { title:'Contact', description:'Contact AutoDropshipPrime about your seller workflow.' };
-
-const icon8 = (name:string) => `https://img.icons8.com/color/96/${name}.png`;
-
-const topics = [
-  ['Product research','Map sourcing, supplier, price and margin context.','search--v1'],
-  ['Listings & orders','Connect listing preparation with order visibility.','checklist'],
-  ['Monitoring','Review stock and supplier price changes.','combo-chart--v1'],
-  ['Sheets & profit','Keep financial records, wallet activity and reporting connected.','google-sheets'],
-];
 
 export default function ContactPage(){return <>
   <PageHero
@@ -25,25 +21,30 @@ export default function ContactPage(){return <>
     visual={<div className="p-2 sm:p-4"><div className="mb-5"><div className="text-[20px] font-extrabold tracking-[-.02em] text-[#171230]">Tell us about your store</div><p className="muted mt-1 text-[12px] leading-5">Share the workflow you want to improve.</p></div><ContactForm/></div>}
   />
 
-  <section className="section bg-white">
-    <div className="container-site">
-      <div className="mx-auto max-w-[820px] text-center">
-        <div className="eyebrow">What we can discuss</div>
-        <h2 className="mt-4 text-[31px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[40px]">Bring the current workflow. We can map the product around it.</h2>
-        <p className="muted mx-auto mt-4 max-w-[700px] text-[14px] leading-7">Use the same product modules shown across the homepage as reference points for the conversation.</p>
-      </div>
-      <div className="mt-9 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {topics.map(([title,text,icon],index)=><article key={title} className="relative rounded-[22px] border border-[#e7e0ef] bg-[#fdfcff] p-5">
-          <span className="absolute right-4 top-4 grid h-8 min-w-8 place-items-center rounded-[9px] bg-[linear-gradient(135deg,#6d28d9,#9a2cff)] px-2 text-[10px] font-black text-white">0{index+1}</span>
-          <span className="grid h-16 w-16 place-items-center rounded-[18px] border border-[#eee6f7] bg-[#faf7ff]"><img src={icon8(icon)} alt="" className="h-12 w-12 object-contain"/></span>
-          <h3 className="mt-5 text-[16px] font-extrabold text-[#171230]">{title}</h3>
-          <p className="muted mt-2 text-[12px] leading-6">{text}</p>
-        </article>)}
-      </div>
-    </div>
-  </section>
+  <OutcomeEditorialSection
+    eyebrow="What we can discuss"
+    title="Bring the current workflow. We can map the product around it."
+    text="Use the same product modules shown across the homepage as reference points for the conversation, then focus on the part of the operation that needs the clearest improvement."
+    items={[
+      {title:'Product research',text:'Map sourcing, supplier, price and margin context before products move forward.',Icon:PackageSearch,tone:'#6d28d9',soft:'#f3edff'},
+      {title:'Listings and monitoring',text:'Connect listing preparation with stock and supplier-price visibility.',Icon:RefreshCcw,tone:'#1689f5',soft:'#eef7ff'},
+      {title:'Sheets and profit',text:'Keep financial records, calculations and reporting connected to the operating data.',Icon:FileSpreadsheet,tone:'#16a36a',soft:'#ecfbf3'},
+      {title:'Reporting and visibility',text:'Clarify the metrics and records your team needs to review regularly.',Icon:BarChart3,tone:'#f22eb7',soft:'#fff0f7'},
+    ]}
+    soft
+  />
 
-  <ConnectedWorkflowShowcase
+  <DashboardStorySection
+    eyebrow="Talk about the real workflow"
+    title="Use the same screens your team works in as the starting point for the conversation."
+    text="Instead of describing automation in abstract terms, point to the actual order-processing, product, monitoring or finance step that feels slow or disconnected today."
+    src={dashboardAssets.orderProcessing}
+    alt="AutoDropshipPrime order processing dashboard"
+    points={['Explain the current manual step','Identify the status or data that needs to stay visible','Map the next action and the screen that should own it']}
+    reverse
+  />
+
+  <WorkflowRail
     eyebrow="Conversation map"
     title="Talk through the workflow in the same order your team operates it."
     text="Start with product discovery, then map listing, monitoring, orders, Sheets and profitability so the discussion stays practical and connected."
