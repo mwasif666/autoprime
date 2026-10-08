@@ -16,9 +16,9 @@ import WalletPaymentsShowcase from '@/components/WalletPaymentsShowcase';
 import BentoFeatures from '@/components/BentoFeatures';
 import SectionHeading from '@/components/SectionHeading';
 import MarketingCta from '@/components/MarketingCta';
-import { ProductDashboardPreview } from '@/components/ProductVisuals';
 import {
   DashboardStorySection,
+  HeroDashboardImage,
   OutcomeEditorialSection,
   SourceMarketplaceStrip,
   WorkflowRail,
@@ -39,7 +39,7 @@ export default function FeaturesPage(){
       bullets={['Product research','Listing optimization','Stock + price monitoring','Sheets, wallet and profit visibility']}
       primary={{label:'Start Free',href:'/signup'}}
       secondary={{label:'See Pricing',href:'/pricing'}}
-      visual={<ProductDashboardPreview/>}
+      visual={<HeroDashboardImage src={dashboardAssets.marketplace} alt="AutoDropshipPrime marketplace dashboard"/>}
     />
 
     <SourceMarketplaceStrip
