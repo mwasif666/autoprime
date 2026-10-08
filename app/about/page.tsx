@@ -1,20 +1,17 @@
 import type { Metadata } from 'next';
-import { Sparkles } from 'lucide-react';
+import { BarChart3, ListChecks, ShoppingCart, Sparkles, Workflow } from 'lucide-react';
 import PageHero from '@/components/PageHero';
-import ConnectedWorkflowShowcase from '@/components/ConnectedWorkflowShowcase';
 import MarketingCta from '@/components/MarketingCta';
-import { ProductDashboardPreview, SheetPreview } from '@/components/ProductVisuals';
+import { ProductDashboardPreview } from '@/components/ProductVisuals';
+import {
+  DashboardStorySection,
+  OutcomeEditorialSection,
+  SourceMarketplaceStrip,
+  WorkflowRail,
+  dashboardAssets,
+} from '@/components/MarketingPageSections';
 
 export const metadata: Metadata = { title:'About', description:'The product direction behind AutoDropshipPrime.' };
-
-const icon8 = (name:string) => `https://img.icons8.com/color/96/${name}.png`;
-
-const principles = [
-  ['One connected system','Keep research, listing, monitoring, wallet activity and analytics operationally connected.','workflow'],
-  ['Clear operating states','Show inputs, statuses and next actions without decorative clutter.','checklist'],
-  ['Useful visibility','Bring pricing, stock, orders, Sheets and profit into one consistent view.','combo-chart--v1'],
-  ['Seller-first context','Keep product, supplier, pricing and order context close to the task at hand.','shopping-cart--v1'],
-];
 
 export default function AboutPage(){return <>
   <PageHero
@@ -27,40 +24,48 @@ export default function AboutPage(){return <>
     visual={<ProductDashboardPreview/>}
   />
 
-  <section className="section bg-white">
-    <div className="container-site">
-      <div className="mx-auto max-w-[820px] text-center">
-        <div className="eyebrow">Product principles</div>
-        <h2 className="mt-4 text-[31px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[40px]">Built around the work sellers repeat every day.</h2>
-        <p className="muted mx-auto mt-4 max-w-[700px] text-[14px] leading-7">The design system favors realistic operating states, colorful visual cues and reusable product patterns over disconnected screens.</p>
-      </div>
-      <div className="mt-9 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {principles.map(([title,text,icon],index)=><article key={title} className="relative min-h-[230px] rounded-[22px] border border-[#e7e0ef] bg-[#fdfcff] p-5">
-          <span className="absolute right-4 top-4 grid h-8 min-w-8 place-items-center rounded-[9px] bg-[linear-gradient(135deg,#6d28d9,#9a2cff)] px-2 text-[10px] font-black text-white">0{index+1}</span>
-          <span className="grid h-16 w-16 place-items-center rounded-[18px] border border-[#eee6f7] bg-[#faf7ff]"><img src={icon8(icon)} alt="" className="h-12 w-12 object-contain"/></span>
-          <h3 className="mt-5 text-[17px] font-extrabold tracking-[-.02em] text-[#171230]">{title}</h3>
-          <p className="muted mt-2 text-[12px] leading-6">{text}</p>
-        </article>)}
-      </div>
-    </div>
-  </section>
+  <SourceMarketplaceStrip
+    eyebrow="Where the workflow starts"
+    title="Research and import product opportunities from the marketplaces sellers already use."
+  />
 
-  <ConnectedWorkflowShowcase
+  <DashboardStorySection
+    eyebrow="Why the product exists"
+    title="The operating screen should make the next seller decision easier to understand."
+    text="The platform is shaped around practical seller work: finding products, keeping product context nearby, understanding order state and seeing the economics behind each operation."
+    src={dashboardAssets.marketplace}
+    alt="AutoDropshipPrime marketplace dashboard"
+    points={['Keep product and supplier context close','Use clear operating states instead of decorative UI','Move selected products into the next workflow without losing context']}
+  />
+
+  <OutcomeEditorialSection
+    eyebrow="Product principles"
+    title="Built around the work sellers repeat every day."
+    text="The design system favors realistic operating states, colorful visual cues and reusable product patterns over disconnected screens or decorative dashboard chrome."
+    items={[
+      {title:'One connected system',text:'Keep research, listing, monitoring, wallet activity and analytics operationally connected.',Icon:Workflow,tone:'#6d28d9',soft:'#f3edff'},
+      {title:'Clear operating states',text:'Show inputs, statuses and next actions without decorative clutter.',Icon:ListChecks,tone:'#1689f5',soft:'#eef7ff'},
+      {title:'Useful visibility',text:'Bring pricing, stock, orders, Sheets and profit into one consistent view.',Icon:BarChart3,tone:'#16a36a',soft:'#ecfbf3'},
+      {title:'Seller-first context',text:'Keep product, supplier, pricing and order context close to the task at hand.',Icon:ShoppingCart,tone:'#ff6b14',soft:'#fff3e8'},
+    ]}
+    soft
+  />
+
+  <WorkflowRail
     eyebrow="Operating model"
     title="One sequence from research to insight."
     text="Context stays visible as a product moves through research, listing preparation, monitoring, orders, Google Sheets and profitability review."
   />
 
-  <section className="section bg-white">
-    <div className="container-site grid items-center gap-10 lg:grid-cols-[.7fr_1.3fr]">
-      <div>
-        <div className="eyebrow">Finance visibility</div>
-        <h2 className="mt-4 text-[31px] font-[850] leading-[1.08] tracking-[-.04em] sm:text-[40px]">Operational data should stay usable outside a single dashboard.</h2>
-        <p className="muted mt-4 text-[15px] leading-7">Order value, supplier cost, fees and profit can stay structured in a sheet-ready workflow while the application remains the main operating view.</p>
-      </div>
-      <div className="rounded-[24px] border border-[#e2d8ef] bg-white p-3 sm:p-4"><SheetPreview/></div>
-    </div>
-  </section>
+  <DashboardStorySection
+    eyebrow="Finance visibility"
+    title="Operational data should stay usable outside a single dashboard."
+    text="Order value, supplier cost, fees and profit can stay structured in a sheet-ready workflow while the application remains the main operating view."
+    src={dashboardAssets.calculations}
+    alt="AutoDropshipPrime calculations dashboard"
+    points={['Keep costs connected to order rows','Review profit before scaling decisions','Use structured records for reporting and Sheets']}
+    reverse
+  />
 
   <MarketingCta title="Build your operation around one connected seller workflow." text="Keep research, monitoring, orders and financial visibility consistent as your store grows."/>
 </>}
