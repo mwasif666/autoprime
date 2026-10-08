@@ -6,48 +6,13 @@ import Faq from '@/components/Faq';
 import MarketingCta from '@/components/MarketingCta';
 import {
   DashboardStorySection,
+  HeroDashboardImage,
   OutcomeEditorialSection,
   WorkflowRail,
   dashboardAssets,
 } from '@/components/MarketingPageSections';
 
 export const metadata: Metadata = { title:'Pricing', description:'AutoDropshipPrime plans for product hunting, monitoring, analytics and reporting.' };
-
-function PricingHeroVisual(){
-  return (
-    <div className="relative overflow-hidden rounded-[18px] bg-[#f8f5ff]">
-      <div className="flex items-center justify-between border-b border-[#e8e0f1] bg-white px-4 py-3 sm:px-5">
-        <div>
-          <div className="text-[9px] font-black uppercase tracking-[.12em] text-[#7c3aed]">AutoDropshipPrime workspace</div>
-          <div className="mt-1 text-[12px] font-extrabold text-[#171230] sm:text-[13px]">See the product your plan unlocks</div>
-        </div>
-        <span className="rounded-full bg-[#efe8ff] px-3 py-1.5 text-[9px] font-black text-[#6d28d9]">Live product view</span>
-      </div>
-
-      <div className="relative bg-[linear-gradient(180deg,#fbf9ff_0%,#ffffff_100%)] p-2.5 sm:p-3.5">
-        <img
-          src={dashboardAssets.calculations}
-          alt="AutoDropshipPrime calculations dashboard"
-          className="block aspect-[16/9] w-full rounded-[14px] border border-[#e8e0f1] bg-white object-cover object-top"
-          loading="eager"
-          decoding="async"
-        />
-        <div className="pointer-events-none absolute inset-x-8 bottom-5 h-16 rounded-full bg-[#7c3aed]/10 blur-2xl" />
-      </div>
-
-      <div className="grid border-t border-[#e8e0f1] bg-white sm:grid-cols-3">
-        {[
-          ['Research','Find products'],
-          ['Automate','Run daily workflows'],
-          ['Review','Track profit'],
-        ].map(([label,text])=><div key={label} className="border-b border-[#eee8f4] px-4 py-3 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
-          <div className="text-[8px] font-black uppercase tracking-[.1em] text-[#8b3dff]">{label}</div>
-          <div className="mt-1 text-[10px] font-bold text-[#4f465d]">{text}</div>
-        </div>)}
-      </div>
-    </div>
-  );
-}
 
 export default function PricingPage(){return <>
   <PageHero
@@ -57,8 +22,7 @@ export default function PricingPage(){return <>
     bullets={['$1 / 3-day trial','Starter from $19/month','Professional from $49/month','Custom limits available']}
     primary={{label:'Start 3-Day Trial',href:'/signup'}}
     secondary={{label:'Contact Sales',href:'/contact'}}
-    visual={<PricingHeroVisual/>}
-    titleSize="compact"
+    visual={<HeroDashboardImage src={dashboardAssets.calculations} alt="AutoDropshipPrime calculations dashboard"/>}
   />
 
   <section className="section bg-white">
