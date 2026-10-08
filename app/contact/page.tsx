@@ -5,6 +5,7 @@ import MarketingCta from '@/components/MarketingCta';
 import { ContactForm } from '@/components/Forms';
 import {
   DashboardStorySection,
+  HeroDashboardImage,
   OutcomeEditorialSection,
   WorkflowRail,
   dashboardAssets,
@@ -18,8 +19,23 @@ export default function ContactPage(){return <>
     title={<>Tell us where your workflow needs <span className="gradient-text">more automation.</span></>}
     description="Share how your store works today and which parts of product research, listings, monitoring, orders, wallet activity or reporting you want to simplify."
     bullets={['Product hunting and listing workflows','Stock, price and order monitoring','Google Sheets and profit visibility','Custom plan and integration requirements']}
-    visual={<div className="p-2 sm:p-4"><div className="mb-5"><div className="text-[20px] font-extrabold tracking-[-.02em] text-[#171230]">Tell us about your store</div><p className="muted mt-1 text-[12px] leading-5">Share the workflow you want to improve.</p></div><ContactForm/></div>}
+    primary={{label:'Send a Message',href:'#contact-form'}}
+    secondary={{label:'Explore Features',href:'/features'}}
+    visual={<HeroDashboardImage src={dashboardAssets.orderProcessing} alt="AutoDropshipPrime order processing dashboard"/>}
   />
+
+  <section id="contact-form" className="section bg-white">
+    <div className="container-site grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+      <div>
+        <div className="eyebrow">Tell us about your store</div>
+        <h2 className="mt-4 max-w-[520px] text-[30px] font-[860] leading-[1.06] tracking-[-.045em] text-[#171230] sm:text-[38px]">Start with the part of the workflow that feels slow or disconnected.</h2>
+        <p className="muted mt-4 max-w-[520px] text-[14px] leading-7">Share the current process, the screen or task involved, and what you want to make easier. We can keep the conversation practical and focused on the product workflow.</p>
+      </div>
+      <div className="min-w-0 border-t border-[#e7dfef] pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+        <ContactForm/>
+      </div>
+    </div>
+  </section>
 
   <OutcomeEditorialSection
     eyebrow="What we can discuss"
