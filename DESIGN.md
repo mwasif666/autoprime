@@ -63,7 +63,7 @@ A polished B2B commerce control room: restrained white/lavender surfaces, strong
 White and very-light lavender carry the page. `text-primary` and `text-secondary` create hierarchy. Brand purple/violet/magenta are reserved for emphasis, CTAs, selected states, and small visual anchors. Status colors keep operational meaning separate from brand decoration.
 
 ## Typography
-Use the project Inter stack. Display copy is bold but controlled, usually 31–61px depending on register and viewport. Body copy stays readable at 14–17px with generous line height and constrained measure. Data and labels may be denser but remain sentence case except for concise eyebrows.
+Use one Inter-based sans-serif family across the entire marketing site and product-facing UI, including headings, body copy, controls, forms, Ant Design and Material UI surfaces. Do not introduce alternate display/serif families for page content. Display copy is bold but controlled and should stay compact enough to preserve balanced two-column hero layouts. Body copy stays readable at 14–17px with generous line height and constrained measure. Data and labels may be denser but remain sentence case except for concise eyebrows. Marketplace/logo marks may preserve their own recognizable brand lettering when used as marks rather than page typography.
 
 ## Layout
 Use a 1210px max content width with responsive gutters. Prefer asymmetrical 12-column compositions, editorial text + product evidence, alternating media/text rows, and bento arrangements with deliberate span differences. Avoid trapped dead space and equal-emphasis layouts. Mobile stacks naturally without horizontal overflow.
