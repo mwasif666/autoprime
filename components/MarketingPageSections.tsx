@@ -234,7 +234,7 @@ export function WorkflowRail({
         </div>
 
         <div className="relative mt-11 rounded-[26px] border border-white/[.08] bg-white/[.025] px-5 py-7 sm:px-7 sm:py-8 lg:mt-12 lg:px-8 lg:py-9">
-          <div className="pointer-events-none absolute left-[8.8%] right-[8.8%] top-[72px] hidden h-px bg-[linear-gradient(90deg,rgba(126,95,255,.15),rgba(139,92,246,.7),rgba(139,92,246,.7),rgba(126,95,255,.15))] lg:block" />
+          <div className="pointer-events-none absolute left-[8.8%] right-[8.8%] top-[69px] hidden h-px bg-[linear-gradient(90deg,rgba(126,95,255,.15),rgba(139,92,246,.7),rgba(139,92,246,.7),rgba(126,95,255,.15))] lg:block" />
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:gap-0">
             {defaultWorkflow.map(({ label, detail, Icon, tone, tone2 }, index) => (
@@ -248,7 +248,7 @@ export function WorkflowRail({
                   </div>
 
                   {index < defaultWorkflow.length - 1 && (
-                    <span className="absolute -right-[15px] top-[51px] z-20 hidden h-8 w-8 items-center justify-center rounded-full border border-[#8160e8]/50 bg-[#180b37] text-[#cabdff] lg:flex">
+                    <span className="absolute left-[calc(50%+45px)] top-[17px] z-20 hidden h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border border-[#8160e8]/50 bg-[#180b37] text-[#cabdff] lg:flex">
                       <ArrowRight size={13} />
                     </span>
                   )}
