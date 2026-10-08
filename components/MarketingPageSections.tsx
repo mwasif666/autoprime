@@ -132,15 +132,7 @@ export function DashboardStorySection({ eyebrow, title, text, src, alt, points =
         </div>
 
         <div className={`min-w-0 ${reverse ? 'lg:order-1' : ''}`}>
-          <div className="overflow-hidden rounded-[22px] border border-[#e4daef] bg-[#faf8fe] p-2 sm:p-3">
-            <div className="mb-2 flex items-center gap-1.5 px-1.5 py-1">
-              <span className="h-2 w-2 rounded-full bg-[#f2a7c8]" />
-              <span className="h-2 w-2 rounded-full bg-[#f3c978]" />
-              <span className="h-2 w-2 rounded-full bg-[#8adbb8]" />
-              <span className="ml-2 text-[8px] font-bold uppercase tracking-[.08em] text-[#8b8296]">AutoDropshipPrime workspace</span>
-            </div>
-            <img src={src} alt={alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-[14px] object-contain" />
-          </div>
+          <img src={src} alt={alt} loading="lazy" decoding="async" className="block h-auto w-full object-contain" />
         </div>
       </div>
     </section>
