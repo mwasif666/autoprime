@@ -33,10 +33,7 @@ export default function SignupPage(){return <section className="border-y border-
           <p className="muted mt-3 max-w-[570px] text-[13px] leading-6">Research opportunities first, then carry the selected product into the rest of the AutoDropshipPrime workflow without rebuilding the context.</p>
         </div>
 
-        <div className="overflow-hidden rounded-[22px] border border-[#e2d8ef] bg-white p-2.5">
-          <div className="mb-2 flex items-center gap-1.5 px-1.5 py-1"><span className="h-2 w-2 rounded-full bg-[#f2a7c8]"/><span className="h-2 w-2 rounded-full bg-[#f3c978]"/><span className="h-2 w-2 rounded-full bg-[#8adbb8]"/><span className="ml-2 text-[8px] font-bold uppercase tracking-[.08em] text-[#8b8296]">Marketplace workspace</span></div>
-          <img src={dashboardAssets.marketplace} alt="AutoDropshipPrime marketplace dashboard" loading="eager" decoding="async" className="block h-auto w-full rounded-[14px] object-contain"/>
-        </div>
+        <img src={dashboardAssets.marketplace} alt="AutoDropshipPrime marketplace dashboard" loading="eager" decoding="async" className="block h-auto w-full object-contain"/>
 
         <div className="mt-5 border-t border-[#e7deef]">
           {setupPath.map(item=><div key={item} className="flex items-center gap-3 border-b border-[#e7deef] py-3 text-[11px] font-bold text-[#554d62]"><span className="grid h-6 w-6 place-items-center rounded-full bg-[#efe8ff] text-[#6d28d9]"><Check size={12}/></span>{item}</div>)}
