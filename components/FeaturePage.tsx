@@ -1,10 +1,17 @@
 import Link from 'next/link';
-import { ArrowRight, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, BarChart3, CheckCircle2, Eye, ListChecks, Sparkles } from 'lucide-react';
 import type { FeatureConfig } from '@/data/site';
 import AnalyticsPanel from './AnalyticsPanel';
 import MarketingCta from './MarketingCta';
 import PageHero from './PageHero';
-import ConnectedWorkflowShowcase from './ConnectedWorkflowShowcase';
+import {
+  DashboardStorySection,
+  OutcomeEditorialSection,
+  SourceMarketplaceStrip,
+  WorkflowRail,
+  dashboardAssets,
+  type OutcomeItem,
+} from './MarketingPageSections';
 import {
   ListingPreview,
   MonitoringPreview,
@@ -12,92 +19,129 @@ import {
   ReportsPreview,
   SheetPreview,
 } from './ProductVisuals';
-import { ReferenceVisual } from './ReferenceMedia';
-import type { TemporaryReferenceAssetKey } from '@/data/referenceAssets';
 
-function ProductVisual({ slug }: { slug:string }) {
-  if (slug==='product-hunting') return <ProductHunterPreview/>;
-  if (slug==='auto-listing') return <ListingPreview/>;
-  if (slug==='stock-monitoring'||slug==='price-monitoring') return <MonitoringPreview/>;
-  if (slug==='google-sheets') return <SheetPreview/>;
-  if (slug==='analytics') return <AnalyticsPanel/>;
-  if (slug==='reports') return <ReportsPreview/>;
-  return <ProductHunterPreview/>;
+function ProductVisual({ slug }: { slug: string }) {
+  if (slug === 'product-hunting') return <ProductHunterPreview />;
+  if (slug === 'auto-listing') return <ListingPreview />;
+  if (slug === 'stock-monitoring' || slug === 'price-monitoring') return <MonitoringPreview />;
+  if (slug === 'google-sheets') return <SheetPreview />;
+  if (slug === 'analytics') return <AnalyticsPanel />;
+  if (slug === 'reports') return <ReportsPreview />;
+  return <ProductHunterPreview />;
 }
 
-function FeatureImage({ slug }: { slug:string }) {
-  const map: Record<string, TemporaryReferenceAssetKey> = {
-    'product-hunting': 'productResearch',
-    'auto-listing': 'listing',
-    'stock-monitoring': 'monitoring',
-    'price-monitoring': 'monitoring',
-    'google-sheets': 'sellerManagement',
-    'analytics': 'sellerHero',
-    'reports': 'sellerManagement',
-  };
-  return <ReferenceVisual asset={map[slug] || 'sellerHero'} className="min-h-[300px]" imageClassName="min-h-[300px] object-cover object-center"/>;
-}
+const dashboardBySlug: Record<string, { src: string; eyebrow: string; title: string; text: string }> = {
+  'product-hunting': {
+    src: dashboardAssets.marketplace,
+    eyebrow: 'Marketplace workspace',
+    title: 'Research inside the same product environment you use every day.',
+    text: 'Keep supplier, category and product discovery context visible while you compare opportunities and decide what should move into your listing workflow.',
+  },
+  'auto-listing': {
+    src: dashboardAssets.aiImageGenerator,
+    eyebrow: 'Listing content workspace',
+    title: 'Prepare listing assets without breaking the workflow.',
+    text: 'Product imagery and listing preparation stay close to the same seller experience instead of feeling like a disconnected creative tool.',
+  },
+  'stock-monitoring': {
+    src: dashboardAssets.marketplace,
+    eyebrow: 'Product context',
+    title: 'Review stock decisions with the source product still in view.',
+    text: 'Supplier and product context remains close to monitoring so low-stock and out-of-stock states are easier to interpret and act on.',
+  },
+  'price-monitoring': {
+    src: dashboardAssets.calculations,
+    eyebrow: 'Margin context',
+    title: 'Price changes make more sense when profit stays visible.',
+    text: 'Use supplier-price movement alongside cost and profit context so a price change is not isolated from the economics of the listing.',
+  },
+  'google-sheets': {
+    src: dashboardAssets.calculations,
+    eyebrow: 'Finance records',
+    title: 'Keep order economics structured for review outside the dashboard.',
+    text: 'Order values, costs and profit calculations stay organized so the same records can feed a clear spreadsheet-ready workflow.',
+  },
+  analytics: {
+    src: dashboardAssets.calculations,
+    eyebrow: 'Calculation dashboard',
+    title: 'Use real order rows to understand the numbers behind the store.',
+    text: 'Revenue, cost, shipping, profit and ROI stay connected to the underlying orders rather than being reduced to decorative summary cards.',
+  },
+  reports: {
+    src: dashboardAssets.orders,
+    eyebrow: 'Operational records',
+    title: 'Reports start with clean, understandable order data.',
+    text: 'Keep product, buyer, order and status context structured before turning the same operating data into reusable reports and exports.',
+  },
+};
 
-export default function FeaturePage({ config }: { config:FeatureConfig }) {
-  const Icon=config.icon;
-  const icon8 = (name:string) => `https://img.icons8.com/color/96/${name}.png`;
-  const stepIcons = ['search--v1','checklist','combo-chart--v1','shopping-cart--v1'];
+export default function FeaturePage({ config }: { config: FeatureConfig }) {
+  const Icon = config.icon;
+  const dashboard = dashboardBySlug[config.slug] || dashboardBySlug['product-hunting'];
+  const outcomeItems: OutcomeItem[] = [
+    { title: config.bullets[0], text: 'Keep the primary task focused and easy to scan without opening another disconnected tool.', Icon, tone: '#6d28d9', soft: '#f3edff' },
+    { title: config.bullets[1], text: 'Keep the information required for the decision visible at the moment it matters.', Icon: Eye, tone: '#1689f5', soft: '#eef7ff' },
+    { title: config.bullets[2], text: 'Surface the operating state clearly so important changes do not disappear inside dense screens.', Icon: ListChecks, tone: '#16a36a', soft: '#ecfbf3' },
+    { title: config.bullets[3], text: 'Move the result forward into the connected seller workflow with the same product context intact.', Icon: CheckCircle2, tone: '#f22eb7', soft: '#fff0f7' },
+  ];
 
-  return <>
-    <PageHero
-      eyebrow={<><Icon size={13}/>{config.eyebrow}</>}
-      title={<>{config.hero}</>}
-      description={config.description}
-      bullets={config.bullets.slice(0,4)}
-      primary={{label:'Start Free',href:'/signup'}}
-      secondary={{label:'Talk to Sales',href:'/contact'}}
-      visual={<ProductVisual slug={config.slug}/>}
-    />
+  return (
+    <>
+      <PageHero
+        eyebrow={<><Icon size={13}/>{config.eyebrow}</>}
+        title={<>{config.hero}</>}
+        description={config.description}
+        bullets={config.bullets.slice(0, 4)}
+        primary={{ label: 'Start Free', href: '/signup' }}
+        secondary={{ label: 'Talk to Sales', href: '/contact' }}
+        visual={<ProductVisual slug={config.slug} />}
+      />
 
-    <section className="section bg-white">
-      <div className="container-site grid items-center gap-10 lg:grid-cols-[1.08fr_.92fr]">
-        <div className="rounded-[24px] border border-[#e2d8ef] bg-[#fdfcff] p-3 sm:p-4"><FeatureImage slug={config.slug}/></div>
-        <div>
-          <div className="eyebrow">Built for the workflow</div>
-          <h2 className="mt-4 text-[31px] font-[850] leading-[1.08] tracking-[-.04em] sm:text-[40px]">{config.title} without a disconnected toolchain.</h2>
-          <p className="muted mt-4 text-[15px] leading-7">Keep operational context close to the task so sellers can understand what changed, what matters and what should happen next.</p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-            {config.bullets.map((item,index)=><div key={item} className="flex items-start gap-3 rounded-[15px] border border-[#e7e0ef] bg-[#fdfcff] px-4 py-3">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] border border-[#eee6f7] bg-[#faf7ff]"><img src={icon8(stepIcons[index%stepIcons.length])} alt="" className="h-7 w-7 object-contain"/></span>
-              <div><div className="text-[12px] font-extrabold text-[#171230]">{item}</div><div className="mt-1 text-[9px] leading-4 text-[#736b80]">Keep status and next action visible at this stage.</div></div>
-            </div>)}
+      {(config.slug === 'product-hunting' || config.slug === 'auto-listing') && (
+        <SourceMarketplaceStrip
+          eyebrow="Product sources"
+          title="Research and import from the marketplaces already used in the seller workflow."
+        />
+      )}
+
+      <DashboardStorySection
+        eyebrow={dashboard.eyebrow}
+        title={dashboard.title}
+        text={dashboard.text}
+        src={dashboard.src}
+        alt={`${config.title} product workspace`}
+        points={config.bullets.slice(0, 3)}
+        reverse={config.slug === 'auto-listing' || config.slug === 'google-sheets' || config.slug === 'reports'}
+      />
+
+      <OutcomeEditorialSection
+        eyebrow="What the workflow keeps visible"
+        title={`${config.title} should feel like part of one operating system.`}
+        text="The page follows the same product-led visual language as the homepage: clear hierarchy, realistic operating context, colorful status cues and fewer repeated card patterns."
+        items={outcomeItems}
+        soft
+      />
+
+      <WorkflowRail
+        eyebrow="Connected workflow"
+        title={`Move from ${config.title.toLowerCase()} into the next seller task without losing context.`}
+        text="Research, listings, monitoring, orders, Sheets and profitability use one consistent operating sequence across AutoDropshipPrime."
+      />
+
+      <section className="section bg-white">
+        <div className="container-site grid gap-5 border-y border-[#e7dfef] py-7 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-[.12em] text-[#6d28d9]"><Sparkles size={13}/>Continue the workflow</div>
+            <h2 className="mt-2 max-w-[760px] text-[24px] font-[850] leading-[1.1] tracking-[-.035em] text-[#171230] sm:text-[30px]">See how {config.title.toLowerCase()} fits into the complete AutoDropshipPrime product.</h2>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/features" className="btn-secondary">All Features</Link>
+            <Link href="/pricing" className="btn-primary !text-white">See Plans <ArrowRight size={15}/></Link>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="section border-y border-[#eee8f4] bg-[#faf8ff]">
-      <div className="container-site">
-        <div className="mx-auto max-w-[820px] text-center"><div className="eyebrow">Feature workflow</div><h2 className="mt-4 text-[31px] font-[850] leading-[1.06] tracking-[-.04em] sm:text-[40px]">A clear operating sequence, from input to action.</h2><p className="muted mx-auto mt-4 max-w-[700px] text-[14px] leading-7">The page uses the same numbered, visual card language as the homepage so every feature feels part of one product system.</p></div>
-        <div className="mt-9 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {config.bullets.slice(0,4).map((item,index)=><article key={item} className="relative min-h-[210px] rounded-[22px] border border-[#e7e0ef] bg-white p-5">
-            <span className="absolute right-4 top-4 grid h-8 min-w-8 place-items-center rounded-[9px] bg-[linear-gradient(135deg,#6d28d9,#9a2cff)] px-2 text-[10px] font-black text-white">0{index+1}</span>
-            <span className="grid h-16 w-16 place-items-center rounded-[18px] border border-[#eee6f7] bg-[#faf7ff]"><img src={icon8(stepIcons[index])} alt="" className="h-12 w-12 object-contain"/></span>
-            <h3 className="mt-5 text-[15px] font-extrabold text-[#171230]">{item}</h3>
-            <p className="muted mt-2 text-[11px] leading-5">Keep the information, status and next action visible at this stage.</p>
-          </article>)}
-        </div>
-      </div>
-    </section>
-
-    <ConnectedWorkflowShowcase
-      eyebrow="One connected platform"
-      title={`Connect ${config.title.toLowerCase()} with the rest of the seller workflow.`}
-      text="Research, listing, monitoring, orders, Sheets and profit use the same visual language and operating context across the platform."
-    />
-
-    <section className="section bg-white">
-      <div className="container-site flex flex-col items-center justify-between gap-5 rounded-[24px] border border-[#e4daef] bg-[#fdfaff] p-6 text-center sm:p-8 lg:flex-row lg:text-left">
-        <div><div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[.12em] text-[#6d28d9]"><Sparkles size={13}/>Next step</div><h2 className="mt-2 text-[24px] font-[850] tracking-[-.03em] text-[#171230]">Explore how {config.title.toLowerCase()} fits your store.</h2></div>
-        <Link href="/pricing" className="btn-primary shrink-0">See Plans <ArrowRight size={15}/></Link>
-      </div>
-    </section>
-
-    <MarketingCta title={'Bring '+config.title.toLowerCase()+' into one connected workspace.'}/>
-  </>;
+      <MarketingCta title={`Bring ${config.title.toLowerCase()} into one connected workspace.`} text="Keep the feature close to the rest of the seller workflow instead of treating it as another isolated tool." />
+    </>
+  );
 }
