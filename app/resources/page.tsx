@@ -6,6 +6,7 @@ import Faq from '@/components/Faq';
 import MarketingCta from '@/components/MarketingCta';
 import {
   DashboardStorySection,
+  HeroDashboardImage,
   SourceMarketplaceStrip,
   WorkflowRail,
   dashboardAssets,
@@ -25,14 +26,6 @@ const guides = [
   ['Read your profit dashboard','Use revenue, costs, fees and margin to understand store health.','/features/analytics',BarChart3,'Analytics'],
 ] as const;
 
-function ResourcePreview(){return <div className="divide-y divide-[#e8e1ef]">
-  {guides.slice(0,4).map(([title,,href,Icon,label])=><Link key={title} href={href} className="group flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-[#efe8ff] text-[#6d28d9]"><Icon size={17}/></span>
-    <div className="min-w-0 flex-1"><div className="text-[8px] font-black uppercase tracking-[.1em] text-[#8b3dff]">{label}</div><div className="mt-0.5 truncate text-[11px] font-extrabold text-[#171230]">{title}</div></div>
-    <ArrowRight size={13} className="text-[#a99db9] transition group-hover:translate-x-0.5 group-hover:text-[#6d28d9]"/>
-  </Link>)}
-</div>}
-
 export default function ResourcesPage(){return <>
   <PageHero
     eyebrow={<><Sparkles size={13}/>Resource library</>}
@@ -41,7 +34,7 @@ export default function ResourcesPage(){return <>
     bullets={['Workflow-first guidance','Product-specific learning paths','Pricing and billing answers','Direct links to each feature']}
     primary={{label:'Browse Guides',href:'#guides'}}
     secondary={{label:'Explore Product',href:'/features'}}
-    visual={<ResourcePreview/>}
+    visual={<HeroDashboardImage src={dashboardAssets.calculations} alt="AutoDropshipPrime calculations dashboard"/>}
   />
 
   <SourceMarketplaceStrip
