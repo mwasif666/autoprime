@@ -186,13 +186,13 @@ export function OutcomeEditorialSection({
 }
 
 const defaultWorkflow = [
-  { label: 'Research', Icon: PackageSearch },
-  { label: 'List', Icon: ClipboardList },
-  { label: 'Monitor', Icon: RefreshCcw },
-  { label: 'Orders', Icon: ShoppingCart },
-  { label: 'Sheets', Icon: FileSpreadsheet },
-  { label: 'Profit', Icon: BarChart3 },
-];
+  { label: 'Research', Icon: PackageSearch, tone: '#4F7CFF', tone2: '#6D3DFF', soft: 'rgba(79,124,255,.11)' },
+  { label: 'List', Icon: ClipboardList, tone: '#F044C7', tone2: '#8B3DFF', soft: 'rgba(240,68,199,.10)' },
+  { label: 'Monitor', Icon: RefreshCcw, tone: '#2ED3A6', tone2: '#16A36A', soft: 'rgba(46,211,166,.10)' },
+  { label: 'Orders', Icon: ShoppingCart, tone: '#FF9B45', tone2: '#F25C72', soft: 'rgba(255,155,69,.10)' },
+  { label: 'Sheets', Icon: FileSpreadsheet, tone: '#31A8FF', tone2: '#326BFF', soft: 'rgba(49,168,255,.10)' },
+  { label: 'Profit', Icon: BarChart3, tone: '#A14CFF', tone2: '#6D28D9', soft: 'rgba(161,76,255,.11)' },
+] as const;
 
 export function WorkflowRail({
   eyebrow = 'One connected system',
@@ -204,27 +204,75 @@ export function WorkflowRail({
   text?: string;
 }) {
   return (
-    <section className="section bg-[#211062] text-white">
-      <div className="container-site">
-        <div className="grid gap-6 lg:grid-cols-[.72fr_1.28fr] lg:items-end">
+    <section
+      className="relative overflow-hidden py-[88px] text-white sm:py-[104px]"
+      style={{
+        background:
+          'radial-gradient(circle at 82% 5%, rgba(124,58,237,.28) 0%, transparent 29%), radial-gradient(circle at 4% 108%, rgba(67,56,202,.22) 0%, transparent 31%), linear-gradient(135deg,#120827 0%,#1d0d49 47%,#15082f 100%)',
+      }}
+    >
+      <div className="pointer-events-none absolute -right-[150px] -top-[280px] h-[520px] w-[520px] rounded-full border border-[#7c3aed]/30" />
+      <div className="pointer-events-none absolute -right-[65px] -top-[215px] h-[390px] w-[390px] rounded-full border border-[#8b5cf6]/20" />
+      <div className="pointer-events-none absolute -bottom-[360px] -left-[220px] h-[560px] w-[760px] rounded-[50%] border border-[#6d5cff]/20" />
+
+      <div className="container-site relative">
+        <div className="grid gap-8 lg:grid-cols-[.95fr_1.05fr] lg:items-center lg:gap-16">
           <div>
-            <div className="text-[10px] font-black uppercase tracking-[.14em] text-[#cbb7ff]">{eyebrow}</div>
-            <h2 className="mt-4 max-w-[520px] text-[30px] font-[850] leading-[1.05] tracking-[-.04em] sm:text-[38px]">{title}</h2>
+            <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[.16em] text-[#aa8cff] sm:text-[11px]">
+              <span className="h-[4px] w-10 rounded-full bg-[linear-gradient(90deg,#8b5cf6,#a14cff)]" />
+              {eyebrow}
+            </div>
+            <h2 className="mt-5 max-w-[650px] text-[34px] font-[900] leading-[1.02] tracking-[-.045em] text-white sm:text-[43px] lg:text-[50px]">
+              {title}
+            </h2>
           </div>
-          <p className="max-w-[620px] text-[13px] leading-6 text-white/65 lg:justify-self-end">{text}</p>
+
+          <div className="lg:border-l lg:border-white/10 lg:pl-12">
+            <p className="max-w-[650px] text-[15px] leading-7 text-[#c8c0db] sm:text-[17px] sm:leading-8 lg:text-[18px]">
+              {text}
+            </p>
+            <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[10px] font-bold uppercase tracking-[.08em] text-white/45">
+              <span>Research</span><span>Listings</span><span>Monitoring</span><span>Orders</span><span>Sheets</span><span>Profit</span>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-8 grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
-          {defaultWorkflow.map(({ label, Icon }, index) => (
-            <div key={label} className="relative flex min-h-[92px] items-center gap-3 border-t border-white/15 py-4 lg:block">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/10 text-[#d9ccff]"><Icon size={18}/></span>
-              <div className="lg:mt-3">
-                <div className="text-[9px] font-black text-[#bda7ff]">0{index + 1}</div>
-                <div className="mt-0.5 text-[12px] font-extrabold text-white">{label}</div>
+        <div className="relative mt-11 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-6 lg:gap-4">
+          <div className="pointer-events-none absolute left-[7%] right-[7%] top-[94px] hidden h-px bg-[linear-gradient(90deg,transparent,rgba(139,92,246,.68),rgba(129,87,255,.38),transparent)] lg:block" />
+
+          {defaultWorkflow.map(({ label, Icon, tone, tone2, soft }, index) => (
+            <div
+              key={label}
+              className="group relative z-10 min-h-[190px] rounded-[22px] border bg-white/[.035] p-5 backdrop-blur-[2px] transition duration-200 hover:-translate-y-1 hover:bg-white/[.055] sm:min-h-[176px] lg:min-h-[208px] lg:p-5"
+              style={{ borderColor: `${tone}55`, backgroundImage: `linear-gradient(180deg, ${soft} 0%, rgba(255,255,255,.025) 58%, rgba(255,255,255,.018) 100%)` }}
+            >
+              <div
+                className="grid h-16 w-16 place-items-center rounded-[18px] text-white sm:h-[68px] sm:w-[68px]"
+                style={{ background: `linear-gradient(135deg, ${tone}, ${tone2})` }}
+              >
+                <Icon size={28} strokeWidth={1.9} />
               </div>
-              {index < defaultWorkflow.length - 1 && <ArrowRight size={13} className="absolute -right-2 top-8 hidden text-white/25 lg:block" />}
+
+              <div className="mt-7 flex items-end justify-between gap-3 lg:mt-9">
+                <div>
+                  <span className="inline-flex rounded-full border border-white/10 bg-white/[.07] px-2.5 py-1 text-[9px] font-black tracking-[.06em] text-[#dcd3ed]">0{index + 1}</span>
+                  <div className="mt-2 text-[16px] font-[850] tracking-[-.02em] text-white sm:text-[17px]">{label}</div>
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-[.08em] text-white/30">Step</span>
+              </div>
+
+              {index < defaultWorkflow.length - 1 && (
+                <span className="absolute -right-[30px] top-[75px] z-20 hidden h-10 w-10 items-center justify-center rounded-full border border-[#8b5cf6]/65 bg-[#190b3a] text-[#c6b5ff] lg:flex">
+                  <ArrowRight size={15} />
+                </span>
+              )}
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-[11px] text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <span>One connected operating sequence from discovery to profit review.</span>
+          <span className="font-bold text-[#ad96e9]">AutoDropshipPrime workflow</span>
         </div>
       </div>
     </section>
