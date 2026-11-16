@@ -8,7 +8,7 @@ const YouTubeIcon = () => <svg aria-hidden="true" viewBox="0 0 24 24" width="16"
 
 const cols = [
   { title:'Product', links:[['Features','/features'],['Pricing','/pricing'],['Product Hunting','/features/product-hunting'],['Auto Listing','/features/auto-listing'],['Monitoring','/features/stock-monitoring'],['Google Sheets','/features/google-sheets']] },
-  { title:'Company', links:[['About Us','/about'],['Contact Us','/contact'],['Pricing','/pricing'],['Create Account','/signup']] },
+  { title:'Company', links:[['About Us','/about'],['Contact Us','/contact'],['Pricing','/pricing'],['Create Account','https://dsapp.youbasautopilot.com/user/register']] },
   { title:'Resources', links:[['Help Center','/resources'],['Guides & Tutorials','/resources#guides'],['Learning Paths','/resources#help'],['FAQ','/resources#faq']] },
   { title:'Legal', links:[['Terms of Service','#'],['Privacy Policy','#'],['Refund Policy','#'],['Cookie Policy','#']] },
 ];

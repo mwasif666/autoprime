@@ -20,7 +20,7 @@ export default function PricingPage(){return <>
     title={<>Choose a plan that <span className="gradient-text">fits your workflow.</span></>}
     description="Start with the $1 trial, then choose the listing limits, store capacity, support level and automation features that fit your operation."
     bullets={['$1 / 3-day trial','Starter from $19/month','Professional from $49/month','Custom limits available']}
-    primary={{label:'Start 3-Day Trial',href:'/signup'}}
+    primary={{label:'Start 3-Day Trial',href:'https://dsapp.youbasautopilot.com/user/register'}}
     secondary={{label:'Contact Sales',href:'/contact'}}
     visual={<HeroDashboardImage src={dashboardAssets.calculations} alt="AutoDropshipPrime calculations dashboard"/>}
   />

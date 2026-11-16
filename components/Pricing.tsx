@@ -1,281 +1,158 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
   Building2,
-  CalendarDays,
   Check,
-  Code2,
   Crown,
-  FileSpreadsheet,
   FlaskConical,
-  Headphones,
-  Package,
+  Loader2,
   PackageSearch,
-  Plug,
-  RotateCcw,
   Search,
   Send,
   ShoppingCart,
-  SlidersHorizontal,
-  Store,
-  Tags,
-  Truck,
-  Users,
-  WandSparkles,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-type Feature = {
-  label: string;
-  value?: string;
-  icon: LucideIcon;
-  tone: string;
-  soft: string;
+const PLANS_API = 'https://autods.youbasautopilot.com/api/plans';
+const REGISTER_URL = 'https://dsapp.youbasautopilot.com/user/register';
+
+type ApiPlan = {
+  id: number;
+  title: string;
+  description: string;
+  inclusions: string[];
+  price: number;
+  monthly_price: number | null;
+  annual_price: number | null;
+  annual_monthly_equivalent: number | null;
+  annual_discount_percent: number;
+  has_annual_plan: boolean;
+  currency: string;
+  billing_type: string;
+  billing_interval_label: string;
+  duration_days: number | null;
+  is_active: boolean;
+  sort_order: number;
 };
 
-type Plan = {
-  name: string;
-  subtitle: string;
-  price: string;
-  suffix?: string;
-  intro: string;
-  cta: string;
-  href: string;
-  accent: string;
-  soft: string;
-  border: string;
-  Icon: LucideIcon;
-  featured?: boolean;
-  trial?: boolean;
-  features: Feature[];
-};
+type Cycle = 'monthly' | 'annual';
 
-const commonFeatureIcons = {
-  imports: [Package, '#6d28d9', '#f1e9ff'],
-  research: [Search, '#2563eb', '#edf5ff'],
-  ai: [WandSparkles, '#a21caf', '#fbecff'],
-  schedule: [CalendarDays, '#0f8f8a', '#e9fbf8'],
-  monitor: [Tags, '#16a34a', '#ebfaef'],
-  tracking: [Truck, '#7c3aed', '#f2ebff'],
-  sheets: [FileSpreadsheet, '#159455', '#eafaf1'],
-  returns: [RotateCcw, '#e45d33', '#fff0ea'],
-  stores: [Store, '#5b4bd8', '#efefff'],
-  team: [Users, '#2563eb', '#eef5ff'],
-  support: [Headphones, '#e84d91', '#fff0f7'],
-} as const;
-
-function feature(label: string, value: string | undefined, key: keyof typeof commonFeatureIcons): Feature {
-  const [icon, tone, soft] = commonFeatureIcons[key];
-  return { label, value, icon, tone, soft };
-}
-
-const plans: Plan[] = [
-  {
-    name: 'Trial Plan',
-    subtitle: 'Test the platform',
-    price: '$1',
-    suffix: '/ 3 days',
-    intro: 'Try the core workflow with a short trial before moving to the Starter Plan.',
-    cta: 'Start 3-Day Trial',
-    href: '/signup',
-    accent: '#10b981',
-    soft: '#effcf7',
-    border: '#b9ecd9',
-    Icon: FlaskConical,
-    trial: true,
-    features: [
-      feature('Import Products (All Platforms)', '20 listings', 'imports'),
-      feature('Product Research (Basic)', undefined, 'research'),
-      feature('AI Product Content (Basic)', undefined, 'ai'),
-      feature('Schedule Listings (7-Days)', undefined, 'schedule'),
-      feature('Price & Stock Monitoring', undefined, 'monitor'),
-      feature('Tracking Updates (Auto)', undefined, 'tracking'),
-      feature('Google Sheets Real-Time Sync', undefined, 'sheets'),
-      feature('Returns & Refunds Management', undefined, 'returns'),
-      feature('eBay Stores', '1 store', 'stores'),
-      feature('Team Members', '1 user', 'team'),
-      feature('24/7 Customer Support', 'Live Chat', 'support'),
-    ],
-  },
-  {
-    name: 'Starter Plan',
-    subtitle: 'Perfect for beginners',
-    price: '$19',
-    suffix: '/month',
-    intro: 'Start your dropshipping journey with the essential automation tools.',
-    cta: 'Get Started',
-    href: '/signup',
-    accent: '#1689f5',
-    soft: '#eef7ff',
-    border: '#cde5fb',
-    Icon: Send,
-    features: [
-      feature('Import Products (All Platforms)', '400 listings', 'imports'),
-      feature('Product Research (Basic)', undefined, 'research'),
-      feature('AI Product Content (Titles & Descriptions)', undefined, 'ai'),
-      feature('Schedule Listings (7–30 Days)', undefined, 'schedule'),
-      feature('Price & Stock Monitoring', undefined, 'monitor'),
-      feature('Tracking Updates (Auto)', undefined, 'tracking'),
-      feature('Google Sheets Real-Time Sync', undefined, 'sheets'),
-      feature('Returns & Refunds Management', undefined, 'returns'),
-      feature('eBay Stores', '1 store', 'stores'),
-      feature('Team Members', '1 user', 'team'),
-      feature('24/7 Customer Support', 'Live Chat', 'support'),
-    ],
-  },
-  {
-    name: 'Professional Plan',
-    subtitle: 'For growing sellers',
-    price: '$49',
-    suffix: '/month',
-    intro: 'Unlock more power, higher limits and advanced automation features.',
-    cta: 'Get Started',
-    href: '/signup',
-    accent: '#7c22f4',
-    soft: '#f5efff',
-    border: '#b991ff',
-    Icon: Crown,
-    featured: true,
-    features: [
-      feature('Import Products (All Platforms)', '3,000 listings', 'imports'),
-      feature('Product Research (Advanced)', undefined, 'research'),
-      feature('AI Product Content (Titles, Descriptions & Images)', undefined, 'ai'),
-      feature('Schedule Listings (7–30 Days)', undefined, 'schedule'),
-      feature('Price & Stock Monitoring', undefined, 'monitor'),
-      feature('Tracking Updates (Auto)', undefined, 'tracking'),
-      feature('Google Sheets Real-Time Sync', undefined, 'sheets'),
-      feature('Returns & Refunds Management', undefined, 'returns'),
-      feature('eBay Stores', '5 stores', 'stores'),
-      feature('Team Members', '3 users', 'team'),
-      feature('24/7 Customer Support', 'Priority Support', 'support'),
-    ],
-  },
-  {
-    name: 'Enterprise Plan',
-    subtitle: 'For high volume sellers',
-    price: '$99',
-    suffix: '/month',
-    intro: 'Maximum power and higher limits for serious, higher-volume operations.',
-    cta: 'Get Started',
-    href: '/signup',
-    accent: '#ff6b14',
-    soft: '#fff5e8',
-    border: '#ffd7b4',
-    Icon: Building2,
-    features: [
-      feature('Import Products (All Platforms)', '10,000 listings', 'imports'),
-      feature('Product Research (Advanced)', undefined, 'research'),
-      feature('AI Product Content (Full Suite)', undefined, 'ai'),
-      feature('Schedule Listings (7–30 Days)', undefined, 'schedule'),
-      feature('Price & Stock Monitoring', undefined, 'monitor'),
-      feature('Tracking Updates (Auto)', undefined, 'tracking'),
-      feature('Google Sheets Real-Time Sync', undefined, 'sheets'),
-      feature('Returns & Refunds Management', undefined, 'returns'),
-      feature('eBay Stores', '12 stores', 'stores'),
-      feature('Team Members', '10 users', 'team'),
-      feature('24/7 Customer Support', 'VIP Support', 'support'),
-    ],
-  },
-  {
-    name: 'Custom Plan',
-    subtitle: 'Contact Sales',
-    price: 'Custom',
-    intro: 'Need a tailored solution for your business? Build a plan around your requirements.',
-    cta: 'Contact Sales',
-    href: '/contact',
-    accent: '#f22769',
-    soft: '#fff0f6',
-    border: '#ffc9da',
-    Icon: Headphones,
-    features: [
-      { label: 'Custom Import Limits', icon: Package, tone: '#f22769', soft: '#fff0f6' },
-      { label: 'Custom eBay Stores', icon: Store, tone: '#7c3aed', soft: '#f2ebff' },
-      { label: 'Custom Team Members', icon: Users, tone: '#2563eb', soft: '#eef5ff' },
-      { label: 'Dedicated Account Manager', icon: Headphones, tone: '#159455', soft: '#eafaf1' },
-      { label: 'Priority Support', icon: Check, tone: '#e45d33', soft: '#fff0ea' },
-      { label: 'Custom Integrations', icon: Plug, tone: '#6d28d9', soft: '#f1e9ff' },
-      { label: 'API Access (if needed)', icon: Code2, tone: '#0f8f8a', soft: '#e9fbf8' },
-      { label: 'Tailored Features', icon: SlidersHorizontal, tone: '#a21caf', soft: '#fbecff' },
-      { label: 'Best for Agencies & Large Businesses', icon: Building2, tone: '#f22769', soft: '#fff0f6' },
-    ],
-  },
+const themes: { accent: string; soft: string; border: string; Icon: LucideIcon }[] = [
+  { accent: '#1689f5', soft: '#eef7ff', border: '#cde5fb', Icon: Send },
+  { accent: '#7c22f4', soft: '#f5efff', border: '#b991ff', Icon: Crown },
+  { accent: '#10b981', soft: '#effcf7', border: '#b9ecd9', Icon: FlaskConical },
+  { accent: '#ff6b14', soft: '#fff5e8', border: '#ffd7b4', Icon: Building2 },
 ];
 
-function FeatureRow({ item }: { item: Feature }) {
-  const Icon = item.icon;
+function money(value: number, currency: string) {
+  try {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
+    }).format(value);
+  } catch {
+    return `$${value}`;
+  }
+}
+
+const VISIBLE_FEATURES = 10;
+
+function FeatureRow({ label, tone }: { label: string; tone: string }) {
   return (
-    <div className="grid grid-cols-[24px_1fr_auto] items-center gap-2 border-b border-[#f0ebf4] py-2 last:border-b-0">
-      <span className="grid h-5 w-5 place-items-center rounded-[6px]" style={{ color: item.tone, background: item.soft }}>
-        <Icon size={11} strokeWidth={2.2} />
+    <div className="grid grid-cols-[20px_1fr] items-start gap-2 border-b border-[#f0ebf4] py-2 last:border-b-0">
+      <span className="mt-0.5 grid h-4 w-4 place-items-center rounded-full text-white" style={{ background: tone }}>
+        <Check size={10} strokeWidth={3} />
       </span>
-      <span className="min-w-0 text-[9px] font-semibold leading-4 text-[#544d63]">{item.label}</span>
-      {item.value ? (
-        <span className="pl-1 text-right text-[9px] font-black text-[#24183d]">{item.value}</span>
-      ) : (
-        <span className="grid h-4 w-4 place-items-center rounded-full bg-[#10b981] text-white"><Check size={10} strokeWidth={3} /></span>
-      )}
+      <span className="min-w-0 text-[10px] font-semibold leading-4 text-[#544d63]">{label}</span>
     </div>
   );
 }
 
-function PlanCard({ plan }: { plan: Plan }) {
-  const Icon = plan.Icon;
+function PlanCard({ plan, index, cycle }: { plan: ApiPlan; index: number; cycle: Cycle }) {
+  const [expanded, setExpanded] = useState(false);
+  const theme = themes[index % themes.length];
+  const Icon = theme.Icon;
+  const featured = plan.title.trim().toLowerCase() === 'pro';
+  const oneTime = plan.billing_type === 'one_time';
+  const annual = cycle === 'annual' && plan.has_annual_plan && plan.annual_price != null;
+
+  let price: number;
+  let suffix: string;
+  if (oneTime) {
+    price = plan.price;
+    suffix = `/ ${plan.billing_interval_label}`;
+  } else if (annual) {
+    price = plan.annual_price as number;
+    suffix = '/year';
+  } else {
+    price = plan.monthly_price ?? plan.price;
+    suffix = '/month';
+  }
+
+  const features = expanded ? plan.inclusions : plan.inclusions.slice(0, VISIBLE_FEATURES);
+  const hidden = plan.inclusions.length - VISIBLE_FEATURES;
+
   return (
     <article
       className="relative flex h-full min-w-0 flex-col overflow-hidden rounded-[18px] border bg-white"
-      style={{ borderColor: plan.border }}
+      style={{ borderColor: theme.border }}
     >
-      {plan.featured && (
+      {featured && (
         <div className="flex items-center justify-between bg-[linear-gradient(90deg,#6516e8,#932cff)] px-4 py-2.5 text-white">
           <div className="flex items-center gap-2">
             <Crown size={16} />
-            <span className="text-[10px] font-black uppercase tracking-[.06em]">Professional</span>
+            <span className="text-[10px] font-black uppercase tracking-[.06em]">{plan.title}</span>
           </div>
           <span className="rounded-full bg-[#ff78bd] px-2 py-1 text-[7px] font-black uppercase tracking-[.04em]">Most Popular</span>
         </div>
       )}
 
-      <div className={`flex items-start gap-3 border-b border-[#eee8f3] p-4 ${plan.featured ? 'pt-3' : ''}`} style={{ background: plan.soft }}>
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[12px] border border-white bg-white/80" style={{ color: plan.accent }}>
+      <div className={`flex items-start gap-3 border-b border-[#eee8f3] p-4 ${featured ? 'pt-3' : ''}`} style={{ background: theme.soft }}>
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[12px] border border-white bg-white/80" style={{ color: theme.accent }}>
           <Icon size={24} strokeWidth={2.2} />
         </span>
         <div className="min-w-0">
-          <h3 className="text-[16px] font-[900] leading-5 tracking-[-.025em] text-[#171230]">{plan.name}</h3>
-          <p className="mt-0.5 text-[9px] font-semibold text-[#6e6680]">{plan.subtitle}</p>
+          <h3 className="text-[16px] font-[900] leading-5 tracking-[-.025em] text-[#171230]">{plan.title}</h3>
+          <p className="mt-0.5 text-[10px] font-semibold text-[#6e6680]">{plan.description}</p>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        {plan.trial && (
-          <div className="mb-3 rounded-[10px] bg-[linear-gradient(90deg,#16c784,#10b981)] px-3 py-2 text-[10px] font-extrabold text-white">
-            Start for just $1 · 3 Days Trial
-          </div>
-        )}
-
-        <div className="flex min-h-[78px] items-end gap-1">
-          <span className={`${plan.price === 'Custom' ? 'text-[31px]' : 'text-[38px]'} font-black leading-none tracking-[-.05em] text-[#10062b]`}>{plan.price}</span>
-          {plan.suffix && <span className="mb-1 text-[10px] font-bold text-[#665e77]">{plan.suffix}</span>}
+        <div className="flex min-h-[48px] flex-wrap items-end gap-1">
+          <span className="text-[38px] font-black leading-none tracking-[-.05em] text-[#10062b]">{money(price, plan.currency)}</span>
+          <span className="mb-1 text-[10px] font-bold text-[#665e77]">{suffix}</span>
         </div>
-        <p className="mt-2 min-h-[48px] text-[9px] leading-4 text-[#6b6379]">{plan.intro}</p>
+        <p className="mt-1 min-h-[16px] text-[10px] font-bold text-[#0b8159]">
+          {annual && plan.annual_monthly_equivalent != null
+            ? `Just ${money(plan.annual_monthly_equivalent, plan.currency)}/month · save ${plan.annual_discount_percent}%`
+            : ''}
+        </p>
 
         <Link
-          href={plan.href}
-          className="mt-3 flex min-h-[38px] items-center justify-center gap-2 rounded-[9px] border px-3 text-[10px] font-extrabold text-white"
-          style={{ borderColor: plan.accent, background: plan.accent }}
+          href={`${REGISTER_URL}?plan_id=${plan.id}${annual ? '&billing_cycle=annual' : ''}`}
+          className="mt-3 flex min-h-[38px] items-center justify-center gap-2 rounded-[9px] border px-3 text-[11px] font-extrabold text-white"
+          style={{ borderColor: theme.accent, background: theme.accent }}
         >
-          {plan.cta} <ArrowRight size={13} />
+          {oneTime ? `Start ${plan.title}` : 'Get Started'} <ArrowRight size={13} />
         </Link>
 
         <div className="mt-3 flex-1">
-          {plan.features.map((item) => <FeatureRow key={item.label} item={item} />)}
+          {features.map((item) => <FeatureRow key={item} label={item} tone={theme.accent} />)}
         </div>
 
-        {plan.trial && (
-          <div className="mt-3 rounded-[10px] border border-[#cceede] bg-[#effbf5] p-2.5 text-[8px] leading-4 text-[#24604c]">
-            <b>After 3 days,</b> the plan moves to Starter ($19/month) unless you change or cancel it.
-          </div>
+        {hidden > 0 && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-2 self-start text-[10px] font-extrabold"
+            style={{ color: theme.accent }}
+          >
+            {expanded ? 'Show less' : `+ ${hidden} more features`}
+          </button>
         )}
       </div>
     </article>
@@ -318,6 +195,35 @@ function AddOnCard({
 }
 
 export default function Pricing({ full = false }: { full?: boolean }) {
+  const [plans, setPlans] = useState<ApiPlan[]>([]);
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [cycle, setCycle] = useState<Cycle>('monthly');
+  const [maxDiscount, setMaxDiscount] = useState(0);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch(PLANS_API, { signal: controller.signal, headers: { Accept: 'application/json' } })
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        if (!data?.success || !Array.isArray(data.plans)) throw new Error('Bad response');
+        const active = (data.plans as ApiPlan[])
+          .filter((p) => p.is_active)
+          .sort((a, b) => a.sort_order - b.sort_order);
+        setPlans(active);
+        setMaxDiscount(Number(data.max_annual_discount_percent) || 0);
+        setStatus('ready');
+      })
+      .catch((err) => {
+        if (err?.name !== 'AbortError') setStatus('error');
+      });
+    return () => controller.abort();
+  }, []);
+
+  const hasAnnual = useMemo(() => plans.some((p) => p.has_annual_plan && p.annual_price != null), [plans]);
+
   return (
     <div>
       {!full && (
@@ -326,7 +232,7 @@ export default function Pricing({ full = false }: { full?: boolean }) {
             <Crown size={13} /> Flexible Plans for Every Seller
           </div>
           <h3 className="mt-4 text-[30px] font-[900] leading-[1.04] tracking-[-.045em] text-[#171230] sm:text-[38px]">
-            Choose Your Plan & <span className="gradient-text">Start Automating Today</span>
+            Choose Your Plan &amp; <span className="gradient-text">Start Automating Today</span>
           </h3>
           <p className="muted mx-auto mt-3 max-w-[760px] text-[13px] leading-6">
             Powerful automation tools to help you import, list, manage and grow your dropshipping business.
@@ -334,9 +240,39 @@ export default function Pricing({ full = false }: { full?: boolean }) {
         </div>
       )}
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-        {plans.map((plan) => <PlanCard key={plan.name} plan={plan} />)}
-      </div>
+      {hasAnnual && (
+        <div className="mb-5 flex justify-center">
+          <div className="inline-flex rounded-full border border-[#e3d4fb] bg-white p-1 text-[11px] font-black">
+            {(['monthly', 'annual'] as Cycle[]).map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setCycle(c)}
+                className={`rounded-full px-4 py-2 capitalize ${cycle === c ? 'bg-[#6d28d9] text-white' : 'text-[#6d28d9]'}`}
+              >
+                {c}
+                {c === 'annual' && maxDiscount > 0 && <span className="ml-1.5 opacity-90">Save up to {maxDiscount}%</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {status === 'loading' && (
+        <div className="flex items-center justify-center gap-2 py-16 text-[13px] font-semibold text-[#6e6680]">
+          <Loader2 size={18} className="animate-spin" /> Loading plans…
+        </div>
+      )}
+      {status === 'error' && (
+        <div className="rounded-[18px] border border-[#ffc9da] bg-[#fff0f6] p-6 text-center text-[13px] font-semibold text-[#8a1c45]">
+          We couldn&apos;t load pricing right now. Please refresh the page or try again shortly.
+        </div>
+      )}
+      {status === 'ready' && (
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {plans.map((plan, i) => <PlanCard key={plan.id} plan={plan} index={i} cycle={cycle} />)}
+        </div>
+      )}
 
       <div className="mt-4 rounded-[18px] border border-[#e7e0ef] bg-white p-4">
         <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
