@@ -327,7 +327,7 @@ export default function Pricing({ full = false }: { full?: boolean }) {
         </div>
       )}
 
-      <div className="mt-4 rounded-[18px] border border-[#e7e0ef] bg-white p-4">
+      {/* <div className="mt-4 rounded-[18px] border border-[#e7e0ef] bg-white p-4">
         <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
           <div className="flex items-center gap-2 text-[16px] font-black tracking-[-.02em] text-[#171230]">
             <PackageSearch size={19} className="text-[#6d28d9]" /> Add-On Services
@@ -407,7 +407,7 @@ export default function Pricing({ full = false }: { full?: boolean }) {
             ? 'No add-ons selected.'
             : `Selected: ${selectedAddons.map((id) => ADDON_LABELS[id]).join(', ')}`}
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }
