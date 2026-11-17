@@ -40,6 +40,22 @@ type ApiPlan = {
 
 type Cycle = 'monthly' | 'annual';
 
+type AddonId = 'order_processing' | 'hand_picked' | 'sourcing_5' | 'sourcing_20';
+
+const ADDON_LABELS: Record<AddonId, string> = {
+  order_processing: 'Order Processing',
+  hand_picked: 'Hand-Picked Products',
+  sourcing_5: 'Sourcing (5 products)',
+  sourcing_20: 'Sourcing (20 products)',
+};
+
+// e.g. ?plan_id=2&billing_cycle=annual&addons=order_processing,sourcing_5
+function buildRegisterUrl(planId: number, cycle: Cycle, addons: AddonId[]) {
+  const params = new URLSearchParams({ plan_id: String(planId), billing_cycle: cycle });
+  if (addons.length) params.set('addons', addons.join(','));
+  return `${REGISTER_URL}?${params.toString().replace(/%2C/g, ',')}`;
+}
+
 const themes: { accent: string; soft: string; border: string; Icon: LucideIcon }[] = [
   { accent: '#1689f5', soft: '#eef7ff', border: '#cde5fb', Icon: Send },
   { accent: '#7c22f4', soft: '#f5efff', border: '#b991ff', Icon: Crown },
@@ -72,24 +88,29 @@ function FeatureRow({ label, tone }: { label: string; tone: string }) {
   );
 }
 
-function PlanCard({ plan, index, cycle }: { plan: ApiPlan; index: number; cycle: Cycle }) {
+function PlanCard({ plan, index, cycle, maxDiscount, addons }: { plan: ApiPlan; index: number; cycle: Cycle; maxDiscount: number; addons: AddonId[] }) {
   const [expanded, setExpanded] = useState(false);
   const theme = themes[index % themes.length];
   const Icon = theme.Icon;
   const featured = plan.title.trim().toLowerCase() === 'pro';
   const oneTime = plan.billing_type === 'one_time';
-  const annual = cycle === 'annual' && plan.has_annual_plan && plan.annual_price != null;
+  const monthly = plan.monthly_price ?? plan.price;
+  const annual = cycle === 'annual';
+  // Use the API's annual price when present; otherwise apply the max annual discount to 12 months.
+  const discount = plan.annual_price != null ? plan.annual_discount_percent : maxDiscount;
+  const yearlyOriginal = Math.round(monthly * 12 * 100) / 100;
+  const yearlyPrice = plan.annual_price ?? Math.round(yearlyOriginal * (1 - discount / 100) * 100) / 100;
 
   let price: number;
   let suffix: string;
-  if (oneTime) {
+  if (annual) {
+    price = yearlyPrice;
+    suffix = '/year';
+  } else if (oneTime) {
     price = plan.price;
     suffix = `/ ${plan.billing_interval_label}`;
-  } else if (annual) {
-    price = plan.annual_price as number;
-    suffix = '/year';
   } else {
-    price = plan.monthly_price ?? plan.price;
+    price = monthly;
     suffix = '/month';
   }
 
@@ -127,13 +148,16 @@ function PlanCard({ plan, index, cycle }: { plan: ApiPlan; index: number; cycle:
           <span className="mb-1 text-[10px] font-bold text-[#665e77]">{suffix}</span>
         </div>
         <p className="mt-1 min-h-[16px] text-[10px] font-bold text-[#0b8159]">
-          {annual && plan.annual_monthly_equivalent != null
-            ? `Just ${money(plan.annual_monthly_equivalent, plan.currency)}/month · save ${plan.annual_discount_percent}%`
-            : ''}
+          {annual && discount > 0 ? (
+            <>
+              <span className="mr-1 text-[#9a93a8] line-through">{money(yearlyOriginal, plan.currency)}</span>
+              {discount}% OFF · {money(Math.round((yearlyPrice / 12) * 100) / 100, plan.currency)}/month
+            </>
+          ) : ''}
         </p>
 
         <Link
-          href={`${REGISTER_URL}?plan_id=${plan.id}${annual ? '&billing_cycle=annual' : ''}`}
+          href={buildRegisterUrl(plan.id, annual ? 'annual' : 'monthly', addons)}
           className="mt-3 flex min-h-[38px] items-center justify-center gap-2 rounded-[9px] border px-3 text-[11px] font-extrabold text-white"
           style={{ borderColor: theme.accent, background: theme.accent }}
         >
@@ -167,6 +191,8 @@ function AddOnCard({
   suffix,
   accent,
   soft,
+  selected,
+  onToggle,
 }: {
   Icon: LucideIcon;
   title: string;
@@ -175,20 +201,38 @@ function AddOnCard({
   suffix: string;
   accent: string;
   soft: string;
+  selected: boolean;
+  onToggle: () => void;
 }) {
   return (
-    <div className="flex h-full items-center gap-3 rounded-[16px] border border-[#e8e0ef] p-4" style={{ background: soft }}>
-      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[15px] border border-white bg-white" style={{ color: accent }}>
-        <Icon size={25} />
-      </span>
-      <div className="min-w-0 flex-1">
-        <div className="text-[11px] font-black text-[#171230]">{title}</div>
-        <p className="mt-1 text-[8.5px] leading-4 text-[#6f687b]">{text}</p>
+    <div
+      className="flex h-full flex-col rounded-[16px] border p-4 transition-shadow"
+      style={{ background: soft, borderColor: selected ? accent : '#e8e0ef', boxShadow: selected ? `0 0 0 3px ${accent}26` : undefined }}
+    >
+      <div className="flex items-start gap-3">
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[14px] border border-white bg-white" style={{ color: accent }}>
+          <Icon size={24} />
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="text-[13px] font-black leading-5 text-[#171230]">{title}</div>
+          <p className="mt-0.5 text-[11px] leading-[1.45] text-[#6f687b]">{text}</p>
+        </div>
       </div>
-      <div className="shrink-0 text-right">
-        <div className="text-[18px] font-black" style={{ color: accent }}>{price}</div>
-        <div className="text-[8px] font-semibold text-[#6f687b]">{suffix}</div>
-        <span className="mt-2 inline-flex items-center gap-1 rounded-[7px] border bg-white px-2 py-1 text-[8px] font-extrabold" style={{ color: accent, borderColor: `${accent}55` }}>Add to Plan <ArrowRight size={9} /></span>
+
+      <div className="mt-4 flex flex-1 items-end justify-between gap-3 border-t border-black/5 pt-3">
+        <div className="leading-none">
+          <span className="text-[24px] font-black tracking-[-.03em]" style={{ color: accent }}>{price}</span>
+          <span className="ml-1 text-[11px] font-semibold text-[#6f687b]">{suffix}</span>
+        </div>
+        <button
+          type="button"
+          aria-pressed={selected}
+          onClick={onToggle}
+          className="inline-flex min-h-[38px] items-center justify-center gap-1.5 rounded-[10px] border px-4 text-[12px] font-extrabold transition-colors"
+          style={selected ? { color: '#fff', background: accent, borderColor: accent } : { color: accent, background: '#fff', borderColor: accent }}
+        >
+          {selected ? <><Check size={14} strokeWidth={3} /> Added</> : <>+ Add</>}
+        </button>
       </div>
     </div>
   );
@@ -199,6 +243,15 @@ export default function Pricing({ full = false }: { full?: boolean }) {
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const [cycle, setCycle] = useState<Cycle>('monthly');
   const [maxDiscount, setMaxDiscount] = useState(0);
+  const [selectedAddons, setSelectedAddons] = useState<AddonId[]>([]);
+
+  const toggleAddon = (id: AddonId) =>
+    setSelectedAddons((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      // Sourcing packs are mutually exclusive.
+      const base = id.startsWith('sourcing_') ? prev.filter((x) => !x.startsWith('sourcing_')) : prev;
+      return [...base, id];
+    });
 
   useEffect(() => {
     const controller = new AbortController();
@@ -222,7 +275,7 @@ export default function Pricing({ full = false }: { full?: boolean }) {
     return () => controller.abort();
   }, []);
 
-  const hasAnnual = useMemo(() => plans.some((p) => p.has_annual_plan && p.annual_price != null), [plans]);
+  const hasAnnual = useMemo(() => plans.some((p) => p.billing_type !== 'one_time'), [plans]);
 
   return (
     <div>
@@ -270,7 +323,7 @@ export default function Pricing({ full = false }: { full?: boolean }) {
       )}
       {status === 'ready' && (
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {plans.map((plan, i) => <PlanCard key={plan.id} plan={plan} index={i} cycle={cycle} />)}
+          {plans.map((plan, i) => <PlanCard key={plan.id} plan={plan} index={i} cycle={cycle} maxDiscount={maxDiscount} addons={selectedAddons} />)}
         </div>
       )}
 
@@ -279,7 +332,9 @@ export default function Pricing({ full = false }: { full?: boolean }) {
           <div className="flex items-center gap-2 text-[16px] font-black tracking-[-.02em] text-[#171230]">
             <PackageSearch size={19} className="text-[#6d28d9]" /> Add-On Services
           </div>
-          <span className="text-[10px] text-[#766e82]">Enhance your plan with focused add-ons. Pay only for what you need.</span>
+          <span className="text-[10px] text-[#766e82]">
+            Optional. Tick the add-ons you want, then press Get Started on a plan. Your selection is carried to checkout.
+          </span>
         </div>
 
         <div className="grid gap-3 lg:grid-cols-3">
@@ -291,6 +346,8 @@ export default function Pricing({ full = false }: { full?: boolean }) {
             suffix="/month"
             accent="#6d28d9"
             soft="#faf6ff"
+            selected={selectedAddons.includes('order_processing')}
+            onToggle={() => toggleAddon('order_processing')}
           />
           <AddOnCard
             Icon={PackageSearch}
@@ -300,29 +357,56 @@ export default function Pricing({ full = false }: { full?: boolean }) {
             suffix="/month"
             accent="#f97316"
             soft="#fff8f1"
+            selected={selectedAddons.includes('hand_picked')}
+            onToggle={() => toggleAddon('hand_picked')}
           />
-          <div className="rounded-[16px] border border-[#d7efe3] bg-[#f5fff9] p-4">
+          <div
+            className="flex h-full flex-col rounded-[16px] border p-4 transition-shadow"
+            style={{
+              background: '#f5fff9',
+              borderColor: selectedAddons.some((a) => a.startsWith('sourcing_')) ? '#10b981' : '#d7efe3',
+              boxShadow: selectedAddons.some((a) => a.startsWith('sourcing_')) ? '0 0 0 3px #10b98126' : undefined,
+            }}
+          >
             <div className="flex items-start gap-3">
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[15px] border border-white bg-white text-[#10b981]"><Search size={25} /></span>
-              <div>
-                <div className="text-[11px] font-black text-[#171230]">Sourcing Request (from Factory)</div>
-                <p className="mt-1 text-[8.5px] leading-4 text-[#6f687b]">Send product questions to suppliers and get detailed sourcing answers.</p>
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[14px] border border-white bg-white text-[#10b981]"><Search size={24} /></span>
+              <div className="min-w-0 flex-1">
+                <div className="text-[13px] font-black leading-5 text-[#171230]">Sourcing Request (from Factory)</div>
+                <p className="mt-0.5 text-[11px] leading-[1.45] text-[#6f687b]">Send product questions to suppliers and get detailed sourcing answers.</p>
               </div>
             </div>
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <div className="rounded-[11px] border border-[#cfead9] bg-white p-2.5 text-center">
-                <div className="text-[8px] font-semibold text-[#5f7469]">Up to 5 Products</div>
-                <div className="mt-1 text-[17px] font-black text-[#0b8159]">$20</div>
-                <div className="text-[7px] text-[#6f687b]">one-time</div>
-              </div>
-              <div className="rounded-[11px] border border-[#cfead9] bg-white p-2.5 text-center">
-                <div className="text-[8px] font-semibold text-[#5f7469]">Up to 20 Products</div>
-                <div className="mt-1 text-[17px] font-black text-[#0b8159]">$50</div>
-                <div className="text-[7px] text-[#6f687b]">one-time</div>
-              </div>
+            <div className="mt-4 grid flex-1 grid-cols-2 gap-2.5 border-t border-black/5 pt-3">
+              {([['sourcing_5', 'Up to 5 Products', '$20'], ['sourcing_20', 'Up to 20 Products', '$50']] as const).map(([id, label, price]) => {
+                const on = selectedAddons.includes(id);
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    aria-pressed={on}
+                    onClick={() => toggleAddon(id)}
+                    className={`relative flex flex-col items-center justify-center rounded-[12px] border px-2 py-3 text-center transition-colors ${on ? 'border-[#10b981] bg-[#e6faf2]' : 'border-[#cfead9] bg-white hover:border-[#10b981]'}`}
+                  >
+                    <span className={`absolute right-2 top-2 grid h-4 w-4 place-items-center rounded-full border ${on ? 'border-[#10b981] bg-[#10b981] text-white' : 'border-[#b7d9c8] bg-white text-transparent'}`}>
+                      <Check size={10} strokeWidth={3} />
+                    </span>
+                    <span className="text-[11px] font-semibold text-[#5f7469]">{label}</span>
+                    <span className="mt-1 text-[24px] font-black leading-none tracking-[-.03em] text-[#0b8159]">{price}</span>
+                    <span className="mt-1 text-[10px] text-[#6f687b]">one-time</span>
+                    <span className={`mt-2.5 inline-flex min-h-[32px] w-full items-center justify-center rounded-[9px] border text-[12px] font-extrabold ${on ? 'border-[#10b981] bg-[#10b981] text-white' : 'border-[#10b981] bg-white text-[#0b8159]'}`}>
+                      {on ? 'Added' : '+ Add'}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
+
+        <p className="mt-3 text-[11px] font-semibold text-[#6e6680]">
+          {selectedAddons.length === 0
+            ? 'No add-ons selected.'
+            : `Selected: ${selectedAddons.map((id) => ADDON_LABELS[id]).join(', ')}`}
+        </p>
       </div>
     </div>
   );
