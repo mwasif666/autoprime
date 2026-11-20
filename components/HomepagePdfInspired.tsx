@@ -103,7 +103,7 @@ function HeroSection() {
             Find winning products, create eBay listings, process orders automatically, track shipments, monitor stock and prices, and grow your business from one powerful platform.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="https://dsapp.youbasautopilot.com/user/register" className="btn-primary min-h-[50px] px-6 text-sm">Start Free Trial <ArrowRight size={16} /></Link>
+            <Link href="https://panel.autodropshipprime.com/user/register" className="btn-primary min-h-[50px] px-6 text-sm">Start Free Trial <ArrowRight size={16} /></Link>
             <a href="#everything" className="btn-secondary min-h-[50px] px-6 text-sm">See How It Works</a>
           </div>
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-3 text-[11px] font-bold text-[#665e73]">
@@ -306,7 +306,7 @@ function FinalCta() {
     <section className="section bg-white">
       <div className="container-site">
         <div className="relative overflow-hidden rounded-[28px] border border-[#4b22b5] bg-[linear-gradient(100deg,#211062,#5d21d8_58%,#8b3dff)] px-6 py-10 text-white sm:px-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
-          <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full border border-white/10"/><div className="relative"><div className="text-[10px] font-black uppercase tracking-[.13em] text-[#ddd0ff]">Ready to start your dropshipping journey?</div><h2 className="mt-3 text-[28px] font-[900] tracking-[-.04em] sm:text-[36px]">Start Automating Your Business Today.</h2><p className="mt-2 text-[11px] text-white/70">Start with the 3-day trial and explore the connected workflow.</p></div><Link href="https://dsapp.youbasautopilot.com/user/register" className="relative mt-6 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-[12px] bg-white px-6 text-[12px] font-extrabold text-[#5d21d8] lg:mt-0">Start 3-Day Trial for $1 <ArrowRight size={14}/></Link>
+          <div className="absolute -left-10 -top-10 h-40 w-40 rounded-full border border-white/10"/><div className="relative"><div className="text-[10px] font-black uppercase tracking-[.13em] text-[#ddd0ff]">Ready to start your dropshipping journey?</div><h2 className="mt-3 text-[28px] font-[900] tracking-[-.04em] sm:text-[36px]">Start Automating Your Business Today.</h2><p className="mt-2 text-[11px] text-white/70">Start with the 3-day trial and explore the connected workflow.</p></div><Link href="https://panel.autodropshipprime.com/user/register" className="relative mt-6 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-[12px] bg-white px-6 text-[12px] font-extrabold text-[#5d21d8] lg:mt-0">Start 3-Day Trial for $1 <ArrowRight size={14}/></Link>
         </div>
       </div>
     </section>

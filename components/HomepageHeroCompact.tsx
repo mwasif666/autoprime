@@ -113,7 +113,7 @@ export default function HomepageHeroCompact() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="https://dsapp.youbasautopilot.com/user/register"
+                href="https://panel.autodropshipprime.com/user/register"
                 style={{ color: '#ffffff' }}
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-[13px] bg-[linear-gradient(135deg,#6d28d9,#8b3dff)] px-6 text-[13px] font-extrabold !text-white transition hover:-translate-y-0.5 sm:text-sm"
               >

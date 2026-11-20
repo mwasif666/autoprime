@@ -75,7 +75,7 @@ export default function FeaturePage({ config }: { config: FeatureConfig }) {
         title={<>{config.hero}</>}
         description={config.description}
         bullets={config.bullets.slice(0, 4)}
-        primary={{ label: 'Start Free', href: 'https://dsapp.youbasautopilot.com/user/register' }}
+        primary={{ label: 'Start Free', href: 'https://panel.autodropshipprime.com/user/register' }}
         secondary={{ label: 'Talk to Sales', href: '/contact' }}
         visual={<HeroDashboardImage src={dashboard.src} alt={`${config.title} dashboard`} />}
       />

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+export const dynamic = 'force-static';
 
 const paths = ['', '/features', '/features/product-hunting', '/features/auto-listing', '/features/stock-monitoring', '/features/price-monitoring', '/features/google-sheets', '/features/analytics', '/features/reports', '/resources', '/pricing', '/about', '/contact', '/login', '/signup'];
 

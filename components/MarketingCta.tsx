@@ -14,7 +14,7 @@ export default function MarketingCta({
           <h2 className="mx-auto max-w-3xl text-[28px] leading-[1.1] font-[820] tracking-[-.03em] sm:text-[36px]">{title}</h2>
           <p className="mx-auto mt-3 max-w-xl text-[14px] leading-6 text-white/65">{text}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="https://dsapp.youbasautopilot.com/user/register" className="cta-primary">Start Free</Link>
+            <Link href="https://panel.autodropshipprime.com/user/register" className="cta-primary">Start Free</Link>
             <Link href="/contact" className="cta-secondary">Book Demo</Link>
           </div>
         </div>

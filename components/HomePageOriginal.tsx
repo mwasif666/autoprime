@@ -94,7 +94,7 @@ function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="https://dsapp.youbasautopilot.com/user/register" className="btn-primary min-h-[48px] px-6 text-sm">Start Free <ArrowRight size={16} /></Link>
+            <Link href="https://panel.autodropshipprime.com/user/register" className="btn-primary min-h-[48px] px-6 text-sm">Start Free <ArrowRight size={16} /></Link>
             <a href="#how-it-works" className="btn-secondary min-h-[48px] px-6 text-sm">See How It Works</a>
           </div>
 
@@ -356,7 +356,7 @@ function FinalCta() {
             <h2 className="mt-3 text-[28px] font-[850] tracking-[-.035em] sm:text-[34px]">Run Your Dropshipping Operation From One Place.</h2>
           </div>
           <div className="mt-6 flex shrink-0 flex-wrap gap-3 lg:mt-0">
-            <Link href="https://dsapp.youbasautopilot.com/user/register" className="cta-primary">Start Free <ArrowRight size={15} /></Link>
+            <Link href="https://panel.autodropshipprime.com/user/register" className="cta-primary">Start Free <ArrowRight size={15} /></Link>
             <Link href="/contact" className="cta-secondary">Book Demo</Link>
           </div>
         </div>

@@ -37,7 +37,7 @@ export default function FeaturesPage(){
       title={<>One platform for your <span className="gradient-text">dropshipping workflow.</span></>}
       description="Research products, prepare listings, monitor supplier changes, track orders and understand profit from one consistent product experience."
       bullets={['Product research','Listing optimization','Stock + price monitoring','Sheets, wallet and profit visibility']}
-      primary={{label:'Start Free',href:'https://dsapp.youbasautopilot.com/user/register'}}
+      primary={{label:'Start Free',href:'https://panel.autodropshipprime.comuser/register'}}
       secondary={{label:'See Pricing',href:'/pricing'}}
       visual={<HeroDashboardImage src={dashboardAssets.marketplace} alt="AutoDropshipPrime marketplace dashboard"/>}
     />
