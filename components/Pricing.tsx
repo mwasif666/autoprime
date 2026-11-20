@@ -16,8 +16,8 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-const PLANS_API = 'https://app.autodropshipprime.com/api/plans';
-const REGISTER_URL = 'https://panel.autodropshipprime.com/user/register';
+const PLANS_API = 'https://panel.autodropshipprime.com/api/plans';
+const REGISTER_URL = 'https://app.autodropshipprime.com/user/register';
 
 type ApiPlan = {
   id: number;
