@@ -56,7 +56,7 @@ export default function Header() {
         <Link href="/pricing" className="rounded-lg px-4 py-2.5 text-sm font-semibold hover:bg-[#faf8ff]">Pricing</Link>
       </nav>
 
-      <div className="hidden items-center gap-3 lg:flex"><Link href="https://panel.autodropshipprime.com/user/login" className="px-3 py-2 text-sm font-bold">Login</Link><Link href="https://panel.autodropshipprime.com/user/register" className="btn-primary text-sm">Get Started</Link></div>
+      <div className="hidden items-center gap-3 lg:flex"><Link href="https://app.autodropshipprime.com/user/login" className="px-3 py-2 text-sm font-bold">Login</Link><Link href="https://panel.autodropshipprime.com/user/register" className="btn-primary text-sm">Get Started</Link></div>
       <button className="grid h-10 w-10 place-items-center rounded-xl border border-[#e9e4f2] lg:hidden" aria-label="Open menu" onClick={() => setMobile(!mobile)}>{mobile?<X/>:<Menu/>}</button>
     </div>
 
@@ -67,7 +67,7 @@ export default function Header() {
         <Link href="/features" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Solutions</Link>
         <Link href="/resources" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Resources</Link>
         <Link href="/pricing" onClick={()=>setMobile(false)} className="rounded-xl px-3 py-2.5 font-semibold">Pricing</Link>
-        <div className="mt-2 grid grid-cols-2 gap-3"><Link href="https://panel.autodropshipprime.com/user/login" className="btn-secondary text-sm">Login</Link><Link href="https://panel.autodropshipprime.com/user/register" className="btn-primary text-sm">Get Started</Link></div>
+        <div className="mt-2 grid grid-cols-2 gap-3"><Link href="https://app.autodropshipprime.com/user/login" className="btn-secondary text-sm">Login</Link><Link href="https://panel.autodropshipprime.com/user/register" className="btn-primary text-sm">Get Started</Link></div>
       </div>
     </div></div>}
   </header>;

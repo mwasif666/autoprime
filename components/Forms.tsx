@@ -22,7 +22,7 @@ export function SignupForm(){return <Form layout="vertical" onFinish={submit} re
   <Form.Item name="terms" valuePropName="checked" rules={[{validator:(_,v)=>v?Promise.resolve():Promise.reject(new Error('Please accept the terms'))}]}><Checkbox>I agree to the Terms & Privacy Policy</Checkbox></Form.Item>
   <Button htmlType="submit" type="primary" block size="large">Create Account</Button>
   <div className="my-5 flex items-center gap-3 text-xs text-[#9a92a5]"><span className="h-px flex-1 bg-[#e8e3ef]"/>or<span className="h-px flex-1 bg-[#e8e3ef]"/></div><Button block size="large">Continue with Google</Button>
-  <p className="mt-6 text-center text-sm text-[#71697e]">Already have an account? <Link href="https://panel.autodropshipprime.com/user/login" className="font-extrabold text-[#6d28d9]">Sign In</Link></p>
+  <p className="mt-6 text-center text-sm text-[#71697e]">Already have an account? <Link href="https://app.autodropshipprime.com/user/login" className="font-extrabold text-[#6d28d9]">Sign In</Link></p>
 </Form>}
 
 export function ContactForm(){return <Form layout="vertical" onFinish={submit} requiredMark={false}>
